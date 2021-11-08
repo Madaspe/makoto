@@ -1,3 +1,0 @@
-# Makoto
-
-**TODO: Add description**

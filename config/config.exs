@@ -1,17 +1,21 @@
-# This file is responsible for configuring your umbrella
-# and **all applications** and their dependencies with the
-# help of the Config module.
+# This file is responsible for configuring your application
+# and its dependencies with the aid of the Config module.
 #
-# Note that all applications in your umbrella share the
-# same configuration and dependencies, which is why they
-# all use the same configuration file. If you want different
-# configurations or dependencies per app, it is best to
-# move said applications out of the umbrella.
+# This configuration file is loaded before any dependency and
+# is restricted to this project.
+
+# General application configuration
 import Config
 
-# Configure Mix tasks and generators
 config :makoto,
   ecto_repos: [Makoto.Repo]
+
+# Configures the endpoint
+config :makoto, MakotoWeb.Endpoint,
+  url: [host: "localhost"],
+  render_errors: [view: MakotoWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Makoto.PubSub,
+  live_view: [signing_salt: "3tiz0xP3"]
 
 # Configures the mailer
 #
@@ -25,24 +29,13 @@ config :makoto, Makoto.Mailer, adapter: Swoosh.Adapters.Local
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
-config :makoto_web,
-  ecto_repos: [Makoto.Repo],
-  generators: [context_app: :makoto]
-
-# Configures the endpoint
-config :makoto_web, MakotoWeb.Endpoint,
-  url: [host: "localhost"],
-  render_errors: [view: MakotoWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Makoto.PubSub,
-  live_view: [signing_salt: "EaJbXL9u"]
-
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.12.18",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
-    cd: Path.expand("../apps/makoto_web/assets", __DIR__),
+    cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 

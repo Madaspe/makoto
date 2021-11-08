@@ -18,16 +18,16 @@ config :makoto, Makoto.Repo,
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :makoto_web, MakotoWeb.Endpoint,
+config :makoto, MakotoWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "klgLkNFhIuNm2sFDow+IYYIHOeZB9RCnALS5VIHOjj5RtgIpQQG8oBsjH8372zrv",
+  secret_key_base: "It7R8NiNK/XCBoQoPykug5XPxpspBCMh961a9U6k//ouXV8g1BMctASSURf9BQoQ",
   server: false
-
-# Print only warnings and errors during test
-config :logger, level: :warn
 
 # In test we don't send emails.
 config :makoto, Makoto.Mailer, adapter: Swoosh.Adapters.Test
+
+# Print only warnings and errors during test
+config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
