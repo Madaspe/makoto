@@ -8,7 +8,7 @@ defmodule Makoto.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"MyApp", "contact@example.com"})
+      |> from({"Optimine", "contact@madaspe-software.ru"})
       |> subject(subject)
       |> text_body(body)
 

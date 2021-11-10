@@ -36,6 +36,12 @@ config :makoto, MakotoWeb.Endpoint,
     ]
   ]
 
+config :makoto, Makoto.Mailer,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.beget.com",
+  username: "contact@madaspe-software.ru",
+  password: "C%b0eRxZ",
+  auth: :always
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

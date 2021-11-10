@@ -1,75 +1,69 @@
-<h1>Settings</h1>
+<!-- component -->
 
-<h3>Change email</h3>
+    <div class="pt-2 font-mono">
+        <div class="items-center justify-center lex-shrink-0 mt-auto h-full mb-8">
+            <div class="inputs w-full max-w-2xl p-6 mx-auto">
+                <h2 class="text-2xl text-black">Account Setting</h2>
+                <.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password" class="mt-6 border-t border-black pt-4">
+                    <div class='flex flex-wrap -mx-3 mb-6'>
+                        <%# <div class='w-full md:w-full px-3 mb-6'>
+                            <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' for='grid-text-1'>email address</label>
+                            <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' id='grid-text-1' type='text' placeholder='Enter email'  required>
+                        </div> %>
+                        <%= hidden_input f, :action, name: "action", value: "update_password" %>
 
-<.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email">
-  <%= if @email_changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+                        <div class='w-full md:w-full px-3 mb-6'>
+                          <%= label f, :current_password, for: "current_password_for_password", class: "block uppercase tracking-wide text-black text-xs font-bold mb-2" %>
+                          <%= password_input f, :current_password, required: true, class: "appearance-none block w-full bg-white text-black border border-black shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500" %>
+                          <%= error_tag f, :current_password %>
+                        </div>
+
+                        <div class='w-full md:w-full px-3 mb-6'>
+                          <%= label f, :password, "New password", class: "block uppercase tracking-wide text-black text-xs font-bold mb-2" %>
+                          <%= password_input f, :password, required: true, class: "appearance-none block w-full bg-white text-black border border-black shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500" %>
+                          <%= error_tag f, :password %>
+                        </div>
+
+                        <div class='w-full md:w-full px-3 mb-6'>
+                          <%= label f, :password_confirmation, "Confirm new password", class: "block uppercase tracking-wide text-black text-xs font-bold mb-2" %>
+                          <%= password_input f, :password_confirmation, required: true, class: "appearance-none block w-full bg-white text-black border border-black shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500" %>
+                          <%= error_tag f, :password_confirmation %>
+                        </div>
+
+                        <div class="personal w-full">
+                            <div class="flex justify-center">
+                            <%= submit "Change password", class: "appearance-none bg-gray-200 text-black px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3" %>
+                            </div>
+                        </div>
+                    </div>
+                </.form>
+            </div>
+
+
+            <div class="inputs w-full max-w-2xl p-6 mx-auto">
+            <.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email" class="mt-6 border-t border-black pt-4">
+                    <div class='flex flex-wrap -mx-3 mb-6'>
+                          <%= hidden_input f, :action, name: "action", value: "update_email" %>
+
+                        <div class='w-full md:w-full px-3 mb-6'>
+                          <%= label f, :email, class: "block uppercase tracking-wide text-black text-xs font-bold mb-2" %>
+                          <%= email_input f, :email, required: true, class: "appearance-none block w-full bg-white text-black border border-black shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500" %>
+                          <%= error_tag f, :email %>
+                        </div>
+
+                        <div class='w-full md:w-full px-3 mb-6'>
+                          <%= label f, :current_password, "Current password", class: "block uppercase tracking-wide text-black text-xs font-bold mb-2" %>
+                          <%= password_input f, :current_password, required: true, class: "appearance-none block w-full bg-white text-black border border-black shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500" %>
+                          <%= error_tag f, :current_password %>
+                        </div>
+
+                        <div class="personal w-full">
+                            <div class="flex justify-center">
+                            <%= submit "Change mail", class: "appearance-none bg-gray-200 text-black px-2 py-1 shadow-sm border border-black rounded-md mr-3" %>
+                            </div>
+                        </div>
+                    </div>
+                </.form>
+            </div>
+        </div>
     </div>
-  <% end %>
-
-  <%= hidden_input f, :action, name: "action", value: "update_email" %>
-
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
-
-  <%= label f, :current_password, for: "current_password_for_email" %>
-  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email" %>
-  <%= error_tag f, :current_password %>
-
-  <div>
-    <%= submit "Change email" %>
-  </div>
-</.form>
-
-<h3>Change password</h3>
-
-<.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password">
-  <%= if @password_changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
-
-  <%= hidden_input f, :action, name: "action", value: "update_password" %>
-
-  <%= label f, :password, "New password" %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <%= label f, :password_confirmation, "Confirm new password" %>
-  <%= password_input f, :password_confirmation, required: true %>
-  <%= error_tag f, :password_confirmation %>
-
-  <%= label f, :current_password, for: "current_password_for_password" %>
-  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password" %>
-  <%= error_tag f, :current_password %>
-
-  <div>
-    <%= submit "Change password" %>
-  </div>
-</.form>
-
-
-<figure class="md:flex bg-gray-100 rounded-xl p-8 md:p-0">
-  <img class="w-32 h-32 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" src="/sarah-dayan.jpg" alt="" width="384" height="512">
-  <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
-    <blockquote>
-      <p class="text-lg font-semibold">
-        “Tailwind CSS is the only framework that I've seen scale
-        on large teams. It’s easy to customize, adapts to any design,
-        and the build size is tiny.”
-      </p>
-    </blockquote>
-    <figcaption class="font-medium">
-      <div class="text-cyan-600">
-        Sarah Dayan
-      </div>
-      <div class="text-gray-500">
-        Staff Engineer, Algolia
-      </div>
-    </figcaption>
-  </div>
-</figure>
