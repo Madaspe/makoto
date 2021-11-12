@@ -28,12 +28,14 @@ defmodule MakotoWeb.UserAuth do
     token = Accounts.generate_user_session_token(user)
     user_return_to = get_session(conn, :user_return_to)
 
+
     conn
     |> renew_session()
     |> put_session(:user_token, token)
     |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
     |> maybe_write_remember_me_cookie(token, params)
     |> redirect(to: user_return_to || signed_in_path(conn))
+
   end
 
   defp maybe_write_remember_me_cookie(conn, token, %{"remember_me" => "true"}) do
@@ -137,6 +139,29 @@ defmodule MakotoWeb.UserAuth do
       |> redirect(to: Routes.user_session_path(conn, :new))
       |> halt()
     end
+  end
+
+  @doc """
+  User for routes that requre the user role
+  """
+  def check_role_user(%Plug.Conn{assigns: %{current_user: %{role: role}}} = conn, accepted_roles) do
+    if Enum.member?(accepted_roles, role) do
+      conn
+    else
+      must_log_message(conn, "You dont have role to view this page")
+    end
+  end
+
+  def check_role_user(conn, _accepted_roles) do
+    must_log_message(conn, "You must log in to access this page.")
+  end
+
+  defp must_log_message(conn, message) do
+    conn
+    |> put_flash(:error, message)
+    |> maybe_store_return_to()
+    |> redirect(to: Routes.user_session_path(conn, :new))
+    |> halt()
   end
 
   defp maybe_store_return_to(%{method: "GET"} = conn) do

@@ -36,6 +36,9 @@ config :makoto, MakotoWeb.Endpoint,
     ]
   ]
 
+config :makoto, Makoto.CentApp,
+  token: ""
+
 config :makoto, Makoto.Mailer,
   adapter: Swoosh.Adapters.SMTP,
   relay: "smtp.beget.com",
@@ -76,6 +79,7 @@ config :makoto, MakotoWeb.Endpoint,
       ~r"lib/makoto_web/templates/.*(eex)$"
     ]
   ]
+
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

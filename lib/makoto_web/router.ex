@@ -17,6 +17,15 @@ defmodule MakotoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :user do
+    # plug :require_user_role, [user: 1, admin: 2, mod: 3, developer: 4, owner: 5]
+    plug :check_role_user, [:user, :admin, :mod, :developer, :owner]
+  end
+
+  pipeline :owner do
+    plug :check_role_user, [:owner]
+  end
+
   scope "/", MakotoWeb do
     pipe_through :browser
 
@@ -90,5 +99,21 @@ defmodule MakotoWeb.Router do
 
     get "/sessions/new/two_factor_auth", TwoFactorAuthController, :new
     post "/sessions/new/two_factor_auth", TwoFactorAuthController, :create
+  end
+
+  scope "/owner", MakotoWeb do
+    pipe_through [:browser, :owner]
+
+    live "/users", OwnerLive.Index, :index
+    live "/users/new", OwnerLive.Index, :new
+    live "/users/:id/edit", OwnerLive.Index, :edit
+
+    live "/users/:id", OwnerLive.Show, :show
+    live "/users/:id/show/edit", OwnerLive.Show, :edit
+  end
+
+  scope "/api", MakotoWeb do
+    pipe_through :api
+    # post "/centapp",
   end
 end

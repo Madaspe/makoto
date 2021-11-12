@@ -3,11 +3,14 @@ defmodule Makoto.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
+    field :username, :string
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     field :has_2fa, :boolean, default: false
+    field :role, Ecto.Enum, values: [user: 1, admin: 2, mod: 3, developer: 4, owner: 5]
+    field :rubins, :integer, default: 0
     timestamps()
   end
 
@@ -30,8 +33,9 @@ defmodule Makoto.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:username, :email, :password])
     |> validate_email()
+    |> validate_username()
     |> validate_password(opts)
   end
 
@@ -44,13 +48,21 @@ defmodule Makoto.Accounts.User do
     |> unique_constraint(:email)
   end
 
+  defp validate_username(changeset) do
+    changeset
+    |> validate_required([:username])
+    |> validate_length(:username, max: 50, min: 4)
+    |> unsafe_validate_unique(:username, Makoto.Repo)
+    |> unique_constraint(:username)
+  end
+
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
-    |> validate_length(:password, min: 12, max: 72)
-    # |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
-    # |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
-    # |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
+    |> validate_length(:password, min: 8, max: 72)
+    |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
+    |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
+    |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
     |> maybe_hash_password(opts)
   end
 
@@ -136,5 +148,12 @@ defmodule Makoto.Accounts.User do
     else
       add_error(changeset, :current_password, "is not valid")
     end
+  end
+
+  @doc false
+  def changeset(user, attrs) do
+    user
+    |> cast(attrs, [:email, :role, :rubins, :username])
+    |> validate_required([:email, :role, :rubins, :username])
   end
 end
