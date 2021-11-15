@@ -425,4 +425,32 @@ defmodule Makoto.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+
+  @doc """
+  Returns the current interval TOTP code for a given user.
+
+  ## Examples
+
+      iex> generate_totp_code(user)
+      473820
+
+  """
+  def generate_totp_code(%User{otp_secret: secret}) do
+    :pot.totp(secret)
+  end
+
+  @doc """
+  Returns a URL that be rendered with a QR code. It meets the Google Authenticator specification
+  at https://github.com/google/google-authenticator/wiki/Key-Uri-Format.
+
+  ## Examples
+
+      iex> generate_totp_enrolment_url(user)
+      473820
+
+  """
+  def generate_totp_enrolment_url(%User{email: email, otp_secret: secret}) do
+    "otpauth://totp/TOTP%20Example:#{email}?secret=#{secret}&issuer=TOTP%20Example&algorithm=SHA1&digits=6&period=30"
+  end
 end

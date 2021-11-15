@@ -102,7 +102,7 @@ defmodule MakotoWeb.Router do
   end
 
   scope "/owner", MakotoWeb do
-    pipe_through [:browser, :owner]
+    pipe_through [:browser, :require_authenticated_user, :owner]
 
     live "/users", OwnerLive.Index, :index
     live "/users/new", OwnerLive.Index, :new
@@ -112,8 +112,16 @@ defmodule MakotoWeb.Router do
     live "/users/:id/show/edit", OwnerLive.Show, :edit
   end
 
+  scope "/user", MakotoWeb do
+    pipe_through [:browser, :require_authenticated_user, :user]
+    
+    live "/settings", UserCabinetLive.Index, :index
+  end
+
   scope "/api", MakotoWeb do
     pipe_through :api
     # post "/centapp",
   end
+
+  
 end

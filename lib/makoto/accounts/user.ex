@@ -11,6 +11,8 @@ defmodule Makoto.Accounts.User do
     field :has_2fa, :boolean, default: false
     field :role, Ecto.Enum, values: [user: 1, admin: 2, mod: 3, developer: 4, owner: 5]
     field :rubins, :integer, default: 0
+    field :otp_last, :integer, default: 0
+    field :otp_secret, :string
     timestamps()
   end
 
@@ -37,6 +39,22 @@ defmodule Makoto.Accounts.User do
     |> validate_email()
     |> validate_username()
     |> validate_password(opts)
+  end
+
+  @doc false
+  def opt_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:email])
+    |> validate_required([:email])
+    |> unique_constraint(:email)
+    |> generate_otp_secret()
+  end
+
+  @doc false
+  def changeset(user, attrs) do
+    user
+    |> cast(attrs, [:username, :email, :role, :rubins])
+    |> validate_required([:username, :email, :role, :rubins])
   end
 
   defp validate_email(changeset) do
@@ -66,6 +84,7 @@ defmodule Makoto.Accounts.User do
     |> maybe_hash_password(opts)
   end
 
+  
   defp maybe_hash_password(changeset, opts) do
     hash_password? = Keyword.get(opts, :hash_password, true)
     password = get_change(changeset, :password)
@@ -153,7 +172,12 @@ defmodule Makoto.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :role, :rubins, :username])
-    |> validate_required([:email, :role, :rubins, :username])
+    |> cast(attrs, [:username, :email, :role, :rubins])
+    |> validate_required([:username, :email, :role, :rubins])
+  end
+
+  defp generate_otp_secret(opt_changeset) do
+    secret = :crypto.strong_rand_bytes(10) |> Base.encode32()
+    put_change(opt_changeset, :otp_secret, secret)
   end
 end

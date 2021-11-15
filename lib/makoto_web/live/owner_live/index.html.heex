@@ -20,7 +20,7 @@
   <tbody id="users">
     <%= for user <- @users do %>
       <tr id={"user-#{user.id}"}>
-        <td><%= user.email %></td
+        <td><%= user.email %></td>
         <td>
           <span><%= live_redirect "Show", to: Routes.owner_show_path(@socket, :show, user) %></span>
           <span><%= live_patch "Edit", to: Routes.owner_index_path(@socket, :edit, user) %></span>
