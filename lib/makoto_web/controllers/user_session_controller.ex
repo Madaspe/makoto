@@ -3,6 +3,24 @@ defmodule MakotoWeb.UserSessionController do
 
   alias Makoto.Accounts
   alias MakotoWeb.UserAuth
+  alias Ueberauth.Strategy.Helpers
+
+  plug Ueberauth
+
+  require Logger
+
+  def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
+    conn
+    |> put_flash(:error, "Failed to authenticate.")
+    |> redirect(to: "/")
+  end
+
+  def callback(%{assigns: %{ueberauth_auth: %Ueberauth.Auth{extra: %Ueberauth.Auth.Extra{raw_info: %{user: user}}}, current_user: ecto_user}} = conn, _params) do
+    Logger.info inspect(user)
+
+    conn
+    |> redirect(to: "/user/#{ecto_user.username}")
+  end
 
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)

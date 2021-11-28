@@ -43,7 +43,17 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Use Jason for JSON parsing in Phoenix
+config :ueberauth, Ueberauth,
+  base_path: "/connect",
+  providers: [
+    discord: {Ueberauth.Strategy.Discord, [request_path: "/connect/discord", callback_path: "/connect/discord/callback"]}
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Discord.OAuth,
+  client_id: "914414291808043028",
+  client_secret: "uC4aQXCUWXxSvUmLO9Y802H2EVhVy7RRcreate_discord_user"
+
+  # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom

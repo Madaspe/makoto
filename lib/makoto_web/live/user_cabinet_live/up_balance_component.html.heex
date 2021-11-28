@@ -1,0 +1,10 @@
+<div>
+  <h1>Up balance</h1>
+  <%= f = form_for :user, "#", [phx_submit: "submit", phx_target: @myself] %>
+    <%= text_input f, :rubins, value: "" %>
+    <%= submit "Up" %>
+  
+  <div>
+    <%= live_patch "Exit", to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
+  </div>
+</div>

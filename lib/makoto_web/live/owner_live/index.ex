@@ -17,7 +17,7 @@ defmodule MakotoWeb.OwnerLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit User")
-    |> assign(:user, Accounts.get_user!(id))
+    |> assign(:user, Accounts.get_user_by_id!(id))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -34,7 +34,7 @@ defmodule MakotoWeb.OwnerLive.Index do
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user_by_id!(id)
     {:ok, _} = Accounts.delete_user(user)
 
     {:noreply, assign(socket, :users, list_users())}

@@ -1,0 +1,30 @@
+<div>
+    <nav class="container bg-gray-200 mt-4 max-w-7xl mx-auto">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div class="relative flex items-center justify-between h-12">
+            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
+                <div class="flex-shrink-0 flex items-center">
+                    <p>Привет, <%= @user.username %>!</p>
+                </div>
+            </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <%= link "Forum", to: "#", class: "m-2 px-2 block bg-green-600 text-white hover:bg-green-800 px-3 py-2 rounded-md text-sm font-medium" %>
+                    <%= link "View", to: "#", class: "m-2 px-2 block bg-green-600 text-white hover:bg-green-800 px-3 py-2 rounded-md text-sm font-medium" %>
+                    <%= link "Status", to: "#", class: "m-2 px-2 block bg-green-600 text-white hover:bg-green-800 px-3 py-2 rounded-md text-sm font-medium" %>
+                    <%= link "Settings", to: "#", class: "m-2 px-2 block bg-green-600 text-white  hover:bg-green-800 px-3 py-2 rounded-md text-sm font-medium" %>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<%#= if @live_action in [:up_balance] do %>
+    <%#= live_component MakotoWeb.UserCabinetLive.UpBalanceComponent,
+    id: @user.id,
+    user: @user,
+    live_action: @live_action,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
+<%# else %>
+    <%#= live_patch "Up balance", to: Routes.user_cabinet_index_path(@socket, :up_balance, @user.username) %>
+<%# end %>

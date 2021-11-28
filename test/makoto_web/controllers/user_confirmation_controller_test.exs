@@ -76,7 +76,7 @@ defmodule MakotoWeb.UserConfirmationControllerTest do
       conn = post(conn, Routes.user_confirmation_path(conn, :update, token))
       assert redirected_to(conn) == "/"
       assert get_flash(conn, :info) =~ "User confirmed successfully"
-      assert Accounts.get_user!(user.id).confirmed_at
+      assert Accounts.get_user_by_id!(user.id).confirmed_at
       refute get_session(conn, :user_token)
       assert Repo.all(Accounts.UserToken) == []
 
@@ -99,7 +99,7 @@ defmodule MakotoWeb.UserConfirmationControllerTest do
       conn = post(conn, Routes.user_confirmation_path(conn, :update, "oops"))
       assert redirected_to(conn) == "/"
       assert get_flash(conn, :error) =~ "User confirmation link is invalid or it has expired"
-      refute Accounts.get_user!(user.id).confirmed_at
+      refute Accounts.get_user_by_id!(user.id).confirmed_at
     end
   end
 end

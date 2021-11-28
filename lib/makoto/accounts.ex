@@ -352,14 +352,32 @@ defmodule Makoto.Accounts do
 
   ## Examples
 
-      iex> get_user!(123)
+      iex> get_user_by_id!(123)
       %User{}
 
-      iex> get_user!(456)
+      iex> get_user_by_id!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user_by_id!(id), do: Repo.get!(User, id)
+
+
+  @doc """
+  Gets a single user.
+
+  Raises `Ecto.NoResultsError` if the User does not exist.
+
+  ## Examples
+
+      iex> get_user_by_username!("valid username")
+      %User{}
+
+      iex> get_user_by_username!("invalid username")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_user_by_username!(username), do: Repo.get_by!(User, username: username)
+  def get_user_by_username(username), do: Repo.get_by(User, username: username)
 
   @doc """
   Creates a user.
@@ -452,5 +470,11 @@ defmodule Makoto.Accounts do
   """
   def generate_totp_enrolment_url(%User{email: email, otp_secret: secret}) do
     "otpauth://totp/TOTP%20Example:#{email}?secret=#{secret}&issuer=TOTP%20Example&algorithm=SHA1&digits=6&period=30"
+  end
+
+  def create_discord_user(attrs) do
+    %Makoto.Discord.User{}
+    |> Makoto.Discord.User.changeset(attrs)
+    |> Repo.insert()
   end
 end

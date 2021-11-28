@@ -13,6 +13,7 @@ defmodule Makoto.Accounts.User do
     field :rubins, :integer, default: 0
     field :otp_last, :integer, default: 0
     field :otp_secret, :string
+    has_one :discord_info, Makoto.Discord.User
     timestamps()
   end
 
@@ -51,6 +52,13 @@ defmodule Makoto.Accounts.User do
   end
 
   @doc false
+  def balance_changeset(user, attrs \\ %{}) do
+    user
+    |> cast(attrs, [:rubins])
+    |> validate_required([:rubins])
+  end
+
+  @doc false
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:username, :email, :role, :rubins])
@@ -84,7 +92,7 @@ defmodule Makoto.Accounts.User do
     |> maybe_hash_password(opts)
   end
 
-  
+
   defp maybe_hash_password(changeset, opts) do
     hash_password? = Keyword.get(opts, :hash_password, true)
     password = get_change(changeset, :password)

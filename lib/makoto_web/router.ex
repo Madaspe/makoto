@@ -69,7 +69,6 @@ defmodule MakotoWeb.Router do
 
   scope "/", MakotoWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
-
     get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
     get "/users/log_in", UserSessionController, :new
@@ -83,22 +82,23 @@ defmodule MakotoWeb.Router do
   scope "/", MakotoWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/users/settings", UserSettingsController, :edit
-    put "/users/settings", UserSettingsController, :update
+    get "/users/settings", UserSettingsController, :redirect_to_liveview
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
   end
 
   scope "/", MakotoWeb do
     pipe_through [:browser]
-
     delete "/users/log_out", UserSessionController, :delete
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
 
-    get "/sessions/new/two_factor_auth", TwoFactorAuthController, :new
-    post "/sessions/new/two_factor_auth", TwoFactorAuthController, :create
+    scope "/connect" do
+      get "/:provider", UserSessionController, :request
+      get "/:provider/callback", UserSessionController, :callback
+    end
+
   end
 
   scope "/owner", MakotoWeb do
@@ -112,16 +112,18 @@ defmodule MakotoWeb.Router do
     live "/users/:id/show/edit", OwnerLive.Show, :edit
   end
 
-  scope "/user", MakotoWeb do
+  scope "/user/:username", MakotoWeb do
     pipe_through [:browser, :require_authenticated_user, :user]
-    
-    live "/settings", UserCabinetLive.Index, :index
+
+    live "/", UserCabinetLive.Index, :index
+
+    scope "/balance" do
+      live "/up", UserCabinetLive.Index, :up_balance
+    end
   end
 
   scope "/api", MakotoWeb do
     pipe_through :api
     # post "/centapp",
   end
-
-  
 end

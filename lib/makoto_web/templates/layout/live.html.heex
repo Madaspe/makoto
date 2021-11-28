@@ -1,7 +1,7 @@
-<main>
+<main class="bg-gray">
   <p class="hidden" id="info-alert"><%= live_flash(@flash, :info) %></p>
 
-  <p class="hidden" id="danger-alert"></p>
+  <p class="hidden" id="danger-alert"><%= live_flash(@flash, :error) %></p>
 
   <%= @inner_content %>
 </main>
