@@ -8,7 +8,11 @@ defmodule MakotoWeb.UserCabinetLive.Index do
 
   @impl true
   def mount(params, %{"user_token" => user_token} = session, socket) do
-    {:ok, socket}
+    user =
+      Accounts.get_user_by_session_token(user_token)
+      |> Accounts.preload([:discord_info])
+
+    {:ok, socket |> assign(:user, user)}
   end
 
   @impl true
@@ -16,17 +20,38 @@ defmodule MakotoWeb.UserCabinetLive.Index do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp apply_action(socket, action, %{"username" => username}) when action in [:up_balance, :index] do
-    user = Accounts.get_user_by_username!(username)
-
+  defp apply_action(socket, action, %{"username" => username}) when action in [:up_balance] do
      socket
-     |> assign(:user, user)
   end
 
-  # defp apply_action(socket, :up_balance, params) do
-  #   Logger.info inspect(params)
+  # TODO нужно сделать систему посещения профиля другим игроков
+  defp apply_action(socket, action, %{"username" => username}) when action in [:index] do
+    socket
+ end
 
-  #   socket
-  #   |> assign(:user, params)
-  # end
+  defp apply_action(socket, :delete, %{"username" => username}) do
+    socket.assigns.user
+    |> Accounts.delete_discord()
+
+    socket
+    |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, username))
+  end
+
+  defp apply_action(socket, _action, %{"username" => username}) do
+     socket
+  end
+
+  defp apply_action(socket, :update_email, %{"token" => token}) do
+    case Accounts.update_user_email(socket.assigns.user, token) do
+      :ok ->
+        socket
+        |> put_flash(:info, "Email changed successfully.")
+        |> redirect(to: Routes.user_settings_path(socket, :edit))
+
+      :error ->
+        socket
+        |> put_flash(:error, "Email change link is invalid or it has expired.")
+        |> redirect(to: Routes.user_settings_path(socket, :edit))
+    end
+  end
 end

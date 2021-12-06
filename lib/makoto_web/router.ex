@@ -116,6 +116,19 @@ defmodule MakotoWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :user]
 
     live "/", UserCabinetLive.Index, :index
+    scope "/settings" do
+      live "/", UserCabinetLive.Index, :settings
+      live "/view", UserCabinetLive.Index, :view_settings
+
+      scope "/update" do
+        live "/email", UserCabinetLive.Index, :update_email
+      end
+
+    end
+
+    scope "/unconnect" do
+      live "/discord", UserCabinetLive.Index, :delete
+    end
 
     scope "/balance" do
       live "/up", UserCabinetLive.Index, :up_balance

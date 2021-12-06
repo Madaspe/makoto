@@ -13,6 +13,15 @@ defmodule Makoto.Accounts.User do
     field :rubins, :integer, default: 0
     field :otp_last, :integer, default: 0
     field :otp_secret, :string
+
+    field :avatar, :any, virtual: true
+    field :skin, :any, virtual: true
+    field :cloak, :any, virtual: true
+
+    field :avatar_url, :string
+    field :skin_url, :string
+    field :cloak_url, :string
+
     has_one :discord_info, Makoto.Discord.User
     timestamps()
   end
@@ -135,7 +144,7 @@ defmodule Makoto.Accounts.User do
       validations on a LiveView form), this option can be set to `false`.
       Defaults to `true`.
   """
-  def password_changeset(user, attrs, opts \\ []) do
+  def password_changeset(user, attrs \\ %{}, opts \\ []) do
     user
     |> cast(attrs, [:password])
     |> validate_confirmation(:password, message: "does not match password")

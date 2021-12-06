@@ -378,6 +378,7 @@ defmodule Makoto.Accounts do
   """
   def get_user_by_username!(username), do: Repo.get_by!(User, username: username)
   def get_user_by_username(username), do: Repo.get_by(User, username: username)
+  def get_user_by_username_and_preload!(username), do: Repo.get_by!(User, username: username) |> Repo.preload([:discord_info])
 
   @doc """
   Creates a user.
@@ -472,9 +473,24 @@ defmodule Makoto.Accounts do
     "otpauth://totp/TOTP%20Example:#{email}?secret=#{secret}&issuer=TOTP%20Example&algorithm=SHA1&digits=6&period=30"
   end
 
-  def create_discord_user(attrs) do
-    %Makoto.Discord.User{}
-    |> Makoto.Discord.User.changeset(attrs)
+  # TODO Нужно еще сделать валидацию
+  def assoc_discord_user(user, attrs) do
+    user
+    |> Ecto.build_assoc(:discord_info, attrs)
     |> Repo.insert()
+  end
+
+  def delete_discord(user) do
+    user
+    |> Kernel.then(fn user_to_delete ->
+        case Repo.delete user_to_delete.discord_info do
+          {:ok, new_user} -> user
+          {:error, changeset} -> user
+        end
+    end)
+  end
+
+  def preload(user, preloads) do
+    Repo.preload(user, preloads)
   end
 end

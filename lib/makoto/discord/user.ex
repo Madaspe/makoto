@@ -2,7 +2,7 @@ defmodule Makoto.Discord.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "discord_user" do
+  schema "discord_users" do
     field :username, :string
     field :discord_id, :string
     belongs_to :user, Makoto.Accounts.User

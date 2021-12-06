@@ -16,7 +16,13 @@ defmodule MakotoWeb.UserSessionController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: %Ueberauth.Auth{extra: %Ueberauth.Auth.Extra{raw_info: %{user: user}}}, current_user: ecto_user}} = conn, _params) do
-    Logger.info inspect(user)
+    user =
+      user
+      |> Kernel.then(fn user ->
+        %{discord_id: user["id"], username: user["username"]}
+      end)
+
+    Accounts.assoc_discord_user(ecto_user, user)
 
     conn
     |> redirect(to: "/user/#{ecto_user.username}")

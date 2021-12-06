@@ -1,0 +1,11 @@
+<div>
+    <h1>Change email</h1>
+    <%= f = form_for :user, "#", [phx_submit: "submit", phx_target: @myself, phx_change: "validate"] %>
+        <%= label f, :password, "Password" %>
+        <%= password_input f, :password %>
+
+        <%= label f, :email, "New email" %>
+        <%= email_input f, :email %>
+
+        <%= submit "Change" %>
+</div>

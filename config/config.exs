@@ -51,7 +51,7 @@ config :ueberauth, Ueberauth,
 
 config :ueberauth, Ueberauth.Strategy.Discord.OAuth,
   client_id: "914414291808043028",
-  client_secret: "uC4aQXCUWXxSvUmLO9Y802H2EVhVy7RRcreate_discord_user"
+  client_secret: "uC4aQXCUWXxSvUmLO9Y802H2EVhVy7RR"
 
   # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

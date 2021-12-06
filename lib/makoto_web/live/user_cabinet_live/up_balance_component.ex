@@ -13,9 +13,9 @@ defmodule MakotoWeb.UserCabinetLive.UpBalanceComponent do
   end
 
   @impl true
-  def handle_params(%{"username" => username}, _, socket) do
+  def handle_params(_params, _, socket) do
     user =
-      Accounts.get_user_by_username!(username)
+      socket.assigns.user
 
     {:noreply,
      socket

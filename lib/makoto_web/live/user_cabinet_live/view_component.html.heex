@@ -1,0 +1,15 @@
+<div>
+    <h1>Change view</h1>
+    <form id="upload-form" phx-submit="save">
+        <div>
+            <%= live_file_input @uploads.avatar %>
+        </div>
+        <div>
+            <%= live_file_input @uploads.skin %>
+        </div>
+        <div>
+            <%= live_file_input @uploads.cloak %>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+</div>
