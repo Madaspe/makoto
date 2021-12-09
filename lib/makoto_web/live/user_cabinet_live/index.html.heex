@@ -1,7 +1,7 @@
-<div class="container bg-gray-200 mt-4 max-w-7xl mx-auto">
-    <div>
+<div class="grid mt-4 max-w-7xl mx-auto grid-cols-12">
+    <div class="col-span-12">
         <nav>
-            <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
                 <div class="relative flex items-center justify-between h-12">
                     <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
                         <div class="flex-shrink-0 flex items-center">
@@ -63,49 +63,64 @@
             </div>
         </nav>
     </div>
+    <div class="col-span-8">
+        <%= if @live_action in [:index] do %>
+            <div class="bg-white">
+            Личный кабинет
+            </div>
 
-<%= if @live_action in [:index] do %>
-    <div class="bg-white">
-    Личный кабинет
+            <%= if @user.discord_info do %>
+                <%= @user.discord_info.username %> (<%= link "Отвязать дискорд", to: Routes.user_cabinet_index_path(@socket, :delete, @user.username) %>)
+            <% else %>
+                <%= link "Привязать дискорд", to: Routes.user_session_path(@socket, :request, "discord") %>
+            <% end %>
+        <% end %>
+        <%= if @live_action in [:up_balance] do %>
+            <%= live_component MakotoWeb.UserCabinetLive.UpBalanceComponent,
+                id: @user.id,
+                user: @user,
+                live_action: @live_action,
+                return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
+        <% end %>
+        <%#= live_patch "Up balance", to: Routes.user_cabinet_index_path(@socket, :up_balance, @user.username) %>
+        <%# end %>
+        <%= if @live_action in [:settings] do %>
+            <%= live_component MakotoWeb.UserCabinetLive.ChangePasswordComponent,
+                id: @user.id,
+                user: @user,
+                username: @user.username,
+                live_action: @live_action,
+                return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
+            
+            <%= live_component MakotoWeb.UserCabinetLive.ChangeEmailComponent,
+                id: @user.id,
+                user: @user,
+                username: @user.username,
+                live_action: @live_action,
+                return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
+        <% end %>
+
+        <%= if @live_action in [:view_settings] do %>
+            <%= live_component MakotoWeb.UserCabinetLive.ViewComponent,
+                id: @user.id,
+                user: @user,
+                username: @user.username,
+                live_action: @live_action,
+                return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
+        <% end %>
     </div>
 
-    <%= if @user.discord_info do %>
-        <%= @user.discord_info.username %> (<%= link "Отвязать дискорд", to: Routes.user_cabinet_index_path(@socket, :delete, @user.username) %>)
-    <% else %>
-        <%= link "Привязать дискорд", to: Routes.user_session_path(@socket, :request, "discord") %>
-    <% end %>
-<% end %>
-<%= if @live_action in [:up_balance] do %>
-    <%= live_component MakotoWeb.UserCabinetLive.UpBalanceComponent,
-        id: @user.id,
-        user: @user,
-        live_action: @live_action,
-        return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
-<% end %>
-<%#= live_patch "Up balance", to: Routes.user_cabinet_index_path(@socket, :up_balance, @user.username) %>
-<%# end %>
-<%= if @live_action in [:settings] do %>
-    <%= live_component MakotoWeb.UserCabinetLive.ChangePasswordComponent,
-        id: @user.id,
-        user: @user,
-        username: @user.username,
-        live_action: @live_action,
-        return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
-    
-    <%= live_component MakotoWeb.UserCabinetLive.ChangeEmailComponent,
-        id: @user.id,
-        user: @user,
-        username: @user.username,
-        live_action: @live_action,
-        return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
-<% end %>
+    <div class="col-span-4 bg-green-500 rounded-2xl">
+        <div class="flex">
+            <p class="mr-auto mt-1 text-white ml-1 text-2xl">Баланс</p>
+            <%= link "+ ПОПОЛНИТЬ", to: Routes.user_cabinet_index_path(@socket, :up_balance, @user.username),
+            class: "rounded-2xl bg-white text-sm my-auto text-sm px-1 mx-2" %>
+        </div>
 
-<%= if @live_action in [:view_settings] do %>
-    <%= live_component MakotoWeb.UserCabinetLive.ViewComponent,
-        id: @user.id,
-        user: @user,
-        username: @user.username,
-        live_action: @live_action,
-        return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
-<% end %>
+        <div>
+            <h1 class="text-center text-5xl py-3">
+                <%= @user.rubins %>
+            </h1>
+        </div>
+    </div>
 </div>
