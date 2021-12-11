@@ -1,15 +1,10 @@
-<div>
+<div class="col-span-12 row-span-8">
     <h1>Change view</h1>
-    <form id="upload-form" phx-submit="save">
-        <div>
-            <%= live_file_input @uploads.avatar %>
-        </div>
-        <div>
-            <%= live_file_input @uploads.skin %>
-        </div>
-        <div>
-            <%= live_file_input @uploads.cloak %>
-        </div>
-        <button type="submit">Upload</button>
-    </form>
+
+<form phx-submit="save" phx-change="validate" phx-target={@myself}>
+  <%= live_file_input @uploads.avatar %>
+  <button type="submit">Upload</button>
+</form>
+
+
 </div>

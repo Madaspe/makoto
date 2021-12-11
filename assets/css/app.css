@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+* {
+
+}
 
 body {
   background-image: url("/images/background_image.jpg");
@@ -135,3 +141,5 @@ body {
 }
 
 /* Toast style */
+
+
