@@ -30,6 +30,9 @@ defmodule MakotoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    post "/", PageController, :index
+
+    get "/ref/:id", ReferralContorller, :index
   end
 
   # Other scopes may use custom stacks.
@@ -66,7 +69,6 @@ defmodule MakotoWeb.Router do
   end
 
   ## Authentication routes
-
   scope "/", MakotoWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
     get "/users/register", UserRegistrationController, :new
@@ -99,6 +101,9 @@ defmodule MakotoWeb.Router do
       get "/:provider/callback", UserSessionController, :callback
     end
 
+    live "/page/donate", UserCabinetLive.Index, :donat_page
+    live "/page/rules", UserCabinetLive.Index, :rules_page
+
   end
 
   scope "/owner", MakotoWeb do
@@ -113,11 +118,18 @@ defmodule MakotoWeb.Router do
   end
 
   scope "/user/:username", MakotoWeb do
-    pipe_through [:browser, :require_authenticated_user, :user]
+    pipe_through [:browser, :require_authenticated_user]
 
     live "/", UserCabinetLive.Index, :index
+    live "/buy/status", UserCabinetLive.Index, :buy_status
+
+    scope "/referrals" do
+      live "/:page", UserCabinetLive.Index, :list_referrals
+    end
+
     scope "/settings" do
-      live "/", UserCabinetLive.Index, :settings
+      live "/email", UserCabinetLive.Index, :settings_email
+      live "/password", UserCabinetLive.Index, :settings_password
       live "/view", UserCabinetLive.Index, :view_settings
 
       scope "/update" do
@@ -132,11 +144,17 @@ defmodule MakotoWeb.Router do
 
     scope "/balance" do
       live "/up", UserCabinetLive.Index, :up_balance
+      live "/coins", UserCabinetLive.Index, :rubins_to_coins
     end
   end
 
   scope "/api", MakotoWeb do
     pipe_through :api
-    # post "/centapp",
+    post "/centapp", CentAppContorller, :index
+    post "/centapp/kljsdfglkdsjfgioertpoierwutlksfdjgxcv", CentAppContorller, :postback
+
+    scope "/launcher" do
+      get "/auth", LauncherAuthController, :index
+    end
   end
 end

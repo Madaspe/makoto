@@ -31,32 +31,44 @@ class Toast {
     }
 }
 
-function animAlert() {
-    var infoAlert = document.getElementById("info-alert")
-    var dangerAlert = document.getElementById("danger-alert")
-
-    if (infoAlert.innerText) {
+function alertSuccessOutput(alert) {
+    if (alert.innerText) {
         new Toast({
             title: 'Alert',
-            text: infoAlert.innerText,
+            text: alert.innerText,
             theme: 'success',
             autohide: true,
             interval: 5000
           });
         
-          infoAlert.innerText = ""
+          alert.innerText = ""
     }
+}
 
-    if (dangerAlert.innerText) {
+function alertErrorOutput(alert) {
+    if (alert.innerText) {
         new Toast({
             title: 'Alert',
-            text: dangerAlert.innerText,
+            text: alert.innerText,
             theme: 'danger',
             autohide: true,
             interval: 5000
           });
+        
+          alert.innerText = ""
+    }
+}
 
-          dangerAlert.innerText = ""
+function animAlert() {
+    var infoAlerts = document.getElementsByClassName("info-alert")
+    var dangerAlerts = document.getElementsByClassName("danger-alert")
+
+    for (var i = 0; i < infoAlerts.length; i++) {
+        alertSuccessOutput(infoAlerts[i]);
+    }
+
+    for (var i = 0; i < dangerAlerts.length; i++) {
+        alertErrorOutput(dangerAlerts[i]);  
     }
 }
 

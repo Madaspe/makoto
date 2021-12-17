@@ -9,7 +9,7 @@ defmodule Makoto.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Makoto.Repo,
+      {Makoto.Repo, show_sensitive_data_on_connection_error: true},
       # Start the Telemetry supervisor
       MakotoWeb.Telemetry,
       # Start the PubSub system

@@ -7,19 +7,6 @@ import Config
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
 if config_env() == :prod do
-  database_url =
-    System.get_env("DATABASE_URL") ||
-      raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
-      """
-
-  config :makoto, Makoto.Repo,
-    # ssl: true,
-    # socket_options: [:inet6],
-    url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
-
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
   # want to use a different value for prod and you most likely don't want
@@ -30,6 +17,46 @@ if config_env() == :prod do
       raise """
       environment variable SECRET_KEY_BASE is missing.
       You can generate one by calling: mix phx.gen.secret
+      """
+  database_url =
+    System.get_env("DATABASE_URL") ||
+      raise """
+      environment variable DATABASE_URL is missing.
+      For example: ecto://USER:PASS@HOST/DATABASE
+      """
+
+  config :makoto, Makoto.Repo,
+    url: database_url,
+    pool_size: 10
+
+  relay_email =
+    System.get_env("RELAY_EMAIL") ||
+      raise """
+      environment variable RELAY_EMAIL is missing.
+      """
+
+  username_email =
+    System.get_env("USERNAME_EMAIL") ||
+      raise """
+      environment variable USERNAME_EMAIL is missing.
+      """
+
+  password_email =
+    System.get_env("PASSWORD_EMAIL") ||
+      raise """
+      environment variable PASSWORD_EMAIL is missing.
+      """
+
+  cent_app_token =
+    System.get_env("CENT_APP_TOKEN") ||
+      raise """
+      environment variable CENT_APP_TOKEN is missing.
+      """
+
+  cent_app_shop_id =
+    System.get_env("CENT_APP_SHOP_ID") ||
+      raise """
+      environment variable CENT_APP_SHOP_ID is missing.
       """
 
   config :makoto, MakotoWeb.Endpoint,
@@ -43,6 +70,53 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
+  config :makoto, Makoto.Mailer,
+    adapter: Swoosh.Adapters.SMTP,
+    relay: relay_email,
+    username: username_email,
+    password:  password_email,
+    auth: :always
+
+  config :makoto,
+    cent_app_token: cent_app_token,
+    cent_app_shop_id: cent_app_shop_id
+
+  client_id =
+    System.get_env("DISCORD_CLIENT_ID") ||
+              raise """
+              environment variable DISCORD_CLIENT_ID is missing.
+              """
+  client_secret =
+    System.get_env("DISCORD_CLIENT_SECRET") ||
+                    raise """
+                    environment variable DISCORD_CLIENT_SECRET is missing.
+                    """
+
+  config :ueberauth, Ueberauth.Strategy.Discord.OAuth,
+  client_id: client_id,
+  client_secret:  client_secret
+
+  rcon_host =
+    System.get_env("RCON_HOST") ||
+              raise """
+              environment variable RCON_HOST is missing.
+              """
+  rcon_password =
+    System.get_env("RCON_PASSWORD") ||
+                    raise """
+                    environment variable RCON_PASSWORD is missing.
+                    """
+
+  rcon_port =
+    System.get_env("RCON_PASSWORD") ||
+                    raise """
+                    environment variable RCON_PASSWORD is missing.
+                    """
+
+  config :makoto,
+    rcon_host: rcon_host,
+    rcon_port: String.to_integer(rcon_port),
+    rcon_password: rcon_password
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix

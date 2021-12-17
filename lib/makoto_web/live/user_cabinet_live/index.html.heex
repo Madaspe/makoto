@@ -1,210 +1,494 @@
-<div class="grid mt-4 max-w-7xl mx-auto grid-cols-12 grid-rows-8">
-    <div class="col-span-12">
-        <nav>
-            <div class="max-w-7xl mx-auto">
-                <div class="relative flex items-center justify-between h-12">
-                    <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
-                        <div class="flex-shrink-0 flex items-center">
-                            <p class="text-3xl">Привет, <%= @user.username %>!</p>
-                        </div>
-                    </div>
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        <div
-                            class="m-2 px-2 block bg-green-500 text-white hover:bg-green-800 px-3 py-2 rounded-md text-sm font-medium">
-                            <a class="flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-person mr-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                                </svg>
-                                Профиль форума
-                            </a>
-                        </div>
+<div class="container" id="cabinet">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex flex-md-row flex-column justify-content-between">
 
-                        <div
-                            class="m-2 px-2 block bg-green-500 text-white hover:bg-green-800 px-3 py-2 rounded-md text-sm font-medium">
-                            <div class="flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-brush mr-1" viewBox="0 0 16 16">
-                                    <path
-                                        d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.117 8.117 0 0 1-3.078.132 3.658 3.658 0 0 1-.563-.135 1.382 1.382 0 0 1-.465-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.393-.197.625-.453.867-.826.094-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.2-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.175-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04zM4.705 11.912a1.23 1.23 0 0 0-.419-.1c-.247-.013-.574.05-.88.479a11.01 11.01 0 0 0-.5.777l-.104.177c-.107.181-.213.362-.32.528-.206.317-.438.61-.76.861a7.127 7.127 0 0 0 2.657-.12c.559-.139.843-.569.993-1.06a3.121 3.121 0 0 0 .126-.75l-.793-.792zm1.44.026c.12-.04.277-.1.458-.183a5.068 5.068 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.591 1.927-5.566 4.66-7.302 6.792-.442.543-.796 1.243-1.042 1.826a11.507 11.507 0 0 0-.276.721l.575.575zm-4.973 3.04l.007-.005a.031.031 0 0 1-.007.004zm3.582-3.043l.002.001h-.002z" />
-                                </svg>
-                                <%= link "Внешний вид", to: Routes.user_cabinet_index_path(@socket, :view_settings, @user.username) %>
-                            </div>
-                        </div>
+      <%= if @user != nil do %>
+        <h3 class="hello">Привет, <%= @user.username %>!</h3>
 
-                        <div
-                            class="m-2 px-2 block bg-green-500 text-white hover:bg-green-800 px-3 py-2 rounded-md text-sm font-medium">
-                            <a class="flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-sliders mr-1" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
-                                </svg>
-                                Управление статусом
-                            </a>
-                        </div>
+        <ul class="nav nav-cabinet">
+        
+      <li class="nav-item">
+        <a class="nav-link active" href={Routes.user_cabinet_index_path(@socket, :view_settings, @user.username)}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brush mr-1" viewBox="0 0 16 16">
+          <path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.117 8.117 0 0 1-3.078.132 3.658 3.658 0 0 1-.563-.135 1.382 1.382 0 0 1-.465-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.393-.197.625-.453.867-.826.094-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.2-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.175-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04zM4.705 11.912a1.23 1.23 0 0 0-.419-.1c-.247-.013-.574.05-.88.479a11.01 11.01 0 0 0-.5.777l-.104.177c-.107.181-.213.362-.32.528-.206.317-.438.61-.76.861a7.127 7.127 0 0 0 2.657-.12c.559-.139.843-.569.993-1.06a3.121 3.121 0 0 0 .126-.75l-.793-.792zm1.44.026c.12-.04.277-.1.458-.183a5.068 5.068 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.591 1.927-5.566 4.66-7.302 6.792-.442.543-.796 1.243-1.042 1.826a11.507 11.507 0 0 0-.276.721l.575.575zm-4.973 3.04l.007-.005a.031.031 0 0 1-.007.004zm3.582-3.043l.002.001h-.002z"></path>
+        </svg>
+        Внешний вид</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href={Routes.user_cabinet_index_path(@socket, :buy_status, @user.username)}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders mr-1" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"></path>
+        </svg>
+        Управление статусами</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mr-0" href={Routes.user_cabinet_index_path(@socket, :settings_email, @user.username)}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear mr-1" viewBox="0 0 16 16">
+          <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
+          <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
+        </svg>
+        Настройки</a>
+      </li>
+      
+    </ul>
+    <% end %>
+  </div>
 
-                        <div
-                            class="m-2 px-2 block bg-green-500 text-white hover:bg-green-800 px-3 py-2 rounded-md text-sm font-medium">
-                            <div class="flex" href=''>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-gear mr-1" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
-                                    <path
-                                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
-                                </svg>
-                                <%= link "Настройки", to: Routes.user_cabinet_index_path(@socket, :settings, @user.username) %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-        <div class="col-span-8 bg-white grid grid-cols-12 grid-rows-6 mr-2 rounded-2xl row-span-6 mt-2">
+</div>
+<div class="col-12 col-md-8">
+  <div class="om-block">
+    <div class="container">
+      <div class="row">
         <%= if @live_action in [:index] do %>
-            <div class="col-span-4 row-span-6">
-                3D Skin
-            </div>
-
-            <div class="col-span-8 flex mt-2 mx-2">
-                <div class="mx-auto bg-green-200 rounded-md h-18 w-56 mx-2">
-                    <div class="m-2 text-xs text-center"> 
-                        Наигранно
-                    </div>
-
-                    <div class="text-center text-xl">
-                        0ч
-                    </div>
-                </div>
-
-                <div class="mx-auto bg-green-200 rounded-md h-16 w-56 mx-2">
-                    <div class="m-2 text-xs text-center"> 
-                        Любимый сервер
-                    </div>
-
-                    <div class="text-center text-xl">
-                        Нет
-                    </div>
-                </div>
-
-
-                <div class="mx-auto bg-green-200 rounded-md h-16 w-56 mx-2">
-                    <div class="m-2 text-xs text-center"> 
-                        С нами уже
-                    </div>
-
-                    <div class="text-center text-xl">
-                        3000 лет
-                    </div>
-                </div>
-
-                <div class="mx-auto bg-green-200 rounded-md h-16 w-56 mx-2">
-                    <div class="m-2 text-xs text-center"> 
-                        Голосований
-                    </div>
-
-                    <div class="text-center text-xl">
-                        0 
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="mt-2 mx-2 col-span-8 row-span-6">
-                <hr class="my-2 text-gray-300 ">
-                <div class="h-4/5">
-                    <table class="table-auto w-full mt-5">
-                        <tbody>
-                            <tr>
-                                <td class="font-bold">Профиль Discord</td>
-                                <td>
-                                    <%= if @user.discord_info do %>
-                                        <%= @user.discord_info.username %> (<%= link "Отвязать дискорд", to: Routes.user_cabinet_index_path(@socket, :delete, @user.username) %>)
-                                    <% else %>
-                                        <%= link "Привязать дискорд", to: Routes.user_session_path(@socket, :request, "discord") %>
-                                    <% end %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="font-bold">Дата регистрации</td>
-                                <td><%= @user.inserted_at.day %>.<%= @user.inserted_at.month %>.<%= @user.inserted_at.year %> <%= @user.inserted_at.hour %>:<%= @user.inserted_at.minute %>:<%= @user.inserted_at.second %></td>
-                            </tr>
-                            <tr>
-                                <td class="font-bold">Статус</td>
-                                <td><%= @user.role %></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <hr class="my-2 text-gray-300 bottom-0">
-
-                <div>
-
-                </div>
-            </div>
-        <% end %>
-        <%= if @live_action in [:up_balance] do %>
-            <%= live_component MakotoWeb.UserCabinetLive.UpBalanceComponent,
-                id: @user.id,
-                user: @user,
-                live_action: @live_action,
-                return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
-        <% end %>
-        <%= if @live_action in [:settings] do %>
-            <%= live_component MakotoWeb.UserCabinetLive.ChangePasswordComponent,
-                id: @user.id,
-                user: @user,
-                username: @user.username,
-                live_action: @live_action,
-                return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
-            
-            <%= live_component MakotoWeb.UserCabinetLive.ChangeEmailComponent,
-                id: @user.id,
-                user: @user,
-                username: @user.username,
-                live_action: @live_action,
-                return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
-        <% end %>
-
-        <%= if @live_action in [:view_settings] do %>
-            <%= live_component MakotoWeb.UserCabinetLive.ViewComponent,
-                id: @user.id,
-                user: @user,
-                username: @user.username,
-                live_action: @live_action,
-                return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
-        <% end %>
-        </div>
-    <div class="col-span-4 bg-cyan-500 rounded-2xl mt-2">
-        <div class="flex px-4">
-            <p class="mr-auto mt-1 text-white ml-1 text-2xl">Баланс</p>
-            <%= link "+ ПОПОЛНИТЬ", to: Routes.user_cabinet_index_path(@socket, :up_balance, @user.username),
-            class: "rounded-2xl bg-white text-sm my-auto text-xs px-1 mx-2 font-bold" %>
-        </div>
-        <hr class="text-white mx-4 opacity-50">
-        <div>
-            <h1 class="text-center text-5xl py-3 text-white">
-                <%= @user.rubins %>
-            </h1>
-        </div>
+        <div class="col-12 col-md-4 pr-0">
+  <div class="skin_container row">
+    <div class="skin">
+      <canvas id="skin_container" width="230" height="400" tabindex="0" style="width: 230px; height: 400px;" skin_url={@user.skin_url} cloak_url={@user.cloak_url}></canvas>
     </div>
 
-        <div class="col-span-4 bg-green-400 rounded-2xl mt-2">
-            <div class="flex px-4">
-                <p class="text-2xl text-white mr-2 font-bold mt-2">TECHMAGIC</p>
-                <p class="text-gray-100 text-2xl my-auto ml-2 mt-2"> 1.7.10</p>
+  </div>
+</div>
+<div class="col-12 col-md-8 pl-md-0 d-flex flex-column">
+  <div class="row cabinet-w mt-3 d-flex align-self-stretch">
 
-            </div>
-            <div class=" px-4 text-gray-100 text-sm mb-2">
-                Погрузись в мир, совмещающий в себе магию и высокие технологии
-            </div>
+    <div class="col-6 col-md-3">
+      <div class="card bg-icon-gamepad">
+        <div class="card-body">
+          <h5 class="card-title">Наигранно</h5>
+          <p class="card-text">0ч</p>
         </div>
-
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card bg-icon-favorite">
+        <div class="card-body">
+          <h5 class="card-title">Любимый сервер</h5>
+          <p class="card-text">Нет</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card bg-icon-time">
+        <div class="card-body">
+          <h5 class="card-title">С нами уже</h5>
+          <p class="card-text"><%= round(NaiveDateTime.diff(NaiveDateTime.utc_now, @user.inserted_at) / 60 / 60 / 24)  %>д</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card bg-icon-like">
+        <div class="card-body">
+          <h5 class="card-title">Голосования в рейтингах</h5>
+          <p class="card-text">0</p>
+        </div>
+      </div>
     </div>
 
 
 
+  </div>
+
+  <table class="table table-borderless table-cab-info mt-3">
+
+    <tbody>
+
+      <tr>
+        <td>Профиль Discord</td>
+        <td>
+          
+          
+        <%= if @user.discord_info do %>
+            <%= @user.discord_info.username %> (<%= link "Отвязать дискорд", to: Routes.user_cabinet_index_path(@socket, :delete, @user.username) %>)
+        <% else %>
+            <%= link "Привязать дискорд", to: Routes.user_session_path(@socket, :request, "discord") %>
+        <% end %>
+
+          
+        </td>
+      </tr>
+
+
+
+      <tr>
+        <td>Дата регистрации</td>
+        <td><%= @user.inserted_at.day %>.<%= @user.inserted_at.month %>.<%= @user.inserted_at.year %> <%= @user.inserted_at.hour %>:<%= @user.inserted_at.minute %>:<%= @user.inserted_at.second %></td>
+      </tr>
+
+
+
+      <tr>
+        <td>Статус</td>
+        <td><%= @user.role %></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+  <div class="owt mt-auto mb-4">
+    <hr class="mb-2">
+    
+    
+    <a class="btn btn-sm btn-block-om" href={Routes.user_cabinet_index_path(@socket, :list_referrals, @user.username, 1)}>Реферальная система</a>
+    
+    
+  </div>
+
+
+
+
+</div>
+<% end %>
+<%= if @live_action in [:up_balance] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.UpBalanceComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>          
+<% end %>
+
+<%= if @live_action in [:view_settings] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.ViewComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>          
+<% end %>
+
+<%= if @live_action in [:settings_email] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.ChangeEmailComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>       
+<% end %>
+
+<%= if @live_action in [:settings_password] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.ChangePasswordComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>       
+<% end %>
+
+<%= if @live_action in [:buy_status] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.BuyStatusComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>       
+<% end %>
+
+<%= if @live_action in [:list_referrals] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.ListReferralsComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username),
+    host: @host %>       
+<% end %>
+
+<%= if @live_action in [:donat_page] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.DonatPageComponent,
+    return_to: Routes.user_cabinet_index_path(@socket, :donat_page) %>       
+<% end %>
+
+<%= if @live_action in [:rules_page] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.RulesPageComponent,
+    return_to: Routes.user_cabinet_index_path(@socket, :rules_page) %>       
+<% end %>
+
+<%= if @live_action in [:rubins_to_coins] do %>
+    <%= live_component MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username),
+    host: @host %>       
+<% end %>
+</div>
+<script type="text/javascript">
+  let skin_container = null
+  let skinViewer = null
+  setInterval(() => {
+    if (skinViewer !== null) {
+      skinViewer.loadSkin(skin_container.getAttribute("skin_url"))
+      skinViewer.loadCape(skin_container.getAttribute("cloak_url"))
+    }
+
+    if (skin_container === null) {
+      skin_container = document.getElementById("skin_container")
+      if (skin_container) {
+          skinViewer = new skinview3d.SkinViewer({
+          canvas: skin_container,
+          width: 230,
+          height: 400,
+          skin: skin_container.getAttribute("skin_url"),
+          cape: skin_container.getAttribute("cloak_url")
+        });
+        let control = skinview3d.createOrbitControls(skinViewer);
+        control.enableRotate = true;
+
+
+        skinViewer.playerObject.rotation.y = 7;
+        skinViewer.animations.add(skinview3d.WalkingAnimation);
+        skinViewer.animations.speed = 1;
+      }
+    }
+  }, 500);
+
+  
+</script>
+
+</div>
+</div>
+</div>
+<div class="col-12 col-md-4 pl-md-0">
+  <div class="row">
+    <%= if @user != nil do %>
+    <div class="col-12">
+
+
+
+
+      <div class="om-block bg-info-grad-a">
+        <div class="container">
+          <div class="om-block__header">
+            <h4>Баланс</h4>
+            <a class="add_bal" href={Routes.user_cabinet_index_path(@socket, :up_balance, @user.username)}>+ ПОПОЛНИТЬ</a>
+          </div>
+          <div class="om-block__body">
+            <h1 class="int py-3" data-toggle="tooltip" data-placement="top" title="" data-original-title={@user.rubins}><%= @user.rubins %><i class="icon-ruby"></i></h1>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+    <% end %>
+    <div class="col-12">
+      <div class="om-block monitoring-s">
+        <div class="monitoring-s_list">
+          
+          <a class="s_item">
+            <div class="container">
+              <div class="s_name">
+                <h1>SkyTech <span>1.7.10</span></h1>
+                <p>Погрузись в мир, совмещающий ванильный скайблок и высокие технологии</p>
+
+              </div>
+              <div class="s_line">
+                <span></span>
+              </div>
+            </div>
+          </a>
+          
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <%= if @user != nil do %>
+
+    <div class="d-flex align-items-stretch pb-2">
+
+
+      <div class="col-6 pr-sm-1">
+        <div class="om-block wht h-100">
+          <div class="container">
+            <div class="om-block__header">
+              <h5>Голосование</h5>
+
+            </div>
+            <div class="om-block__body py-2 w_rate">
+              <a href="/" class="btn btn-block btn-block-om mctop"><span>MC</span>TOP</a>
+              <a href="/" class="btn btn-block btn-block-om mcrate"><img src="/img/mcrate.png" alt="" width="16">MCRate</a>
+              <a href="/" class="btn btn-block btn-block-om topcraft"><img src="/img/topcraft.png" width="20" alt="">TOPCRAFT</a>
+              <a href="/" class="btn btn-block btn-block-om mcrating"><img src="/img/mcrating.webp" width="24" alt="">MCRATING</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-6 pl-sm-1">
+        <div class="om-block wht h-100">
+          <div class="container">
+            <div class="om-block__header">
+              <h5>Обменник</h5>
+
+            </div>
+            <div class="om-block__body pb-2">
+              <div class="r2m d-flex py-4 justify-content-center">
+                <i class="icon-ruby"></i>
+
+                <svg class="mx-3 r2m_arrow" style="width:24px;height:24px;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+                <g>
+                  <g>
+                    <path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068
+                    c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557
+                    l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104
+                    c0.006-0.006,0.011-0.013,0.018-0.019C513.968,262.339,513.943,249.635,506.134,241.843z"></path>
+                  </g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+              </svg>
+
+
+
+              <svg class="r2m_money" width="34px" height="34px" viewBox="0 0 45 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Group_308" fill="#FFD700" fill-rule="nonzero">
+                    <path d="M35.3762223,31.8401632 C32.7853384,29.2251237 29.7831738,27.0526335 26.4892223,25.4091632 C23.4892223,24.0291632 21.1702223,23.9351632 19.9702223,25.1651632 L16.5112223,28.7141632 C15.3112223,29.9441632 15.4572223,32.2551632 16.9212223,35.2241632 C18.6494342,38.4741087 20.8978078,41.4193565 23.5772223,43.9431632 C27.8212223,48.0841632 33.1592223,51.5111632 36.5912223,51.5101632 C37.4773314,51.558321 38.3436487,51.2363494 38.9832223,50.6211632 L42.4382223,47.0731632 C43.6382223,45.8431632 43.4922223,43.5311632 42.0282223,40.5631632 C40.3023943,37.3115724 38.0552731,34.3648438 35.3762223,31.8401632 L35.3762223,31.8401632 Z M25.9432223,26.5821632 C32.2306862,29.8761462 37.4193879,34.9345134 40.8722223,41.1361632 C42.0402223,43.5051632 42.2802223,45.3861632 41.5152223,46.1711632 C40.7502223,46.9561632 38.8632223,46.7621632 36.4662223,45.6551632 C30.1779177,42.3622309 24.9891864,37.3031484 21.5382223,31.1001632 C20.3722223,28.7311632 20.1302223,26.8441632 20.8952223,26.0651632 C21.2941706,25.7181929 21.8162702,25.546924 22.3432223,25.5901632 C23.5985551,25.6704421 24.8239526,26.0081072 25.9432223,26.5821632 L25.9432223,26.5821632 Z M30.3202223,47.7151632 L32.8582223,45.1151632 C33.7742332,45.7176858 34.7293457,46.2585487 35.7172223,46.7341632 L33.2172223,49.2991632 C32.2159398,48.8434289 31.2493575,48.3150172 30.3252223,47.7181632 L30.3202223,47.7151632 Z M26.6952223,45.0291632 L29.2492223,42.4091632 C30.0882223,43.1201632 30.9332223,43.7771632 31.7722223,44.3731632 L29.2262223,46.9841632 C28.4092223,46.4081632 27.5612223,45.7551632 26.7002223,45.0301632 L26.6952223,45.0291632 Z M20.3952223,38.3671632 L22.9432223,35.7621632 C23.5602223,36.5861632 24.2432223,37.4131632 24.9702223,38.2331632 L22.4162223,40.8531632 C21.6802223,40.0181632 21.0042223,39.1921632 20.3922223,38.3671632 L20.3952223,38.3671632 Z M17.4382223,29.6141632 L19.1842223,27.8241632 C19.2791151,28.784725 19.5219852,29.7248346 19.9042223,30.6111632 L17.4382223,33.1421632 C16.8572223,31.4941632 16.8442223,30.2221632 17.4382223,29.6141632 L17.4382223,29.6141632 Z M17.9802223,34.4381632 L20.4802223,31.8731632 C20.9812247,32.8478572 21.5457759,33.7885531 22.1702223,34.6891632 L19.6322223,37.2891632 C19.0557765,36.4431934 18.5372579,35.5591726 18.0802223,34.6431632 C18.0482223,34.5741632 18.0132223,34.5041632 17.9802223,34.4351632 L17.9802223,34.4381632 Z M23.2862223,41.8001632 L25.8422223,39.1781632 C26.2255556,39.5854965 26.6235556,39.9891632 27.0362223,40.3891632 C27.448889,40.7891632 27.8622223,41.1768299 28.2762223,41.5521632 L25.7212223,44.1721632 C25.307889,43.8014965 24.8942223,43.4141632 24.4802223,43.0101632 C24.0662223,42.6061632 23.668889,42.2054965 23.2882223,41.8081632 L23.2862223,41.8001632 Z M38.0562223,49.7141632 C37.4562223,50.3271632 36.2012223,50.3491632 34.5312223,49.8031632 L36.9952223,47.2721632 C37.8896122,47.6314154 38.8340344,47.8506563 39.7952223,47.9221632 L38.0562223,49.7141632 Z" id="Path_537"></path>
+                    <path d="M28.9142223,38.4731632 C30.836474,40.3937098 32.9639025,42.0972623 35.2582223,43.5531632 C36.2455182,44.2525738 37.3925531,44.6930269 38.5942223,44.8341632 C39.0100028,44.855034 39.415389,44.7000654 39.7112223,44.4071632 C40.4672223,43.6331632 40.1492223,42.1821632 38.7442223,39.9741632 C35.6543288,35.4915247 31.7178218,31.6562499 27.1562223,28.6841632 C24.9122223,27.3341632 23.4562223,27.0531632 22.6982223,27.8291632 C21.9402223,28.6051632 22.2602223,30.0541632 23.6652223,32.2621632 C25.1836869,34.5173168 26.9437773,36.5999843 28.9142223,38.4731632 L28.9142223,38.4731632 Z M23.6332223,28.7301632 C23.696679,28.6901297 23.7714568,28.6718741 23.8462223,28.6781632 C24.7562223,28.6781632 27.9872223,30.1861632 32.6062223,34.6871632 C37.7222223,39.6751632 39.1202223,43.0571632 38.7892223,43.5041632 C38.3502223,43.8491632 34.9342223,42.5341632 29.8162223,37.5451632 C24.6982223,32.5561632 23.2982223,29.1721632 23.6292223,28.7301632 L23.6332223,28.7301632 Z" id="Path_538"></path>
+                    <path d="M29.0732223,13.5021632 C30.9117268,15.1875457 33.0138924,16.5603885 35.2962223,17.5661632 C36.153214,17.9479394 37.0748257,18.1637512 38.0122223,18.2021632 C38.7244051,18.2537116 39.4220336,17.9823708 39.9122223,17.4631632 L42.1172223,14.9741632 C43.9332223,12.9221632 40.7712223,8.14616321 36.8732223,4.69416321 C32.9752223,1.24216321 27.8522223,-1.31983679 26.0302223,0.732163211 L23.8302223,3.22116321 C23.2432223,3.88216321 22.8482223,5.22116321 24.2902223,7.81516321 C25.5616757,9.96045582 27.1776138,11.8818107 29.0732223,13.5021632 L29.0732223,13.5021632 Z M25.4152223,7.18616321 L26.7152223,5.71816321 C27.0179057,6.22197356 27.3466865,6.70963731 27.7002223,7.17916321 L26.3732223,8.67916321 C26.0260261,8.20298453 25.707142,7.70679416 25.4182223,7.19316321 L25.4152223,7.18616321 Z M28.3302223,10.9961632 C27.9222223,10.5721632 27.5392223,10.1441632 27.1802223,9.71716321 L28.5172223,8.20816321 C28.8772223,8.63216321 29.2622223,9.05816321 29.6672223,9.47316321 L28.3302223,10.9961632 Z M29.2502223,11.9091632 L30.5972223,10.3881632 C30.8202223,10.6001632 31.0482223,10.8081632 31.2812223,11.0151632 C31.5142223,11.2221632 31.7492223,11.4221632 31.9812223,11.6151632 L30.6262223,13.1351632 C30.3902223,12.9351632 30.1542223,12.7351632 29.9212223,12.5351632 C29.6882223,12.3351632 29.4682223,12.1171632 29.2502223,11.9071632 L29.2502223,11.9091632 Z M31.6582223,13.9421632 L33.0022223,12.4251632 C33.4692223,12.7781632 33.9382223,13.1151632 34.4022223,13.4151632 L33.0652223,14.9241632 C32.5952223,14.6241632 32.1252223,14.2961632 31.6522223,13.9421632 L31.6582223,13.9421632 Z M34.1972223,15.6011632 L35.5242223,14.1011632 C36.0332163,14.3959601 36.5568946,14.6646415 37.0932223,14.9061632 L35.7932223,16.3741632 L35.7932223,16.3741632 C35.2457023,16.1479939 34.7123915,15.8888523 34.1962223,15.5981632 L34.1972223,15.6011632 Z M37.1422223,16.8011632 L38.3872223,15.4011632 C38.8344215,15.5467035 39.2950421,15.6472025 39.7622223,15.7011632 L38.9502223,16.6211632 C38.6592223,16.9401632 38.0072223,16.9981632 37.1372223,16.8091632 L37.1422223,16.8011632 Z M36.0142223,5.66316321 C40.3972223,9.54316321 41.9582223,13.2021632 41.1472223,14.1171632 C40.7292223,14.5891632 39.5182223,14.4981632 37.9862223,13.8781632 C35.8402865,12.9274337 33.8639594,11.6327385 32.1352223,10.0451632 C30.3507546,8.52151902 28.8261581,6.71760462 27.6212223,4.70416321 C26.8162223,3.25816321 26.5862223,2.06616321 27.0012223,1.59816321 C27.2556317,1.37181618 27.5935246,1.26293553 27.9322223,1.29816321 C29.4992223,1.28616321 32.5862223,2.62616321 36.0142223,5.66316321 Z M24.7972223,4.08016321 L25.6092223,3.16016321 C25.717819,3.61772735 25.8719197,4.06327931 26.0692223,4.49016321 L24.8262223,5.89716321 C24.5342223,5.05516321 24.5132223,4.40116321 24.7972223,4.08016321 L24.7972223,4.08016321 Z" id="Path_539"></path>
+                    <path d="M19.2202223,8.88816321 L15.6842223,6.63116321 C14.4032223,5.81316321 12.5212223,6.32016321 10.2442223,8.09716321 C5.48371175,12.1941124 2.03408766,17.6013869 0.325222308,23.6451632 C-0.326777692,26.4581632 0.00522230787,28.3771632 1.28822231,29.1951632 L4.82422231,31.4521632 C5.23172701,31.7083166 5.70496606,31.8403509 6.18622231,31.8321632 C7.70668581,31.6675605 9.13513057,31.0226937 10.2642223,29.9911632 C12.6693031,27.9931595 14.7300422,25.6138504 16.3642223,22.9481632 C19.8572223,17.4721632 22.0432223,10.6881632 19.2202223,8.88816321 Z M16.5772223,12.5051632 L18.9692223,14.0301632 C18.7745052,14.870819 18.5222442,15.697099 18.2142223,16.5031632 L15.7772223,14.9511632 C16.0895464,14.1521766 16.3543421,13.3354172 16.5702223,12.5051632 L16.5772223,12.5051632 Z M15.2772223,16.1641632 L17.7192223,17.7221632 C17.4042223,18.4461632 17.0382223,19.2001632 16.6192223,19.9751632 L14.1712223,18.4141632 C14.5712223,17.6661632 14.9392223,16.9141632 15.2712223,16.1641632 L15.2772223,16.1641632 Z M19.1942223,12.6411632 L16.8572223,11.1411632 C16.9813571,10.4193834 17.009936,9.68440283 16.9422223,8.95516321 L18.5282223,9.96716321 C19.0922223,10.3401632 19.3202223,11.2881632 19.1902223,12.6411632 L19.1942223,12.6411632 Z M1.59422231,23.9411632 C3.23671437,18.1861523 6.52306315,13.035593 11.0502223,9.12116321 C11.9614503,8.2808105 13.1048738,7.73471337 14.3312223,7.55416321 C14.5653198,7.54633126 14.7967679,7.60566804 14.9982223,7.72516321 C16.5372223,8.70716321 15.5822223,13.9871632 11.7512223,19.9931632 C10.1934594,22.5343428 8.23093668,24.8039109 5.94122231,26.7121632 C4.20922231,28.0571632 2.73322231,28.5811632 1.99222231,28.1121632 C1.25122231,27.6431632 1.09222231,26.0781632 1.59222231,23.9441632 L1.59422231,23.9411632 Z M12.2052223,26.3571632 L9.77222231,24.8051632 C10.3052223,24.1951632 10.8312223,23.5401632 11.3442223,22.8491632 L13.7872223,24.4081632 C13.2642223,25.1081632 12.7332223,25.7571632 12.1982223,26.3621632 L12.2052223,26.3571632 Z M5.53322231,30.3571632 L3.94122231,29.3411632 C4.63060738,29.0945756 5.2845525,28.758357 5.88622231,28.3411632 L8.20322231,29.8321632 C7.03822231,30.5131632 6.07822231,30.7121632 5.52422231,30.3581632 L5.53322231,30.3571632 Z M9.46822231,28.9691632 L9.36822231,29.0461632 L6.98722231,27.5261632 C7.65141682,26.9815993 8.28222457,26.3975428 8.87622231,25.7771632 L11.2992223,27.3221632 C10.7236995,27.9095253 10.1107507,28.459008 9.46422231,28.9671632 L9.46822231,28.9691632 Z M14.5352223,23.3691632 L12.0912223,21.8081632 C12.341889,21.4448299 12.588889,21.0728299 12.8322223,20.6921632 C13.0755556,20.3114965 13.308889,19.9304965 13.5322223,19.5491632 L15.9792223,21.1101632 C15.7565556,21.4874965 15.5232223,21.8681632 15.2792223,22.2521632 C15.0352223,22.6361632 14.788889,23.0084965 14.5402223,23.3691632 L14.5352223,23.3691632 Z" id="Path_540"></path>
+                    <path d="M44.6942223,26.9041632 L44.6942223,26.8041632 C44.6948599,26.7921717 44.6948599,26.7801547 44.6942223,26.7681632 L44.6942223,26.7421632 C44.6952479,26.7291026 44.6928345,26.7160011 44.6872223,26.7041632 C44.6877668,26.7011879 44.6877668,26.6981385 44.6872223,26.6951632 C44.6872223,26.6891632 44.6872223,26.6831632 44.6872223,26.6781632 C44.6850423,26.665973 44.6820353,26.6539452 44.6782223,26.6421632 L44.6682223,26.6131632 C44.6649275,26.6032196 44.660917,26.5935276 44.6562223,26.5841632 L44.6422223,26.5521632 L44.6292223,26.5281632 C44.6232223,26.5181632 44.6182223,26.5071632 44.6112223,26.4971632 L44.5972223,26.4741632 L44.5772223,26.4461632 L44.5572223,26.4221632 L44.5392223,26.4011632 C44.5311544,26.390976 44.5224716,26.3812913 44.5132223,26.3721632 L44.4992223,26.3591632 C44.4877716,26.3482087 44.4757551,26.3378612 44.4632223,26.3281632 L44.4542223,26.3211632 C44.4403171,26.3097893 44.4256126,26.2994293 44.4102223,26.2901632 L44.4102223,26.2901632 C44.3942223,26.2801632 44.3772223,26.2701632 44.3592223,26.2611632 L44.3592223,26.2611632 C44.3417541,26.2520166 44.3237171,26.2440001 44.3052223,26.2371632 L44.3052223,26.2371632 C44.2876417,26.2299716 44.2696018,26.2239583 44.2512223,26.2191632 L44.2432223,26.2191632 L44.2072223,26.2091632 C41.2482223,25.5611632 41.2132223,20.9171632 41.2132223,20.8501632 L41.2132223,20.8501632 L41.2132223,20.8131632 C41.2137862,20.8045057 41.2137862,20.7958207 41.2132223,20.7871632 C41.2141516,20.7705277 41.2117724,20.7538731 41.2062223,20.7381632 C41.1992223,20.7211632 41.2062223,20.7291632 41.2062223,20.7241632 C41.2022599,20.7049052 41.1972525,20.6858771 41.1912223,20.6671632 L41.1912223,20.6671632 C41.1555653,20.5479614 41.0860904,20.4416649 40.9912223,20.3611632 L40.9912223,20.3611632 L40.9482223,20.3291632 L40.9412223,20.3231632 L40.9032223,20.3001632 L40.8872223,20.2911632 L40.8552223,20.2751632 L40.8312223,20.2631632 L40.8052223,20.2531632 L40.7722223,20.2411632 L40.7492223,20.2351632 L40.7102223,20.2251632 L40.6882223,20.2251632 L40.6472223,20.2181632 L40.5172223,20.2181632 L40.4712223,20.2251632 L40.4532223,20.2251632 L40.4082223,20.2371632 L40.3922223,20.2371632 L40.3492223,20.2521632 L40.3322223,20.2591632 L40.2962223,20.2751632 L40.2752223,20.2851632 L40.2472223,20.3011632 L40.2212223,20.3181632 L40.2032223,20.3321632 L40.1722223,20.3551632 L40.1592223,20.3671632 L40.1252223,20.3981632 C40.1256559,20.4001397 40.1256559,20.4021867 40.1252223,20.4041632 L40.0892223,20.4441632 L40.0892223,20.4441632 C40.0507446,20.4915092 40.0191026,20.5440214 39.9952223,20.6001632 L39.9952223,20.6001632 L39.9742223,20.6561632 L39.9742223,20.6641632 C39.9683291,20.6818227 39.9636515,20.6998649 39.9602223,20.7181632 C39.9595927,20.723478 39.9595927,20.7288485 39.9602223,20.7341632 C39.9585856,20.7499879 39.9559132,20.7656882 39.9522223,20.7811632 C39.9516929,20.7898218 39.9516929,20.7985046 39.9522223,20.8071632 L39.9522223,20.8441632 L39.9522223,20.8441632 C39.9522223,20.9161632 39.9182223,25.5601632 36.9782223,26.2001632 L36.9392223,26.2111632 L36.9392223,26.2111632 C36.8398545,26.2390316 36.7488545,26.2908845 36.6742223,26.3621632 L36.6742223,26.3621632 L36.6382223,26.3991632 L36.6282223,26.4121632 C36.618949,26.4226714 36.6102689,26.4336885 36.6022223,26.4451632 L36.5882223,26.4651632 L36.5682223,26.4951632 L36.5542223,26.5201632 C36.5482223,26.5291632 36.5442223,26.5401632 36.5392223,26.5491632 C36.5341924,26.5585023 36.5298476,26.5681945 36.5262223,26.5781632 C36.5262223,26.5881632 36.5172223,26.5991632 36.5132223,26.6091632 C36.5097082,26.6183234 36.5067036,26.627671 36.5042223,26.6371632 L36.4942223,26.6731632 L36.4942223,26.6901632 C36.4947455,26.6931404 36.4947455,26.696186 36.4942223,26.6991632 L36.4872223,26.7371632 L36.4872223,26.9201632 L36.4942223,26.9591632 C36.4947611,26.9618027 36.4947611,26.9645238 36.4942223,26.9671632 L36.4942223,26.9751632 C36.5010694,27.0093623 36.5111135,27.0428427 36.5242223,27.0751632 C36.5237668,27.0794846 36.5237668,27.0838419 36.5242223,27.0881632 C36.5360587,27.116374 36.5497555,27.1437676 36.5652223,27.1701632 L36.5722223,27.1801632 C36.5888361,27.2069469 36.6075623,27.232361 36.6282223,27.2561632 L36.6412223,27.2701632 C36.6621898,27.2929259 36.6849276,27.3139918 36.7092223,27.3331632 L36.7222223,27.3431632 C36.7478454,27.3631475 36.7749202,27.3811974 36.8032223,27.3971632 L36.8092223,27.3971632 C36.8363307,27.4120032 36.8643921,27.4250317 36.8932223,27.4361632 L36.9082223,27.4361632 C36.9313432,27.4448911 36.9550737,27.4519099 36.9792223,27.4571632 C39.9182223,28.1011632 39.9532223,32.7401632 39.9532223,32.8131632 L39.9532223,32.8571632 C39.952701,32.8654884 39.952701,32.873838 39.9532223,32.8821632 C39.9517275,32.8989094 39.9544789,32.9157621 39.9612223,32.9311632 C39.9606259,32.9358108 39.9606259,32.9405156 39.9612223,32.9451632 C39.9651089,32.9650963 39.9701168,32.9847943 39.9762223,33.0041632 L39.9762223,33.0041632 C40.0122943,33.1231718 40.0816976,33.229359 40.1762223,33.3101632 L40.1762223,33.3101632 L40.2192223,33.3421632 L40.2262223,33.3421632 L40.2652223,33.3661632 L40.2802223,33.3751632 L40.3122223,33.3901632 L40.3362223,33.4031632 L40.3642223,33.4121632 L40.3962223,33.4251632 L40.4192223,33.4311632 L40.4582223,33.4401632 L40.4802223,33.4401632 C40.4942223,33.4401632 40.5082223,33.4461632 40.5232223,33.4471632 L40.6382223,33.4471632 L40.6832223,33.4401632 L40.7012223,33.4401632 C40.7168489,33.4373863 40.7322305,33.4333737 40.7472223,33.4281632 L40.7632223,33.4281632 L40.8042223,33.4121632 L40.8222223,33.4121632 L40.8572223,33.3951632 L40.8792223,33.3851632 L40.9052223,33.3691632 L40.9312223,33.3531632 L40.9512223,33.3381632 L40.9822223,33.3151632 L40.9952223,33.3051632 L41.0282223,33.2741632 L41.0342223,33.2671632 C41.0471244,33.2546703 41.0591528,33.2413055 41.0702223,33.2271632 L41.0702223,33.2271632 C41.1096057,33.1797224 41.1413227,33.1264108 41.1642223,33.0691632 L41.1642223,33.0691632 C41.1722696,33.0502253 41.1792799,33.0308633 41.1852223,33.0111632 L41.1852223,33.0041632 C41.1852223,32.9971632 41.1952223,32.9681632 41.1992223,32.9491632 C41.2032223,32.9301632 41.1992223,32.9391632 41.1992223,32.9341632 C41.1992223,32.9291632 41.2052223,32.9021632 41.2062223,32.8861632 C41.2067598,32.8778385 41.2067598,32.8694879 41.2062223,32.8611632 L41.2062223,32.8121632 C41.2062223,32.7401632 41.2402223,28.0961632 44.1802223,27.4561632 C44.2044148,27.4510823 44.2281584,27.4440596 44.2512223,27.4351632 L44.2662223,27.4351632 C44.2953764,27.4240321 44.3237704,27.4110042 44.3512223,27.3961632 L44.3512223,27.3961632 C44.3793486,27.3799127 44.4064041,27.3618757 44.4322223,27.3421632 L44.4452223,27.3321632 C44.4692409,27.3126712 44.4919562,27.2916261 44.5132223,27.2691632 L44.5252223,27.2551632 C44.5461758,27.2311083 44.5655496,27.2057219 44.5832223,27.1791632 L44.5892223,27.1691632 C44.6053728,27.142822 44.6197384,27.1154272 44.6322223,27.0871632 C44.6336963,27.0826059 44.6357106,27.0782415 44.6382223,27.0741632 C44.6507815,27.0416518 44.6608113,27.0082191 44.6682223,26.9741632 C44.6688997,26.9715396 44.6688997,26.9687869 44.6682223,26.9661632 C44.6687901,26.9635268 44.6687901,26.9607997 44.6682223,26.9581632 C44.6672047,26.9447796 44.6696138,26.9313575 44.6752223,26.9191632 L44.6942223,26.9041632 Z M40.5692223,29.3671632 C40.2149288,28.3547381 39.5635761,27.4726762 38.7002223,26.8361632 C39.5643778,26.200453 40.2159319,25.3181183 40.5692223,24.3051632 C40.9230793,25.3175463 41.5741057,26.1996383 42.4372223,26.8361632 C41.5749658,27.4752511 40.9242543,28.3583098 40.5692223,29.3711632 L40.5692223,29.3671632 Z" id="Path_541"></path>
+                    <path d="M11.5342223,42.3111632 L11.5342223,42.2501632 C11.5342223,42.2371632 11.5342223,42.2241632 11.5272223,42.2111632 C11.5277611,42.2085238 11.5277611,42.2058027 11.5272223,42.2031632 L11.5272223,42.1851632 C11.5251614,42.173275 11.5221518,42.1615709 11.5182223,42.1501632 L11.5082223,42.1201632 C11.504731,42.1102938 11.5007256,42.1006139 11.4962223,42.0911632 C11.4936077,42.0795331 11.4884888,42.0686128 11.4812223,42.0591632 L11.4692223,42.0361632 C11.4638813,42.0251391 11.45787,42.0144524 11.4512223,42.0041632 L11.4372223,41.9821632 L11.4162223,41.9531632 L11.3992223,41.9301632 L11.3782223,41.9071632 L11.3542223,41.8821632 L11.3372223,41.8661632 L11.3062223,41.8381632 L11.2922223,41.8281632 C11.2799912,41.817803 11.2669495,41.8084397 11.2532223,41.8001632 L11.2432223,41.7931632 C11.2292223,41.7841632 11.2142223,41.7761632 11.1992223,41.7681632 L11.1892223,41.7681632 L11.1432223,41.7461632 L11.1302223,41.7461632 L11.0852223,41.7311632 L11.0682223,41.7251632 L11.0382223,41.7171632 C7.59622231,40.9621632 7.56222231,35.5651632 7.56222231,35.4961632 L7.56222231,35.4961632 C7.56285248,35.4841715 7.56285248,35.4721549 7.56222231,35.4601632 C7.56278121,35.4505046 7.56278121,35.4408218 7.56222231,35.4311632 C7.56322748,35.4161568 7.56083477,35.4011169 7.55522231,35.3871632 C7.54822231,35.3721632 7.55522231,35.3741632 7.55522231,35.3671632 L7.54122231,35.3131632 L7.54122231,35.3061632 C7.47273578,35.0831829 7.28919414,34.914554 7.06122231,34.8651632 L7.05422231,34.8651632 C7.03856114,34.8662324 7.02285653,34.8638426 7.00822231,34.8581632 L6.81922231,34.8581632 L6.77422231,34.8651632 L6.76822231,34.8651632 L6.71722231,34.8781632 L6.71722231,34.8781632 C6.53700748,34.9356183 6.39089319,35.0689476 6.31722231,35.2431632 L6.31722231,35.2431632 C6.30904302,35.2613661 6.30202889,35.2800705 6.29622231,35.2991632 L6.29622231,35.3091632 C6.29622231,35.3091632 6.28722231,35.3421632 6.28322231,35.3601632 C6.282656,35.3671518 6.282656,35.3741747 6.28322231,35.3811632 C6.2843653,35.3958503 6.28196467,35.410597 6.27622231,35.4241632 C6.27566563,35.4338219 6.27566563,35.4435046 6.27622231,35.4531632 C6.27559214,35.4651549 6.27559214,35.4771715 6.27622231,35.4891632 L6.27622231,35.4891632 C6.27622231,35.5581632 6.24122231,40.9551632 2.80022231,41.7101632 L2.76522231,41.7201632 L2.75622231,41.7201632 L2.67822231,41.7431632 L2.67822231,41.7431632 C2.62064909,41.7657826 2.56673364,41.796784 2.51822231,41.8351632 L2.51822231,41.8351632 C2.50322231,41.8481632 2.48822231,41.8591632 2.47422231,41.8731632 L2.47422231,41.8731632 C2.46195296,41.8845622 2.45027121,41.8965777 2.43922231,41.9091632 L2.42722231,41.9231632 C2.41827495,41.9333356 2.40992749,41.9440204 2.40222231,41.9551632 L2.38722231,41.9761632 C2.38722231,41.9851632 2.37422231,41.9941632 2.36922231,42.0051632 L2.35422231,42.0301632 C2.35422231,42.0401632 2.34422231,42.0501632 2.33922231,42.0601632 C2.33538231,42.0697178 2.331043,42.079064 2.32622231,42.0881632 C2.32408731,42.0989778 2.32038139,42.1094217 2.31522231,42.1191632 C2.31169841,42.12832 2.30869364,42.1376681 2.30622231,42.1471632 C2.3045068,42.1598779 2.30114528,42.1723155 2.29622231,42.1841632 C2.29622231,42.1971632 2.29622231,42.1941632 2.29622231,42.2011632 C2.29565454,42.2037997 2.29565454,42.2065268 2.29622231,42.2091632 C2.29323135,42.2220366 2.29089502,42.2350533 2.28922231,42.2481632 L2.28922231,42.4301632 C2.28922231,42.4434965 2.29155564,42.4564965 2.29622231,42.4691632 C2.29565454,42.4717997 2.29565454,42.4745268 2.29622231,42.4771632 L2.29622231,42.4861632 C2.30396609,42.5201322 2.31398877,42.5535411 2.32622231,42.5861632 C2.32871337,42.5898982 2.33072892,42.5939293 2.33222231,42.5981632 C2.34445403,42.6265481 2.35882889,42.6539607 2.37522231,42.6801632 L2.37522231,42.6911632 C2.39287976,42.7174155 2.41225544,42.7424702 2.43322231,42.7661632 L2.44522231,42.7801632 C2.46647219,42.8029535 2.48918716,42.8243323 2.51322231,42.8441632 L2.52622231,42.8531632 C2.55211399,42.8732624 2.57953003,42.8913168 2.60822231,42.9071632 L2.60822231,42.9071632 C2.63525022,42.9218773 2.66332635,42.9345784 2.69222231,42.9451632 L2.70722231,42.9511632 C2.73051532,42.9593696 2.75421297,42.9663787 2.77822231,42.9721632 C6.22022231,43.7271632 6.25422231,49.1241632 6.25422231,49.1931632 L6.25422231,49.2331632 C6.25366783,49.2428219 6.25366783,49.2525045 6.25422231,49.2621632 C6.25299591,49.2771789 6.25539667,49.2922694 6.26122231,49.3061632 C6.26065146,49.3128177 6.26065146,49.3195088 6.26122231,49.3261632 C6.26335834,49.3446223 6.26772349,49.3627545 6.27422231,49.3801632 C6.27422231,49.3981632 6.27422231,49.3801632 6.27422231,49.3871632 C6.34306787,49.6102926 6.52696896,49.7789004 6.75522231,49.8281632 L6.75522231,49.8281632 C6.77120546,49.827199 6.78721382,49.8295833 6.80222231,49.8351632 L6.96822231,49.8351632 L7.01322231,49.8281632 L7.02322231,49.8281632 L7.07522231,49.8151632 L7.07522231,49.8151632 C7.25564441,49.7580671 7.40188999,49.624618 7.47522231,49.4501632 L7.47522231,49.4501632 C7.48340409,49.4319613 7.49041829,49.4132568 7.49622231,49.3941632 C7.49673029,49.3908492 7.49673029,49.3874772 7.49622231,49.3841632 C7.50196855,49.3674782 7.50664471,49.3504436 7.51022231,49.3331632 L7.51022231,49.3121632 C7.51369742,49.2980392 7.5160382,49.2836601 7.51722231,49.2691632 C7.51778121,49.2595046 7.51778121,49.2498218 7.51722231,49.2401632 L7.51722231,49.2001632 C7.51722231,49.1311632 7.55222231,43.7341632 10.9932223,42.9791632 C11.0172316,42.9733787 11.0409293,42.9663696 11.0642223,42.9581632 L11.0792223,42.9521632 C11.1081238,42.941592 11.1362009,42.9288904 11.1632223,42.9141632 L11.1682223,42.9141632 C11.1967708,42.8986018 11.2238778,42.8805305 11.2492223,42.8601632 L11.2632223,42.8511632 C11.2872593,42.8313344 11.3099744,42.8099555 11.3312223,42.7871632 L11.3432223,42.7731632 C11.3641736,42.7494573 11.3835484,42.7244036 11.4012223,42.6981632 L11.4012223,42.6861632 C11.4176157,42.6599607 11.4319906,42.6325481 11.4442223,42.6041632 C11.4457157,42.5999293 11.4477312,42.5958982 11.4502223,42.5921632 C11.4624501,42.5595392 11.4724727,42.5261307 11.4802223,42.4921632 L11.4802223,42.4831632 C11.4807611,42.4805238 11.4807611,42.4778027 11.4802223,42.4751632 C11.4802223,42.4624965 11.4825556,42.4494965 11.4872223,42.4361632 L11.4872223,42.3451632 C11.4812223,42.3351632 11.5342223,42.3191632 11.5342223,42.3111632 Z M6.90422231,45.5011632 C6.50463237,44.221475 5.69230747,43.1102426 4.59422231,42.3411632 C5.69230747,41.5720838 6.50463237,40.4608515 6.90422231,39.1811632 C7.30293563,40.4610192 8.11502833,41.572415 9.21322231,42.3411632 C8.11444058,43.1095315 7.30192331,44.221027 6.90322231,45.5011632 L6.90422231,45.5011632 Z" id="Path_542"></path>
+                  </g>
+                </g>
+              </svg>
+
+
+
+
+
+
+            </div>
+
+            <p class="small mt-2">Обменяй свои рубины на серверные монеты!</p>
+            <a href={Routes.user_cabinet_index_path(@socket, :rubins_to_coins, @user.username)}>
+               <button type="button" href={Routes.user_cabinet_index_path(@socket, :rubins_to_coins, @user.username)} class="btn btn-block btn-block-om" control-id="ControlID-2">Обменять</button>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <% end %>
+  
+  <!-- <div class="col-12">
+  <div class="om-block wht">
+  <div class="container">
+  <div class="om-block__header">
+  <h5>Голосование</h5>
+
+</div>
+<div class="om-block__body pb-2">
+<p class="small mt-2">Голосуй за проект и получай бонусы!</p>
+<button type="button" class="btn btn-block btn-block-om"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up mr-2" viewBox="0 0 16 16">
+<path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+</svg>Голосовать</button>
+</div>
+
+</div>
+</div>
+</div> -->
+
+
+<div class="col-12">
+  <a href="https://vk.com/opti_mine">
+    <div class="om-block vk_w py-2">
+
+
+
+      <div class="container">
+        <div class="w_top">
+          <img src="https://sun6-23.userapi.com/s/v1/ig2/FOm5_hatuukBSQdVXUFO1ryzPe9VG2j8IlcccQ6rp2G2DuxTAx_1sUQCts0zVji8iTjmk0ZaHXAYwGo4T9pmqgxe.jpg?size=50x50&amp;quality=96&amp;crop=136,136,808,808&amp;ava=1" class="float-left" width="40" alt="">
+
+          <div class="d-inline-block ml-2">
+            <h6>Optimine - сервера Minecraft</h6>
+            <span class="d-block small m5">125 подписчиков</span>
+          </div>
+          <img class="float-right" src="/img/vk.png" width="40">
+        </div>
+
+      </div>
+
+
+    </div>
+  </a>
+</div>
+
+
+<div class="col-12">
+  <a href="https://discord.gg/AGerzA3fsr">
+    <div class="om-block dis_w py-2">
+
+      <div class="container">
+        <div class="w_top">
+          <img src="https://cdn.discordapp.com/icons/704359973890818059/79ced68e0c8bfc21e652896be1c50575.png?size=128" class="float-left" width="40" alt="">
+
+          <div class="d-inline-block ml-2">
+            <h6>Optimine</h6>
+            <span class="d-block small m5">231/2673 онлайн</span>
+          </div>
+          <img class="float-right" src="/img/discord.png" width="40">
+        </div>
+
+      </div>
+
+    </div>
+  </a>
+</div>
+
+
+</div>
+<div class="col-12 footer-om">
+  <nav class="nav justify-content-center">
+    <a class="nav-link pl-0" href="#">Помощь</a>
+    <a class="nav-link" href="#">Администрация</a>
+    <a class="nav-link" href="#">Оферта</a>
+    <a class="nav-link pr-0" href="#">Оферта</a>
+
+  </nav>
+  <span>© 2021 Optimine </span><br>
+<small class="text-muted">Деятельность проекта не связана с Mojang Studios.</small>
+</div>
+
+</div>
+</div>
+</div>

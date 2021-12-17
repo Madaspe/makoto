@@ -9,20 +9,21 @@ defmodule Makoto.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     field :has_2fa, :boolean, default: false
-    field :role, Ecto.Enum, values: [user: 1, admin: 2, mod: 3, developer: 4, owner: 5]
-    field :rubins, :integer, default: 0
+    field :role, Ecto.Enum, values: [user: 1, admin: 2, mod: 3, developer: 4, owner: 5, VIP: 6, Premium: 7, Optimum: 8, Ultimate: 9]
+    field :rubins, :float, default: 0.0
     field :otp_last, :integer, default: 0
     field :otp_secret, :string
 
-    field :avatar, :any, virtual: true
-    field :skin, :any, virtual: true
-    field :cloak, :any, virtual: true
-
     field :avatar_url, :string
-    field :skin_url, :string
+    field :skin_url, :string, default: "/uploads/steave"
     field :cloak_url, :string
 
+    field :inviter_id, :integer
+    field :rubins_for_inviter, :float, default: 0.0
+    field :referrals_procent, :float
+
     has_one :discord_info, Makoto.Discord.User
+
     timestamps()
   end
 
@@ -45,7 +46,7 @@ defmodule Makoto.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:username, :email, :password])
+    |> cast(attrs, [:username, :email, :password, :inviter_id])
     |> validate_email()
     |> validate_username()
     |> validate_password(opts)
@@ -70,7 +71,7 @@ defmodule Makoto.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :role, :rubins])
+    |> cast(attrs, [:username, :email, :role, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter])
     |> validate_required([:username, :email, :role, :rubins])
   end
 
@@ -184,13 +185,6 @@ defmodule Makoto.Accounts.User do
     else
       add_error(changeset, :current_password, "is not valid")
     end
-  end
-
-  @doc false
-  def changeset(user, attrs) do
-    user
-    |> cast(attrs, [:username, :email, :role, :rubins])
-    |> validate_required([:username, :email, :role, :rubins])
   end
 
   defp generate_otp_secret(opt_changeset) do

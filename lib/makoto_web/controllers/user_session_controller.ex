@@ -23,6 +23,30 @@ defmodule MakotoWeb.UserSessionController do
       end)
 
     Accounts.assoc_discord_user(ecto_user, user)
+    inviter_id = case Accounts.get_discord_invited_by_id(user.discord_id) do
+      nil ->
+        nil
+      user_discord_info ->
+        user_discord_info
+        |> Map.get(:inviter_id)
+    end
+
+    case inviter_id do
+      nil -> nil
+      id ->
+        case Accounts.get_user_discord_info_by_id(id) do
+          nil -> nil
+          user ->
+            user
+            |> Makoto.Repo.preload([:user])
+            |> Map.get(:user)
+            |> Kernel.then(fn user ->
+              Accounts.update_user(ecto_user, %{inviter_id: user.id})
+            end)
+        end
+    end
+
+    Logger.info inviter_id
 
     conn
     |> redirect(to: "/user/#{ecto_user.username}")
@@ -33,13 +57,13 @@ defmodule MakotoWeb.UserSessionController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    %{"email" => email, "password" => password} = user_params
+    %{"username" => username, "password" => password} = user_params
 
-    if user = Accounts.get_user_by_email_and_password(email, password) do
+    if user = Accounts.get_user_by_username_and_password(username, password) do
       UserAuth.log_in_user(conn, user, user_params)
     else
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
-      render(conn, "new.html", error_message: "Invalid email or password")
+      render(conn, "new.html", error_message: "Invalid username or password")
     end
   end
 

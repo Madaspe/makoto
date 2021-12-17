@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>no</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="no">
+            <path d="M40,20 C40,31.045 31.045,40 20,40 C8.955,40 0,31.045 0,20 C0,8.955 8.955,0 20,0 C31.045,0 40,8.955 40,20 Z" id="Path" fill="#DC3545" fill-rule="nonzero"></path>
+            <polygon id="Path-2" fill="#FFFFFF" transform="translate(19.960155, 20.460155) rotate(45.000000) translate(-19.960155, -20.460155) " points="17.9601551 6.46016259 21.9601551 6.46014763 21.9601551 34.4601551 17.9601551 34.4601626"></polygon>
+            <polygon id="Path-2-Copy" fill="#FFFFFF" transform="translate(19.960155, 20.460155) rotate(-45.000000) translate(-19.960155, -20.460155) " points="17.9601551 6.46016259 21.9601551 6.46014763 21.9601551 34.4601551 17.9601551 34.4601626"></polygon>
+        </g>
+    </g>
+</svg>

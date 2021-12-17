@@ -8,11 +8,6 @@ defmodule MakotoWeb.UserCabinetLive.ChangePasswordComponent do
 
   @impl true
   def update(assigns, socket) do
-    Logger.info inspect(assigns)
-
-    user =
-      Accounts.get_user_by_username!(assigns.username)
-
     {:ok, socket |> assign(assigns)}
   end
 

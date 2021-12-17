@@ -7,12 +7,35 @@
 # General application configuration
 import Config
 
-config :makoto,
-  ecto_repos: [Makoto.Repo]
+host_url =
+  System.get_env("HOST_URL") ||
+              raise """
+              environment variable DISCORD_CLIENT_ID is missing.
+              """
 
-# Configures the endpoint
+config :makoto,
+  ecto_repos: [Makoto.Repo],
+  allowed_expansion_skin: [{32, 32}, {64, 32}, {64, 64}, {1024, 512}, {1024, 1024}],
+  allowed_expansion_cloak: [{22, 17}, {64, 32}, {176, 136},{1024, 512}],
+  allowed_expansion_avatar: [{64, 32}, {64, 64}, {1024, 512}, {1024, 1024}],
+
+  status_prices: %{
+    6 => 99,
+    7 => 299,
+    8 => 699,
+    9 => 999
+  },
+
+  discount_on_rubins: %{
+    525 => 490,
+    1100 => 990,
+    3450 => 2990,
+    6000 => 4990,
+    12_500 => 9900
+  }
+
 config :makoto, MakotoWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: host_url],
   render_errors: [view: MakotoWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Makoto.PubSub,
   live_view: [signing_salt: "3tiz0xP3"]
@@ -28,16 +51,6 @@ config :makoto, MakotoWeb.Endpoint,
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.12.18",
-  default: [
-    args:
-      ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
-
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
@@ -46,16 +59,16 @@ config :logger, :console,
 config :ueberauth, Ueberauth,
   base_path: "/connect",
   providers: [
-    discord: {Ueberauth.Strategy.Discord, [request_path: "/connect/discord", callback_path: "/connect/discord/callback"]}
+    discord:
+      {Ueberauth.Strategy.Discord,
+       [request_path: "/connect/discord", callback_path: "/connect/discord/callback"]}
   ]
 
-config :ueberauth, Ueberauth.Strategy.Discord.OAuth,
-  client_id: "914414291808043028",
-  client_secret: "uC4aQXCUWXxSvUmLO9Y802H2EVhVy7RR"
-
-  # Use Jason for JSON parsing in Phoenix
+# Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
+
+
 import_config "#{config_env()}.exs"

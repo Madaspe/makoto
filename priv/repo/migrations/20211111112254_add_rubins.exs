@@ -3,7 +3,7 @@ defmodule Makoto.Repo.Migrations.AddRubins do
 
   def change do
     alter table(:users) do
-      add(:rubins, :integer, default: 0)
+      add(:rubins, :float, default: 0)
     end
   end
 end

@@ -1,0 +1,41 @@
+<div>
+<%= if @view_status_current == "vip" do%>
+    <%= live_component MakotoWeb.UserCabinetLive.VipStatusComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    father_component: @myself,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>      
+<% end %>
+
+<%= if @view_status_current == "premium" do%>
+    <%= live_component MakotoWeb.UserCabinetLive.PremiumStatusComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    father_component: @myself,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>      
+<% end %>
+
+<%= if @view_status_current == "optimum" do%>
+    <%= live_component MakotoWeb.UserCabinetLive.OptimumStatusComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    father_component: @myself,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>      
+<% end %>
+
+<%= if @view_status_current == "ultimate" do%>
+    <%= live_component MakotoWeb.UserCabinetLive.UltimateStatusComponent,
+    id: @user.id,
+    user: @user,
+    username: @user.username,
+    live_action: @live_action,
+    father_component: @myself,
+    return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>      
+<% end %>
+</div>

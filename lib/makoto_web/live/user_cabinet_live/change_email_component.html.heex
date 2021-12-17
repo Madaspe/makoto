@@ -1,11 +1,50 @@
-<div class="col-span-12">
-    <h1>Change email</h1>
-    <%= f = form_for :user, "#", [phx_submit: "submit", phx_target: @myself, phx_change: "validate"] %>
-        <%= label f, :password, "Password" %>
-        <%= password_input f, :password %>
+<div class="container">
+  <p class="hidden info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
 
-        <%= label f, :email, "New email" %>
-        <%= email_input f, :email %>
+  <p class="hidden danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
+      <div class="row">
+        <div class="col-3">
+          <div class="nav flex-column nav-pills mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="home-tab"  href="" role="tab" aria-controls="home" aria-selected="true">Смена почты</a>
+          <a class="nav-link" id="sec-tab"  href={Routes.user_cabinet_index_path(@socket, :settings_password, @user.username)} role="tab" aria-controls="sec" aria-selected="false">Смена пароля</a>
+          <!-- <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
+          href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+          aria-selected="false">Settings</a> -->
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active py-2" id="home">
+          <h5 class="py-1">Настройки почты</h5>
 
-        <%= submit "Change" %>
-</div>
+            <%= f = form_for :user, "#", [phx_submit: "submit", phx_target: @myself, phx_change: "validate"] %>
+              <div class="form-group row">
+        
+                <label class="col-5 col-form-label">Текущая почта</label>
+                <div class="col-7">
+
+                  <input type="text" readonly="" class="form-control-plaintext" id="staticDiscord" value={@user.email}>
+                </div>
+
+              <label class="col-5 col-form-label">Новая почта</label>
+                <div class="col-7">
+                <%= email_input f, :email, class: "form-control" %>
+                </div>
+    
+              <label class="col-5 col-form-label mt-1">Текущий пароль</label>
+                <div class="col-7">
+                    <%= password_input f, :password, class: "form-control mt-1" %>
+                </div>
+
+                </div>
+              
+     
+        <hr class="opacity-3">
+        <div class="float-right mb-3">
+           <%= submit "Сменить", class: "btn btn-success"%>
+        </div>
+  </div>
+   </div>
+    </div>
+     </div>
+      </div>

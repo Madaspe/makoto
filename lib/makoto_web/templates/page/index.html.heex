@@ -1,3 +1,1798 @@
-<div class="container mx-auto bg-white h-screen my-4 rounded">
-  CONTENT
+<div>
+<style id="applicationStylesheet" type="text/css">
+	.mediaViewInfo {
+		--web-view-name: Website Main Page;
+		--web-view-id: Website_Main_Page;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	:root {
+		--web-view-ids: Website_Main_Page;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		border: none;
+	}
+	#Website_Main_Page {
+		position: absolute;
+		width: 1920px;
+		height: 5800px;
+		background-color: rgba(255,255,255,1);
+		overflow: hidden;
+		--web-view-name: Website Main Page;
+		--web-view-id: Website_Main_Page;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	#Background_of_the_top_part {
+		position: absolute;
+		width: 2289px;
+		height: 1353px;
+		left: -369px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Background_image_1 {
+		position: absolute;
+		width: 2289px;
+		height: 1217px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Darkening_Rectangle {
+		fill: rgba(0,0,0,0.251);
+	}
+	.Darkening_Rectangle {
+		position: absolute;
+		overflow: visible;
+		width: 1920px;
+		height: 1353px;
+		left: 369px;
+		top: 0px;
+	}
+	#Blurred_Background_and_picture {
+		position: absolute;
+		width: 9002px;
+		height: 5202px;
+		left: -4523px;
+		top: 1080px;
+		overflow: visible
+	}
+	#Background_Picture_2 {
+		position: absolute;
+		width: 9002px;
+		height: 5065px;
+		left: 0px;
+		top: 137px;
+		overflow: visible;
+	}
+	#Blurred_Background {
+		filter: blur(30px);
+		fill: rgba(17,24,32,1);
+	}
+	.Blurred_Background {
+		overflow: visible;
+		position: absolute;
+		width: 1920px;
+		height: 5180px;
+		left: 4520px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+
+    background_image: url("/img/Background_Picture_2.png")
+	}
+	#Footer {
+		position: absolute;
+		width: 1920px;
+		height: 770px;
+		left: 4523px;
+		top: 4410px;
+		overflow: visible;
+	}
+	#FooterBackground {
+		position: absolute;
+		width: 1920px;
+		height: 770px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_258 {
+		
+		fill: rgba(0,0,0,1);
+	}
+	.n_258 {
+		position: absolute;
+		overflow: visible;
+		width: 1920px;
+		height: 322px;
+		left: 0px;
+		top: 448px;
+	}
+	#n_266 {
+		
+		fill: rgba(0,0,0,1);
+	}
+	.n_266 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 640px;
+		top: 264px;
+	}
+	#n_267 {
+		
+		fill: rgba(0,0,0,1);
+	}
+	.n_267 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 768px;
+		top: 200px;
+	}
+	#n_268 {
+		
+		fill: rgba(0,0,0,1);
+	}
+	.n_268 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 896px;
+		top: 200px;
+	}
+	#n_270 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_270 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1152px;
+		top: 200px;
+	}
+	#n_272 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_272 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1280px;
+		top: 264px;
+	}
+	#n_276 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_276 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1664px;
+		top: 320px;
+	}
+	#n_277 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_277 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1792px;
+		top: 256px;
+	}
+	#n_278 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_278 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 768px;
+		top: 328px;
+	}
+	#n_269 {
+		position: absolute;
+		width: 1920px;
+		height: 384px;
+		left: 0px;
+		top: 200px;
+		overflow: visible;
+	}
+	#n_260 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_260 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 0px;
+		top: 64px;
+	}
+	#n_261 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_261 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 128px;
+		top: 128px;
+	}
+	#n_265 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_265 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 512px;
+		top: 128px;
+	}
+	#n_269_ {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_269_ {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1024px;
+		top: 0px;
+	}
+	#n_271 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_271 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1152px;
+		top: 128px;
+	}
+	#n_273 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_273 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1408px;
+		top: 120px;
+	}
+	#n_279 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_279 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 640px;
+		top: 192px;
+	}
+	#n_281 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_281 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 896px;
+		top: 128px;
+	}
+	#n_282 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_282 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 768px;
+		top: 256px;
+	}
+	#n_287 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_287 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1280px;
+		top: 192px;
+	}
+	#n_290 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_290 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1536px;
+		top: 184px;
+	}
+	#n_291 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_291 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1664px;
+		top: 248px;
+	}
+	#n_292 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_292 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1792px;
+		top: 184px;
+	}
+	#n_295 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_295 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1792px;
+		top: 128px;
+	}
+	#n_296 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_296 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1792px;
+		top: 0px;
+	}
+	#n_297 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_297 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1664px;
+		top: 192px;
+	}
+	#n_298 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_298 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 146px;
+		height: 146px;
+		left: 1536px;
+		top: 256px;
+	}
+	#n_268_bh {
+		position: absolute;
+		width: 1920px;
+		height: 384px;
+		left: 0px;
+		top: 328px;
+		overflow: visible;
+	}
+	#n_259 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_259 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 0px;
+		top: 64px;
+	}
+	#n_262 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_262 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 128px;
+		top: 128px;
+	}
+	#n_263 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_263 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 256px;
+		top: 64px;
+	}
+	#n_264 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_264 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 384px;
+		top: 64px;
+	}
+	#n_280 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_280 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 512px;
+		top: 128px;
+	}
+	#n_283 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_283 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 1024px;
+		top: 0px;
+	}
+	#n_284 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_284 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 896px;
+		top: 128px;
+	}
+	#n_286 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_286 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 1152px;
+		top: 128px;
+	}
+	#n_288 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_288 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 1280px;
+		top: 192px;
+	}
+	#n_289 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_289 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 1408px;
+		top: 120px;
+	}
+	#n_293 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_293 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 1792px;
+		top: 184px;
+	}
+	#n_299 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_299 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 1536px;
+		top: 184px;
+	}
+	#n_300 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_300 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 768px;
+		top: 256px;
+	}
+	#n_301 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_301 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 640px;
+		top: 192px;
+	}
+	#n_302 {
+		filter: blur(30px);
+		fill: rgba(0,0,0,1);
+	}
+	.n_302 {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 143px;
+		height: 143px;
+		left: 1664px;
+		top: 248px;
+	}
+	#optilogo_footer {
+		position: absolute;
+		width: 340.302px;
+		height: 41.594px;
+		left: 152px;
+		top: 200px;
+		overflow: visible;
+	}
+	#n_263_by {
+		position: absolute;
+		width: 38.051px;
+		height: 40.719px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_262_bz {
+		position: absolute;
+		width: 38.051px;
+		height: 40.719px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_16 {
+		fill: rgba(85,197,149,1);
+	}
+	.n_16 {
+		overflow: visible;
+		position: absolute;
+		width: 38.051px;
+		height: 40.72px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_261_b {
+		position: absolute;
+		width: 38.051px;
+		height: 40.72px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#OPTIMINE__2021 {
+		left: 53.302px;
+		top: 0.594px;
+		position: absolute;
+		overflow: visible;
+		width: 276px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 34px;
+		color: rgba(255,255,255,1);
+	}
+	#Optimine______Minecraft_______ {
+		left: 152px;
+		top: 250px;
+		position: absolute;
+		overflow: visible;
+		width: 773px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 12px;
+		color: rgba(194,194,194,1);
+	}
+	#Top_Part_Content {
+		position: absolute;
+		width: 1594px;
+		height: 727.25px;
+		left: 152px;
+		top: 352.75px;
+		overflow: visible;
+	}
+	#Title {
+		position: absolute;
+		width: 640px;
+		height: 231px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#OPTIMINE {
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 641px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 141px;
+		color: rgba(255,255,255,1);
+	}
+	#n__ {
+		left: 0px;
+		top: 167px;
+		position: absolute;
+		overflow: visible;
+		width: 548px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: lighter;
+		font-size: 54px;
+		color: rgba(255,255,255,1);
+	}
+	#n_265_b {
+		position: absolute;
+		width: 234px;
+		height: 151.25px;
+		left: 0px;
+		top: 266.25px;
+		overflow: visible;
+	}
+	#Play_Now_Button {
+		position: absolute;
+		width: 234px;
+		height: 72px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Background {
+		fill: rgba(4,153,91,1);
+	}
+	.Background {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 252px;
+		height: 90px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_ {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.051));
+		left: 20px;
+		top: 20px;
+		position: absolute;
+		overflow: visible;
+		width: 195px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 27px;
+		color: rgba(255,255,255,1);
+	}
+	#OS_Icons {
+		opacity: 0.7;
+		position: absolute;
+		width: 189.997px;
+		height: 44px;
+		left: 0px;
+		top: 107.25px;
+		overflow: visible;
+	}
+	#Windows {
+		position: absolute;
+		width: 45px;
+		height: 44px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_244_cf {
+		filter: blur(10px);
+		fill: url(#n_244_cf);
+	}
+	.n_244_cf {
+		filter: drop-shadow(-1px 1px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 40px;
+		height: 39px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_247_ch {
+		filter: blur(10px);
+		fill: url(#n_247_ch);
+	}
+	.n_247_ch {
+		filter: drop-shadow(-1px 1px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 40px;
+		height: 39px;
+		left: 23px;
+		top: 0px;
+	}
+	#n_246_cj {
+		filter: blur(10px);
+		fill: url(#n_246_cj);
+	}
+	.n_246_cj {
+		filter: drop-shadow(-1px 1px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 40px;
+		height: 40px;
+		left: 0px;
+		top: 22px;
+	}
+	#n_245_cl {
+		filter: blur(10px);
+		fill: url(#n_245_cl);
+	}
+	.n_245_cl {
+		filter: drop-shadow(-1px 1px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 40px;
+		height: 40px;
+		left: 23px;
+		top: 22px;
+	}
+	#MacOS {
+		fill: rgba(255,255,255,1);
+	}
+	.MacOS {
+		overflow: visible;
+		position: absolute;
+		width: 36.819px;
+		height: 44px;
+		left: 80.3px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Linux {
+		fill: rgba(255,255,255,1);
+	}
+	.Linux {
+		overflow: visible;
+		position: absolute;
+		width: 37.578px;
+		height: 44px;
+		left: 152.419px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Character3 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 347px;
+		height: 554px;
+		left: 1247px;
+		top: 165.25px;
+		overflow: visible;
+	}
+	#Character_2 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 420px;
+		height: 570px;
+		left: 517px;
+		top: 157.25px;
+		overflow: visible;
+	}
+	#Character_1 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 332px;
+		height: 662px;
+		left: 937px;
+		top: 65.25px;
+		overflow: visible;
+	}
+	#Servers {
+		position: absolute;
+		width: 1866px;
+		height: 1157px;
+		left: 27px;
+		top: 1115px;
+		overflow: visible;
+	}
+	#Server_Overview {
+		position: absolute;
+		width: 608px;
+		height: 816px;
+		left: 0px;
+		top: 341px;
+		overflow: visible;
+	}
+	#n_249 {
+		fill: #685c6c;
+	}
+	.n_249 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 626px;
+		height: 834px;
+		left: 0px;
+		top: 0px;
+	}
+	#SkyTech {
+		left: 151px;
+		top: 13px;
+		position: absolute;
+		overflow: visible;
+		width: 307px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 80px;
+		color: rgba(255,255,255,1);
+	}
+	#n__________________________ {
+		left: 7px;
+		top: 108px;
+		position: absolute;
+		overflow: visible;
+		width: 596px;
+		height: 337px;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 32px;
+		color: rgba(255,255,255,1);
+	}
+	#n_021-12-02_02_51_28 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 608px;
+		height: 371px;
+		left: 0px;
+		top: 445px;
+		overflow: visible;
+	}
+	#Server_Overview_cx {
+		position: absolute;
+		width: 608px;
+		height: 816px;
+		left: 1258px;
+		top: 341px;
+		overflow: visible;
+	}
+	#n_249_cy {
+		fill: #685c6c;
+	}
+	.n_249_cy {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 626px;
+		height: 834px;
+		left: 0px;
+		top: 0px;
+	}
+	#SkyTech_cz {
+		left: 150px;
+		top: 13px;
+		position: absolute;
+		overflow: visible;
+		width: 307px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 80px;
+		color: rgba(255,255,255,1);
+	}
+	#n___________________________c {
+		left: 7px;
+		top: 400px;
+		position: absolute;
+		overflow: visible;
+		width: 596px;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 32px;
+		color: rgba(255,255,255,1);
+	}
+	#n_021-12-02_02_51_28_c {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 608px;
+		height: 371px;
+		left: 0px;
+		top: 445px;
+		overflow: visible;
+	}
+	#Server_Overview_c {
+		position: absolute;
+		width: 608px;
+		height: 816px;
+		left: 629px;
+		top: 341px;
+		overflow: visible;
+	}
+	#n_249_c {
+		fill: #685c6c;
+	}
+	.n_249_c {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 626px;
+		height: 834px;
+		left: 0px;
+		top: 0px;
+	}
+	#SkyTech_c {
+		left: 71px;
+		top: 13px;
+		position: absolute;
+		overflow: visible;
+		width: 307px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 80px;
+		color: rgba(255,255,255,1);
+	}
+	#n___________________________da {
+		left: 7px;
+		top: 200px;
+		position: absolute;
+		overflow: visible;
+		width: 596px;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 32px;
+		color: rgba(255,255,255,1);
+	}
+	#n_021-12-02_02_51_28_da {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 608px;
+		height: 371px;
+		left: 0px;
+		top: 445px;
+		overflow: visible;
+	}
+	#n__c {
+		left: 125px;
+		top: 143px;
+		position: absolute;
+		overflow: visible;
+		width: 854px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 80px;
+		color: rgba(255,255,255,1);
+	}
+	#Redstone_Golem {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 462px;
+		height: 341px;
+		left: 1163px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Customization {
+		position: absolute;
+		width: 1616px;
+		height: 976px;
+		left: 152px;
+		top: 3724px;
+		overflow: visible;
+	}
+	#n___ {
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 1515px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 80px;
+		color: rgba(255,255,255,1);
+	}
+	#MDNecromancer {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 300px;
+		height: 383px;
+		left: 1316px;
+		top: 593px;
+		overflow: visible;
+	}
+	#Skeleton_Vanguard {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 250px;
+		height: 204px;
+		left: 0px;
+		top: 95px;
+		overflow: visible;
+	}
+	#n__Optimine___________________ {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		left: 288px;
+		top: 172px;
+		position: absolute;
+		overflow: visible;
+		width: 1329px;
+		height: 517px;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 40px;
+		color: rgba(255,255,255,1);
+	}
+	#Decorations {
+		position: absolute;
+		width: 1328px;
+		height: 841px;
+		left: 152px;
+		top: 4657px;
+		overflow: visible;
+	}
+	#Text {
+		left: 0px;
+		top: 58px;
+		position: absolute;
+		overflow: visible;
+		width: 428px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 80px;
+		color: rgba(255,255,255,1);
+	}
+	#n_____________________________ {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		left: 0px;
+		top: 230px;
+		position: absolute;
+		overflow: visible;
+		width: 1329px;
+		height: 611px;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 40px;
+		color: rgba(255,255,255,1);
+	}
+	#Corrupted_Cauldron {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 182px;
+		height: 212px;
+		left: 482px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Our_modes {
+		position: absolute;
+		width: 1742px;
+		height: 1532px;
+		left: 77px;
+		top: 2192px;
+		overflow: visible;
+	}
+	#n___dj {
+		left: 75px;
+		top: 157px;
+		position: absolute;
+		overflow: visible;
+		width: 1230px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 80px;
+		color: rgba(255,255,255,1);
+	}
+	#BabyYoda {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 410px;
+		height: 410px;
+		left: 1332px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Picture4 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 826.954px;
+		height: 454.97px;
+		left: 846.933px;
+		top: 328.93px;
+		overflow: visible;
+	}
+	#Picture3 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 378.134px;
+		height: 378.134px;
+		left: 1312.866px;
+		top: 692.83px;
+		overflow: visible;
+	}
+	#Picture2 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 479.728px;
+		height: 479.729px;
+		left: 911.933px;
+		top: 763.882px;
+		overflow: visible;
+	}
+	#Picture {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 395.593px;
+		height: 395.593px;
+		left: 1278.294px;
+		top: 1091.407px;
+		overflow: visible;
+	}
+	#n______________________________dp {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		left: 75px;
+		top: 329px;
+		position: absolute;
+		overflow: visible;
+		width: 635px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 40px;
+		color: rgba(255,255,255,1);
+	}
+	#Characters {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		width: 492px;
+		height: 357px;
+		left: 0px;
+		top: 1175px;
+		overflow: visible;
+	}
+	#Header {
+		position: absolute;
+		width: 1920px;
+		height: 71px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#HeaderBackground {
+		opacity: 0.15;
+		filter: blur(30px);
+		fill: rgba(255,255,255,0.702);
+	}
+	.HeaderBackground {
+		filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 1935px;
+		height: 86px;
+		left: 0px;
+		top: 0px;
+	}
+	#Buttons {
+		position: absolute;
+		width: 280px;
+		height: 55px;
+		left: 1488px;
+		top: 8px;
+		overflow: visible;
+	}
+	#SignIn {
+		position: absolute;
+		width: 101px;
+		height: 55px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Background_dv {
+		fill: rgba(4,153,91,1);
+	}
+	.Background_dv {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 119px;
+		height: 73px;
+		left: 0px;
+		top: 0px;
+	}
+	#Text_dw {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.051));
+		left: 22px;
+		top: 15px;
+		position: absolute;
+		overflow: visible;
+		width: 58px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 20px;
+		color: rgba(255,255,255,1);
+	}
+	#SignUp {
+		position: absolute;
+		width: 164px;
+		height: 55px;
+		left: 116px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Background_dy {
+		fill: rgba(4,153,91,1);
+	}
+	.Background_dy {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 182px;
+		height: 73px;
+		left: 0px;
+		top: 0px;
+	}
+	#Text_dz {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.051));
+		left: 22px;
+		top: 15px;
+		position: absolute;
+		overflow: visible;
+		width: 121px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 20px;
+		color: rgba(255,255,255,1);
+	}
+	#optilogo {
+		position: absolute;
+		width: 282.951px;
+		height: 53.764px;
+		left: 152px;
+		top: 9.345px;
+		overflow: visible;
+	}
+	#n_263_d {
+		position: absolute;
+		width: 48.509px;
+		height: 52.419px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_262_d {
+		position: absolute;
+		width: 48.509px;
+		height: 52.419px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_16_d {
+		fill: rgba(85,197,149,1);
+	}
+	.n_16_d {
+		overflow: visible;
+		position: absolute;
+		width: 48.509px;
+		height: 52.419px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_261_d {
+		position: absolute;
+		width: 48.509px;
+		height: 52.419px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#OPTIMINE_d {
+		left: 67.951px;
+		top: 0.764px;
+		position: absolute;
+		overflow: visible;
+		width: 205px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 45px;
+		color: rgba(255,255,255,1);
+	}
+	#Menu {
+		position: absolute;
+		width: 684px;
+		height: 36px;
+		left: 618px;
+		top: 18px;
+		overflow: visible;
+	}
+	#Store {
+		position: absolute;
+		width: 126px;
+		height: 36px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Text_d {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(255,255,255,1);
+	}
+	#Donate {
+		position: absolute;
+		width: 92px;
+		height: 36px;
+		left: 156px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Text_ea {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 93px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(255,255,255,1);
+	}
+	#Servers_eb {
+		position: absolute;
+		width: 126px;
+		height: 36px;
+		left: 278px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Text_ec {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(255,255,255,1);
+	}
+	#Help {
+		position: absolute;
+		width: 120px;
+		height: 36px;
+		left: 434px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Text_ee {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 121px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(255,255,255,1);
+	}
+	#Forum {
+		position: absolute;
+		width: 100px;
+		height: 36px;
+		left: 584px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Text_eg {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 101px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(255,255,255,1);
+	}
+</style>
+<div id="Website_Main_Page" style="transform-origin: 0px 0px;">
+	<div id="Background_of_the_top_part" class="Background_of_the_top_part">
+		<img id="Background_image_1" src="/img/Background_image_1.png" srcset="/img/Background_image_1.png 1x, /img/Background_image_1@2x.png 2x">
+			
+		<svg class="Darkening_Rectangle">
+			<rect id="Darkening_Rectangle" rx="0" ry="0" x="0" y="0" width="1920" height="1353">
+			</rect>
+		</svg>
+	</div>
+	<div id="Blurred_Background_and_picture">
+		<svg class="Blurred_Background" viewBox="0 0 1920 5180">
+			<path id="Blurred_Background" d="M 20.85920715332031 117.0867919921875 L 1900 0 C 1911.045654296875 0 1920 8.954304695129395 1920 20 L 1920 5180 L 0 5180 L 0.8592071533203125 137.0867919921875 C 0.8592071533203125 126.0410919189453 9.813511848449707 117.0867919921875 20.85920715332031 117.0867919921875 Z">
+			</path>
+		</svg>
+		<div id="Footer">
+			<div id="optilogo_footer" class="optilogo_footer">
+				<div id="n_263_by">
+					<div id="n_262_bz">
+						<svg class="n_16" viewBox="3138.564 1578.347 38.051 40.719">
+							<path id="n_16" d="M 3153.03271484375 1579.556030273438 C 3155.853271484375 1577.943969726562 3159.32568359375 1577.943969726562 3162.1435546875 1579.556030273438 C 3165.144287109375 1581.2724609375 3169.058349609375 1583.510131835938 3172.05908203125 1585.224609375 C 3174.87744140625 1586.836669921875 3176.61474609375 1589.816162109375 3176.61474609375 1593.038452148438 L 3176.61474609375 1604.375 C 3176.61474609375 1607.599365234375 3174.87744140625 1610.576904296875 3172.05908203125 1612.18896484375 C 3169.058349609375 1613.905395507812 3165.144287109375 1616.14306640625 3162.1435546875 1617.857421875 C 3159.32568359375 1619.469482421875 3155.853271484375 1619.469482421875 3153.03271484375 1617.857421875 C 3150.031982421875 1616.14306640625 3146.1201171875 1613.905395507812 3143.119384765625 1612.18896484375 C 3140.301025390625 1610.576904296875 3138.56396484375 1607.599365234375 3138.56396484375 1604.375 L 3138.56396484375 1593.038452148438 C 3138.56396484375 1589.816162109375 3140.301025390625 1586.836669921875 3143.119384765625 1585.224609375 C 3146.1201171875 1583.510131835938 3150.031982421875 1581.2724609375 3153.03271484375 1579.556030273438 Z M 3164.03076171875 1600.834228515625 C 3165.2177734375 1599.6611328125 3165.2177734375 1597.75439453125 3164.03076171875 1596.579345703125 L 3159.736328125 1592.326538085938 C 3158.552001953125 1591.153564453125 3156.62646484375 1591.153564453125 3155.442138671875 1592.326538085938 L 3151.1455078125 1596.579345703125 C 3149.961181640625 1597.75439453125 3149.961181640625 1599.6611328125 3151.1455078125 1600.834228515625 L 3155.442138671875 1605.087036132812 C 3156.62646484375 1606.261840820312 3158.552001953125 1606.261840820312 3159.736328125 1605.087036132812 L 3164.03076171875 1600.834228515625 Z">
+							</path>
+						</svg>
+						<img id="/img/n_261_b" src="/img/n_261_b.png" srcset="/img/n_261_b.png 1x, /img/n_261_b@2x.png 2x">
+							
+						
+					</div>
+				</div>
+				<div id="OPTIMINE__2021">
+					<span>OPTIMINE © 2021</span>
+				</div>
+			</div>
+			<div id="Optimine______Minecraft_______">
+				<span>Optimine предоставляет бесплатную ознакомительную версию игры Minecraft, купить игру вы можете на официальном сайте Minecraft.</span>
+			</div>
+		</div>
+	</div>
+	<div id="Top_Part_Content">
+		<div id="Title">
+			<div id="OPTIMINE">
+				<span>OPTIMINE</span>
+			</div>
+			<div id="n__">
+				<span>Сервера твоей мечты</span>
+			</div>
+		</div>
+		<div id="n_265_b">
+			<button id="Play_Now_Button" class="Play_Now_Button btn btn-success btn-block fs-1" href={Routes.user_registration_path(@conn, :new)}>
+				<p class="my-auto fs-1 fw-bold" style="font-size: 24px;">Играть сейчас</p>
+			</button>
+			<div id="OS_Icons">
+				<div id="Windows">
+					<a href="https://launch.optimine.su/Optimine.exe">
+          <svg class="n_244_cf">
+						<linearGradient id="n_244_cf" spreadMethod="pad" x1="1" x2="0" y1="1" y2="0">
+							<stop offset="0" stop-color="#fff" stop-opacity="1"></stop>
+							<stop offset="1" stop-color="#c1c1c1" stop-opacity="1"></stop>
+						</linearGradient>
+						<rect id="n_244_cf" x="0" y="0" width="22" height="21">
+						</rect>
+					</svg>
+					<svg class="n_247_ch">
+						<linearGradient id="n_247_ch" spreadMethod="pad" x1="1" x2="0" y1="1" y2="0">
+							<stop offset="0" stop-color="#fff" stop-opacity="1"></stop>
+							<stop offset="1" stop-color="#c1c1c1" stop-opacity="1"></stop>
+						</linearGradient>
+						<rect id="n_247_ch" rx="0" ry="0" x="0" y="0" width="22" height="21">
+						</rect>
+					</svg>
+					<svg class="n_246_cj">
+						<linearGradient id="n_246_cj" spreadMethod="pad" x1="1" x2="0" y1="1" y2="0">
+							<stop offset="0" stop-color="#fff" stop-opacity="1"></stop>
+							<stop offset="1" stop-color="#c1c1c1" stop-opacity="1"></stop>
+						</linearGradient>
+						<rect id="n_246_cj" rx="0" ry="0" x="0" y="0" width="22" height="22">
+						</rect>
+					</svg>
+					<svg class="n_245_cl">
+						<linearGradient id="n_245_cl" spreadMethod="pad" x1="1" x2="0" y1="1" y2="0">
+							<stop offset="0" stop-color="#fff" stop-opacity="1"></stop>
+							<stop offset="1" stop-color="#c1c1c1" stop-opacity="1"></stop>
+						</linearGradient>
+						<rect id="n_245_cl" rx="0" ry="0" x="0" y="0" width="22" height="22">
+						</rect>
+					</svg>
+          </a>
+				</div>
+				<a href="https://launch.optimine.su/Optimine.jar">
+          <svg class="MacOS" viewBox="0 0 36.819 44">
+					<path id="MacOS" d="M 30.74991416931152 23.37585258483887 C 30.8134822845459 30.03449249267578 36.75297164916992 32.25030899047852 36.81882858276367 32.27858352661133 C 36.76863479614258 32.43476104736328 35.86974716186523 35.43625259399414 33.68966293334961 38.53654479980469 C 31.80501174926758 41.21699142456055 29.84886360168457 43.88750076293945 26.76758575439453 43.94292449951172 C 23.73981094360352 43.99708557128906 22.76627731323242 42.19579315185547 19.30472946166992 42.19579315185547 C 15.84419536590576 42.19579315185547 14.76249885559082 43.88750076293945 11.89639949798584 43.99708557128906 C 8.922113418579102 44.10665512084961 6.657236576080322 41.0987434387207 4.756897449493408 38.42808532714844 C 0.8737891912460327 32.96544647216797 -2.093705177307129 22.99169158935547 1.890896081924438 16.25929641723633 C 3.870353937149048 12.91603660583496 7.40780782699585 10.79889869689941 11.24739456176758 10.74461078643799 C 14.16806125640869 10.69039535522461 16.92487716674805 12.65661334991455 18.71030426025391 12.65661334991455 C 20.49457740783691 12.65661334991455 23.84466361999512 10.29207324981689 27.36646842956543 10.63934135437012 C 28.84080696105957 10.6990442276001 32.97933197021484 11.21884250640869 35.63676071166992 15.00381183624268 C 35.42259979248047 15.13298511505127 30.69857215881348 17.80895233154297 30.74991416931152 23.37585258483887 M 25.05968475341797 7.025266647338867 C 26.63871955871582 5.165355682373047 27.70157432556152 2.576198577880859 27.4116268157959 0 C 25.1354808807373 0.08901465684175491 22.38327026367188 1.475876212120056 20.75058555603027 3.334765195846558 C 19.2874698638916 4.980888843536377 18.00614547729492 7.615614414215088 18.35190010070801 10.14083003997803 C 20.88879776000977 10.33181858062744 23.48050308227539 8.886353492736816 25.05968475341797 7.025266647338867">
+					</path>
+				  </svg>
+        </a>
+				<a href="https://launch.optimine.su/Optimine.jar">
+        <svg class="Linux" viewBox="22.257 0 37.578 44">
+					<path id="Linux" d="M 58.66917037963867 35.32831954956055 C 57.37888336181641 34.79988861083984 56.82693481445312 34.0986213684082 56.88030624389648 33.05228042602539 C 56.93527603149414 31.8309440612793 56.24238204956055 30.93637466430664 55.91331100463867 30.58292770385742 C 56.11211013793945 29.82352447509766 56.69305419921875 27.19649505615234 55.91389846801758 24.91468238830566 C 55.07658386230469 22.47230339050293 52.52024459838867 18.74209213256836 49.88253784179688 15.07535648345947 C 48.80273056030273 13.56953716278076 48.75166320800781 11.93272686004639 48.69266128540039 10.03739738464355 C 48.6361083984375 8.229634284973145 48.57234191894531 6.180520057678223 47.56423568725586 3.902605056762695 C 46.46812057495117 1.422290802001953 44.2686882019043 1.303143259967499e-09 41.52956390380859 1.303143259967499e-09 C 39.90011215209961 1.303143259967499e-09 38.2275276184082 0.5092490911483765 36.94039916992188 1.397044777870178 C 34.30471801757812 3.216058969497681 34.65311050415039 7.181997776031494 34.88364028930664 9.806289672851562 C 34.91523742675781 10.16564846038818 34.94495391845703 10.50510120391846 34.96226501464844 10.79492568969727 C 35.11575698852539 13.36511707305908 34.97611236572266 14.71974849700928 34.79347229003906 15.13147640228271 C 34.67532348632812 15.40052700042725 34.09365844726562 16.16627502441406 33.47808456420898 16.9770336151123 C 32.84145736694336 17.81549263000488 32.11970520019531 18.76589965820312 31.52807807922363 19.65152740478516 C 30.82220268249512 20.71719741821289 30.25236129760742 22.3460750579834 29.70127487182617 23.92128753662109 C 29.29806518554688 25.07394981384277 28.91720771789551 26.16270637512207 28.54644966125488 26.81332588195801 C 27.84374618530273 28.0649528503418 28.01859283447266 29.23204612731934 28.16458511352539 29.77144432067871 C 27.89856719970703 29.95624732971191 27.51424789428711 30.32007789611816 27.1898021697998 31.00590705871582 C 26.79769134521484 31.8426342010498 26.00207710266113 32.29230499267578 24.3476734161377 32.61039733886719 C 23.58740425109863 32.76591873168945 23.06315422058105 33.08560943603516 22.78904914855957 33.56052017211914 C 22.39016151428223 34.25168609619141 22.60742378234863 35.12015151977539 22.80564117431641 35.71364974975586 C 23.09849739074707 36.58614730834961 22.9160041809082 37.13839340209961 22.58419990539551 38.14101791381836 C 22.50774002075195 38.37241744995117 22.4210376739502 38.63440322875977 22.33317947387695 38.92335510253906 C 22.19483184814453 39.37937927246094 22.24474334716797 39.79398727416992 22.48119354248047 40.15564727783203 C 23.10599899291992 41.11081695556641 24.92919540405273 41.44766998291016 26.80605888366699 41.66926193237305 C 27.92669486999512 41.80227661132812 29.15322494506836 42.2504997253418 30.33949851989746 42.68415832519531 C 31.5018310546875 43.10886383056641 32.70368576049805 43.54814529418945 33.79618835449219 43.68143844604492 C 33.96223831176758 43.70236206054688 34.1266975402832 43.71289443969727 34.28524398803711 43.71289443969727 C 35.93474578857422 43.71289443969727 36.68001174926758 42.61836242675781 36.91630554199219 42.16869735717773 C 37.50880432128906 42.04780960083008 39.55228805541992 41.66060638427734 41.65839004516602 41.60866928100586 C 43.76116943359375 41.54866409301758 45.79571151733398 41.96384811401367 46.37203598022461 42.09296035766602 C 46.5532341003418 42.43976593017578 47.03088760375977 43.2319221496582 47.79230880737305 43.64003753662109 C 48.2108154296875 43.86884689331055 48.79321670532227 43.99997711181641 49.38973617553711 43.99997711181641 C 49.38987731933594 43.99997711181641 49.38973617553711 43.99997711181641 49.38987731933594 43.99997711181641 C 50.02694320678711 43.99997711181641 51.23890686035156 43.849365234375 52.19810104370117 42.84024047851562 C 53.15486145019531 41.82636642456055 55.5452995300293 40.53203582763672 57.2908821105957 39.58696365356445 C 57.68039703369141 39.37604904174805 58.0447998046875 39.17870330810547 58.36434555053711 39.00053405761719 C 59.34489822387695 38.45695495605469 59.87997436523438 37.68023681640625 59.83221817016602 36.86962127685547 C 59.79241180419922 36.19636154174805 59.34677886962891 35.60573959350586 58.66917037963867 35.32831954956055 Z M 36.96189880371094 35.13313293457031 C 36.8398551940918 34.27332305908203 35.73379135131836 33.42059326171875 34.45287704467773 32.43325424194336 C 33.4055290222168 31.62580490112305 32.21839141845703 30.71074485778809 31.89133644104004 29.93576622009277 C 31.21546363830566 28.33704376220703 31.74822807312012 25.52593040466309 32.67714309692383 24.07839202880859 C 33.13618850708008 23.35361289978027 33.51112365722656 22.25447273254395 33.87379837036133 21.1915397644043 C 34.26533126831055 20.04378318786621 34.67028045654297 18.8570728302002 35.12311935424805 18.33758163452148 C 35.84025955200195 17.52653694152832 36.50299835205078 15.9484395980835 36.62042617797852 14.70474720001221 C 37.29197692871094 15.34584999084473 38.33369827270508 16.15935134887695 39.29607772827148 16.15935134887695 C 39.44423294067383 16.15935134887695 39.58806991577148 16.14001846313477 39.72554779052734 16.1012134552002 C 40.38396453857422 15.91107559204102 41.3524055480957 15.35147857666016 42.28896331787109 14.8104887008667 C 43.09640121459961 14.34394359588623 44.09210205078125 13.76862335205078 44.46675109863281 13.71625423431396 C 45.10915374755859 14.63867378234863 48.84196472167969 22.89932632446289 49.22340393066406 25.55218696594238 C 49.52519226074219 27.65121650695801 49.20637893676758 29.38640975952148 49.04610061645508 30.0660343170166 C 48.9171257019043 30.04843521118164 48.76334381103516 30.03415298461914 48.60177230834961 30.03415298461914 C 47.56206512451172 30.03415298461914 47.28680419921875 30.60168647766113 47.21511459350586 30.94056129455566 C 47.03074645996094 31.82099723815918 47.01126861572266 34.63629150390625 47.00924682617188 35.26889038085938 C 46.63330078125 35.74654388427734 44.7320556640625 37.99589538574219 42.00244903564453 38.40026473999023 C 40.89060592651367 38.56184387207031 39.85235595703125 38.64377593994141 38.91666030883789 38.64377593994141 C 38.11686325073242 38.64377593994141 37.60646057128906 38.58203887939453 37.3945426940918 38.54986953735352 L 36.02288818359375 36.98042678833008 C 36.5637321472168 36.71339416503906 37.10443115234375 36.14989852905273 36.96189880371094 35.13313293457031 Z M 38.70243835449219 9.254340171813965 C 38.65958404541016 9.272804260253906 38.61746215820312 9.292569160461426 38.57605361938477 9.313631057739258 C 38.57186889648438 9.220725059509277 38.56221389770508 9.126522064208984 38.54734802246094 9.03203010559082 C 38.39760971069336 8.170059204101562 37.82603073120117 7.544387817382812 37.18854141235352 7.544387817382812 C 37.14136505126953 7.544387817382812 37.09390258789062 7.547994613647461 37.04182052612305 7.555929660797119 C 36.66254806518555 7.61911678314209 36.36508178710938 7.904037952423096 36.20206451416016 8.307973861694336 C 36.34502410888672 7.42162036895752 36.84720611572266 6.765367031097412 37.44301986694336 6.765367031097412 C 38.14269638061523 6.765367031097412 38.73374176025391 7.708270072937012 38.73374176025391 8.824291229248047 C 38.73374176025391 8.964946746826172 38.72349548339844 9.10488224029541 38.70243835449219 9.254340171813965 Z M 44.13913345336914 9.918960571289062 C 44.20319366455078 9.714969635009766 44.23780822753906 9.494248390197754 44.23780822753906 9.265157699584961 C 44.23780822753906 8.2532958984375 43.59584808349609 7.460570812225342 42.77629089355469 7.460570812225342 C 41.97533416748047 7.460570812225342 41.32369995117188 8.270031929016113 41.32369995117188 9.265157699584961 C 41.32369995117188 9.332962036132812 41.3270149230957 9.400910377502441 41.33336639404297 9.468713760375977 C 41.29094314575195 9.452412605285645 41.24954223632812 9.436543464660645 41.20915222167969 9.421252250671387 C 41.11696624755859 9.142101287841797 41.07037353515625 8.850834846496582 41.07037353515625 8.553506851196289 C 41.07037353515625 7.34357213973999 41.84362030029297 6.359121322631836 42.79431915283203 6.359121322631836 C 43.74486923217773 6.359121322631836 44.51826858520508 7.343573093414307 44.51826858520508 8.553506851196289 C 44.51826095581055 9.056841850280762 44.37933731079102 9.537239074707031 44.13913345336914 9.918960571289062 Z M 43.43815994262695 12.27391242980957 C 43.42446136474609 12.33507823944092 43.39531326293945 12.36220169067383 43.07303237915039 12.52983474731445 C 42.91030120849609 12.61451530456543 42.70775985717773 12.71997451782227 42.45428848266602 12.87433624267578 L 42.2849235534668 12.97690677642822 C 41.60428619384766 13.38949871063232 40.0106086730957 14.35591888427734 39.57797241210938 14.41261386871338 C 39.28410720825195 14.45214176177979 39.10232925415039 14.33817195892334 38.69363784790039 14.06046581268311 C 38.60144805908203 13.99771308898926 38.50334930419922 13.93106079101562 38.39876174926758 13.86398029327393 C 37.66201019287109 13.38055419921875 37.18810272216797 12.8480806350708 37.13458633422852 12.63990688323975 C 37.37477493286133 12.45423984527588 37.97015380859375 11.98956871032715 38.27498626708984 11.71445560455322 C 38.89373016357422 11.13913631439209 39.51636505126953 10.75251197814941 39.82451248168945 10.75251197814941 C 39.84081268310547 10.75251197814941 39.85552978515625 10.75366687774658 39.87082672119141 10.75655078887939 C 40.2329216003418 10.82045936584473 41.12605285644531 11.17693328857422 41.77841186523438 11.43718338012695 C 42.07991409301758 11.5575008392334 42.34031295776367 11.66136932373047 42.52352905273438 11.72715377807617 C 43.10073471069336 11.92537117004395 43.40166473388672 12.17898559570312 43.43815994262695 12.27391242980957 Z M 48.62398910522461 39.16024017333984 C 48.94959259033203 37.69150161743164 49.32466888427734 35.69345474243164 49.26394271850586 34.51554489135742 C 49.24995040893555 34.2479362487793 49.22628784179688 33.95666885375977 49.20334625244141 33.67506790161133 C 49.1605110168457 33.14850616455078 49.09687805175781 32.36587905883789 49.16252517700195 32.13375854492188 C 49.17550277709961 32.1276969909668 49.18993377685547 32.12250518798828 49.2059440612793 32.1180305480957 C 49.20868301391602 32.79145431518555 49.35497283935547 34.13468933105469 50.42915725708008 34.60311889648438 C 50.749267578125 34.74276351928711 51.1151237487793 34.81344604492188 51.5164680480957 34.81344604492188 C 52.5925178527832 34.81344604492188 53.78644943237305 34.28558731079102 54.27549743652344 33.79653930664062 C 54.56345367431641 33.50858306884766 54.80566787719727 33.15629577636719 54.97531890869141 32.87729644775391 C 55.01239776611328 32.98591995239258 55.03518295288086 33.12788391113281 55.02321624755859 33.31080627441406 C 54.95930862426758 34.30405426025391 55.4420051574707 35.62175750732422 56.36068344116211 36.10734558105469 L 56.49440765380859 36.1776008605957 C 56.82160568237305 36.34927749633789 57.69063949584961 36.80558013916016 57.70463180541992 37.02197265625 C 57.70448684692383 37.02212524414062 57.6972770690918 37.04750823974609 57.64880752563477 37.0925178527832 C 57.43111801147461 37.29146194458008 56.66493225097656 37.68270111083984 55.92400360107422 38.06110382080078 C 54.60962677001953 38.73221588134766 53.11980819702148 39.49291610717773 52.45071792602539 40.19663238525391 C 51.50867462158203 41.18801116943359 50.44314956665039 41.85392379760742 49.79973602294922 41.85392379760742 C 49.72227096557617 41.85392379760742 49.65172576904297 41.8441162109375 49.58897399902344 41.82421112060547 C 48.89015197753906 41.60636901855469 48.31497573852539 40.59810638427734 48.62398910522461 39.16024017333984 Z M 24.80455207824707 35.41329193115234 C 24.7332878112793 35.07975769042969 24.67702484130859 34.81647491455078 24.73747062683105 34.56141662597656 C 24.78132820129395 34.3724365234375 25.71427536010742 34.16989135742188 26.11273193359375 34.08347702026367 C 26.67290306091309 33.96186065673828 27.25226593017578 33.83620452880859 27.63109970092773 33.60625076293945 C 28.14338111877441 33.29593658447266 28.42079925537109 32.72365188598633 28.66546821594238 32.21873092651367 C 28.84262275695801 31.85360145568848 29.02555084228516 31.47606468200684 29.24324417114258 31.35213851928711 C 29.25550651550293 31.34492874145508 29.27425765991211 31.33656120300293 29.31003570556641 31.33656120300293 C 29.71786880493164 31.33656120300293 30.57363510131836 32.19391250610352 31.06673049926758 32.96125030517578 C 31.19180679321289 33.15470886230469 31.42349243164062 33.54234313964844 31.6915340423584 33.99114608764648 C 32.49319839477539 35.3325080871582 33.59090423583984 37.16969680786133 34.16420745849609 37.7854118347168 C 34.68081283569336 38.33894729614258 35.5171012878418 39.40317535400391 35.31138610839844 40.31593322753906 C 35.16077423095703 41.02412414550781 34.35895919799805 41.60001754760742 34.16982650756836 41.7274055480957 C 34.10116195678711 41.74297714233398 34.01618957519531 41.75091934204102 33.91621780395508 41.75091934204102 C 32.81895065307617 41.75091934204102 30.64692497253418 40.83801651000977 29.47997665405273 40.34752655029297 L 29.30729293823242 40.27496337890625 C 28.65565490722656 40.00172424316406 27.59186172485352 39.82962036132812 26.56312370300293 39.66314315795898 C 25.74457168579102 39.53056335449219 24.62364768981934 39.34922790527344 24.43783950805664 39.18533706665039 C 24.28722381591797 39.01641464233398 24.46192932128906 38.46719741821289 24.61600303649902 37.98262405395508 C 24.72693824768066 37.63436508178711 24.84148406982422 37.2742805480957 24.90423774719238 36.89733123779297 C 24.99325180053711 36.29603958129883 24.88851737976074 35.80655288696289 24.80455207824707 35.41329193115234 Z">
+					</path>
+				</svg>
+        </a>
+			</div>
+		</div>
+		<img id="Character3" src="/img/Character3.png" srcset="/img/Character3.png 1x, /img/Character3@2x.png 2x">
+			
+		<img id="Character_2" src="/img/Character_2.png" srcset="/img/Character_2.png 1x, /img/Character_2@2x.png 2x">
+  
+		<img id="Character_1" src="/img/Character_1.png" srcset="/img/Character_1.png 1x, /img/Character_1@2x.png 2x">
+			
+	</div>
+	<div id="Servers">
+		<div id="Server_Overview" class="Server_Overview">
+						<svg class="n_249_cy">
+				<rect id="n_249_cy" rx="30" ry="30" x="0" y="0" width="608" height="816">
+				</rect>
+			</svg>
+			<div id="SkyTech_cz">
+				<span>Скоро!</span>
+			</div>
+			<div id="n___________________________c">
+				<span>Скоро открытие! <br>Следите за нашими новостями!</span>
+			</div>
+				
+		</div>
+		<div id="Server_Overview_cx" class="Server_Overview">
+			<svg class="n_249_cy">
+				<rect id="n_249_cy" rx="30" ry="30" x="0" y="0" width="608" height="816">
+				</rect>
+			</svg>
+			<div id="SkyTech_cz">
+				<span>Скоро!</span>
+			</div>
+			<div id="n___________________________c">
+				<span>Скоро открытие! <br>Следите за нашими новостями!</span>
+			</div>
+			
+		</div>
+		<div id="Server_Overview_c" class="Server_Overview">
+    			<svg class="n_249">
+				<rect id="n_249" rx="30" ry="30" x="0" y="0" width="608" height="816">
+				</rect>
+			</svg>
+			<div id="SkyTech">
+				<span>SkyTech</span>
+			</div>
+			<div id="n__________________________">
+				<span>Маленький остров посреди пустоты. Сможешь ли ты <br>выжить на этом клочке земли? Используй все подручные средства и технологии, чтобы <br>сделать свой остров лучшим на сервере!</span>
+			</div>
+			<img id="n_021-12-02_02_51_28" src="/img/n_021-12-02_02_51_28.png" srcset="/img/n_021-12-02_02_51_28.png 1x, /img/n_021-12-02_02_51_28@2x.png 2x">
+		</div>
+		<div id="n__c">
+			<span>Качественные сборки</span>
+		</div>
+		<img id="Redstone_Golem" src="/img/Redstone_Golem.png" srcset="/img/Redstone_Golem.png 1x, /img/Redstone_Golem@2x.png 2x">
+			
+	</div>
+	<div id="Customization">
+		<div id="n___">
+			<span>Кастомизация персонажа и предметов</span>
+		</div>
+		<img id="MDNecromancer" src="/img/MDNecromancer.png" srcset="/img/MDNecromancer.png 1x, /img/MDNecromancer@2x.png 2x">
+			
+		<img id="Skeleton_Vanguard" src="/img/Skeleton_Vanguard.png" srcset="/img/Skeleton_Vanguard.png 1x, /img/Skeleton_Vanguard@2x.png 2x">
+			
+		<div id="n__Optimine___________________">
+			<span>На серверах Optimine ты сможешь кастомизировать всё, что пожелаешь!<br><br>Хочешь сделать себе крылья, или надеть плащ, а может хочется придать мечу более устрашающий вид? Без проблем! Да что там, ты можешь полностью изменить образ своего персонажа, облачить его в доспехи разной формы и размеров, а девочкам понравится огромный выбор платьев и украшений :) <br><br>Нравится? Это еще не всё, заходи на сервер и найди еще возможностей для кастомизации персонажа!</span>
+		</div>
+	</div>
+	<div id="Decorations">
+		<div id="Text">
+			<span>Декорации</span>
+		</div>
+		<div id="n_____________________________">
+			<span>Ну и конечно декорации! Мы как никто другой понимаем, как порой хочется украсить свой дом и сделать его уютным и радующим глаз. <br><br>Теперь не нужно выдумывать велосипед из ванильных блоков, мы подготовили для тебя огромную кучу декораций: начиная от простых столов и стульев, заканчивая декорациями для фермы, оружейной, лаборатории, мы даже приготовили сезонные украшения для праздников. <br><br>На носу Новый Год и мы подготовили новогодний набор украшений, который позволит тебе нарядить елку, повесить гирлянды, разложить подарки и сесть у камина с горячим шоколадом и тарелкой оливье!</span>
+		</div>
+		<img id="Corrupted_Cauldron" src="/img/Corrupted_Cauldron.png" srcset="/img/Corrupted_Cauldron.png 1x, /img/Corrupted_Cauldron@2x.png 2x">
+			
+	</div>
+	<div id="Our_modes">
+		<div id="n___dj">
+			<span>Собственные уникальные моды</span>
+		</div>
+		<img id="BabyYoda" src="/img/BabyYoda.png" srcset="/img/BabyYoda.png 1x, /img/BabyYoda@2x.png 2x">
+			
+		<img id="Picture4" src="/img/Picture4.png" srcset="/img/Picture4.png 1x, /img/Picture4@2x.png 2x">
+			
+		<img id="Picture3" src="/img/Picture3.png" srcset="/img/Picture3.png 1x, /img/Picture3@2x.png 2x">
+			
+		<img id="Picture2" src="/img/Picture2.png" srcset="/img/Picture2.png 1x, /img/Picture2@2x.png 2x">
+			
+		<img id="Picture" src="/img/Picture.png" srcset="/img/Picture.png 1x, /img/Picture@2x.png 2x">
+			
+		<div id="n______________________________dp">
+			<span>На всех наших серверах есть <br>уникальные моды собственной <br>разработки, которые <br>разнообразят игру и внесут <br>огромную кучу нововведений и <br>улучшений в геймплей.<br><br>Мы полностью переработали <br>интерфейс, добавили <br>внутриигровой магазин, <br>улучшили игровой чат, а также <br>добавили кучу нового оружия и <br>предметов, кроме того мы <br>постоянно обновляем моды и <br>добавляем все больше <br>контента, чтобы тебе не <br>наскучило играть и всегда было <br>чем заняться.</span>
+		</div>
+	</div>
+</div>
 </div>

@@ -54,7 +54,9 @@ defmodule Makoto.MixProject do
       {:ecto_enum, "~> 1.4"},
       {:httpoison, "~> 1.8"},
       {:poison, "~> 5.0"},
-      {:ueberauth_discord, "~> 0.6"}
+      {:ueberauth_discord, "~> 0.6"},
+      {:ex_image_info, "~> 0.2.4"},
+      {:rcon, "~> 0.4.0"}
     ]
   end
 
@@ -70,7 +72,6 @@ defmodule Makoto.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
   end
 end

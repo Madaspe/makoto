@@ -1,5 +1,5 @@
 <main>
-  <p class="hidden" id="info-alert"><%= get_flash(@conn, :info) %></p>
-  <p class="hidden" id="danger-alert"><%= get_flash(@conn, :error) %></p>
+  <p class="d-none info-alert" id="info-alert" onchange='console.log("1")'><%= get_flash(@conn, :info) %></p>
+  <p class="d-none danger-alert" id="danger-alert" onchange='console.log("1")'><%= get_flash(@conn, :error) %></p>
   <%= @inner_content %>
 </main>

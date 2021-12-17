@@ -1,0 +1,36 @@
+<div class="container py-2 text-center">
+          <h5 class="mt-4 mx-auto">Реферальная ссылка</h5>
+          <p>Приглашай друзей и получай бонусы!</p>
+          <div class="mt-2">
+            <p>Твоя личная ссылка:</p>
+
+
+            <div class="input-group w-50 mx-auto">
+            <p class="form-control" id="ref-url">https://<%= @host %>/ref/<%= @user.id %></p>
+            </div>
+
+
+
+          </div>
+          <script defer>
+          </script>
+          <%= if @refs |> length != 0 do %>
+          <h5 class="mt-4 mx-auto">Твои рефералы. Всего <%= @refs |> length %></h5>
+          <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Ник игрока</th>
+                <th scope="col">Сколько рубинов принес</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= for ref <- @refs do %>
+                <tr>
+                <td scope="col"><%= ref.username %></td>
+                <td scope="col"><%= ref.rubins_for_inviter %></td>
+                </tr>
+                <% end %>
+            </tbody>
+</table>
+            <% end %>
+</div>

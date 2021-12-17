@@ -1,10 +1,206 @@
-<div>
-  <h1>Up balance</h1>
-  <%= f = form_for :user, "#", [phx_submit: "submit", phx_target: @myself] %>
-    <%= text_input f, :rubins, value: "" %>
-    <%= submit "Up" %>
-  
-  <div>
-    <%= live_patch "Exit", to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>
+<div class="container">
+  <h5 class="py-2">Выгодные предложения</h5>
+  <div class="row no-gutters mb-3">
+    <div class="col-12 col-lg-6">
+      <div class="row no-gutters saleblist">
+        
+
+        <div id="sale-block-0" class="col-6 p-1 p-lg-2">
+          <div class="sale-block" style="background-color: var(--success)">
+
+            <div class="sale-block-ghost p-1 p-lg-2">
+              <div class="sale-block-top">
+                
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                <div class="sale-block-r">
+                  <h2>525</h2>
+                  <b>кристаллов</b>
+                </div>
+              </div>
+              <div class="sale-block-bottom">
+                <span>490₽</span>
+                <span>525₽</span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        
+
+        <div id="sale-block-1" class="col-6 p-1 p-lg-2">
+          <div class="sale-block" style="background-color: var(--success)">
+
+            <div class="sale-block-ghost p-1 p-lg-2">
+              <div class="sale-block-top">
+                
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                <div class="sale-block-r">
+                  <h2>1100</h2>
+                  <b>кристаллов</b>
+                </div>
+              </div>
+              <div class="sale-block-bottom">
+                <span>990₽</span>
+                <span>1100₽</span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        
+
+        <div id="sale-block-2" class="col-6 p-1 p-lg-2">
+          <div class="sale-block" style="background-color: var(--primary)">
+
+            <div class="sale-block-ghost p-1 p-lg-2">
+              <div class="sale-block-top">
+                
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                <div class="sale-block-r">
+                  <h2>3450</h2>
+                  <b>кристаллов</b>
+                </div>
+              </div>
+              <div class="sale-block-bottom">
+                <span>2990₽</span>
+                <span>3450₽</span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        
+
+        <div id="sale-block-3" class="col-6 p-1 p-lg-2">
+          <div class="sale-block" style="background-color: var(--red)">
+
+            <div class="sale-block-ghost p-1 p-lg-2">
+              <div class="sale-block-top">
+                
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                <div class="sale-block-r">
+                  <h2>6000</h2>
+                  <b>кристаллов</b>
+                </div>
+              </div>
+              <div class="sale-block-bottom">
+                <span>4990₽</span>
+                <span>6000₽</span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        
+
+        <div id="sale-block-4" class="col-12 p-1 p-lg-2">
+          <div class="sale-block" style="background-color: var(--purple)">
+
+            <div class="sale-block-ghost p-1 p-lg-2">
+              <div class="sale-block-top">
+                
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                  <li class="crystal" style=""></li>
+                  
+                <div class="sale-block-r">
+                  <h2>12500</h2>
+                  <b>кристаллов</b>
+                </div>
+              </div>
+              <div class="sale-block-bottom">
+                <span>9990₽</span>
+                <span>12500₽</span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+    <div class="col-6 p-1 p-lg-2">
+      <div class="h-100">
+        <div class="modal-fix-1 h-100">
+
+
+          <div class="container">
+            <h5 class="py-2 text-center">Пополнение счета</h5>
+
+          <div class="pay-sum text-center d-flex flex-column mt-5 w-50 mx-auto">
+              <%= f = form_for :user, "#", [phx_submit: "submit", phx_target: @myself] %>
+                <div class="form-group">
+                  <h6 class="mb-3">Сумма к пополнению</h6>
+                  <%= text_input f, :rubins, value: "", class: "form-control" %>
+                </div>
+                <%= submit "Пополнить", class: "btn btn-primary"  %>
+          </div>
+
+          </div>
+          </div>
+      </div>
+    </div>
   </div>
 </div>

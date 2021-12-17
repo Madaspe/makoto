@@ -1,0 +1,202 @@
+<div>
+<div class="container py-2">
+  <h5 class="py-1">Управление статусами</h5>
+  <hr class="mt-0">
+  
+  <div class="row no-gutters status_list row-eq-height">
+    
+    
+    
+    
+    <div class="col-3 pr-1">
+      <a phx-click="vip" phx-target={@father_component} class="status_list-status b vip py-3 h-100 d-flex align-items-start flex-column" data-price="[99, 169, 249, 990]" data-val="{&quot;id&quot;:&quot;2&quot;, &quot;name&quot;:&quot;VIP&quot;}">
+
+      <div class="status_list-status_img mx-auto py-3">
+        <img src="/img/st/vip.svg?2" alt="">
+      </div>
+
+
+
+
+      
+      
+
+      <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">
+      
+      <li>Установка плаща</li>
+      
+      <li>Сохранение опыта</li>
+      
+      <li>Сохранение инвентаря</li>
+      
+    </ul>
+
+    
+
+    <div class="text-center w-100 mt-auto">
+      <hr>
+      <span data-toggle="tooltip" data-placement="top" title="" data-original-title="99 Рубинов" class="status_list-status_price">99 <i class="icon-ruby"></i></span>
+    </div>
+  </a>
+</div>
+
+    
+    
+    
+    <div class="col-3 px-1">
+      <a class="status_list-status b premium py-3 h-100 d-flex align-items-start flex-column active" data-price="[299, 539, 799, 2990]" data-val="{&quot;id&quot;:&quot;3&quot;, &quot;name&quot;:&quot;Premium&quot;}">
+
+      <div class="status_list-status_img mx-auto py-3">
+        <img src="/img/st/premium.svg?2" alt="">
+      </div>
+
+
+
+
+      
+      
+
+      <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">
+      
+      <li>HD скин</li>
+      
+      <li>HD плащ</li>
+      
+      <li>Заход на переполненный сервер</li>
+      
+    </ul>
+
+    
+
+    <div class="text-center w-100 mt-auto">
+      <hr>
+      <span data-toggle="tooltip" data-placement="top" title="" data-original-title="299 Рубинов" class="status_list-status_price">299 <i class="icon-ruby"></i></span>
+    </div>
+  </a>
+</div>
+
+    
+    
+    
+    <div class="col-3 px-1">
+      <a phx-click="optimum" phx-target={@father_component} class="status_list-status b optimum py-3 h-100 d-flex align-items-start flex-column" data-price="[699, 1199, 1799, 6990]" data-val="{&quot;id&quot;:&quot;4&quot;, &quot;name&quot;:&quot;Optimum&quot;}">
+
+      <div class="status_list-status_img mx-auto py-3">
+        <img src="/img/st/optimum.svg?2" alt="">
+      </div>
+
+
+
+
+      
+      
+
+      <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">
+      
+      <li>Телепорт на приват</li>
+      
+      <li>HD плащ</li>
+      
+      <li>Заход на переполненный сервер</li>
+      
+    </ul>
+
+    
+
+    <div class="text-center w-100 mt-auto">
+      <hr>
+      <span data-toggle="tooltip" data-placement="top" title="" data-original-title="699 Рубинов" class="status_list-status_price">699 <i class="icon-ruby"></i></span>
+    </div>
+  </a>
+</div>
+
+    
+    
+    
+    <div class="col-3 pl-1">
+      <a phx-click="ultimate" phx-target={@father_component} class="status_list-status b ultimate py-3 h-100 d-flex align-items-start flex-column" data-price="[999, 1699, 2499, 9990]" data-val="{&quot;id&quot;:&quot;5&quot;, &quot;name&quot;:&quot;Ultimate&quot;}">
+
+      <div class="status_list-status_img mx-auto py-3">
+        <img src="/img/st/ultimate.svg?2" alt="">
+      </div>
+
+
+
+
+      
+      
+
+      <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">
+      
+      <li>Клевый
+</li>
+      
+      <li>Ваще агонь
+</li>
+      
+      <li>Дает бонусы
+</li>
+      
+      <li>Дает хуенусы</li>
+      
+    </ul>
+
+    
+
+    <div class="text-center w-100 mt-auto">
+      <hr>
+      <span data-toggle="tooltip" data-placement="top" title="" data-original-title="999 Рубинов" class="status_list-status_price">999 <i class="icon-ruby"></i></span>
+    </div>
+  </a>
+</div>
+
+
+<div class="col-12 mt-3">
+  <div class="status_list-status_buy p-3">
+    <h5 class="status_list-status_buy-title py-1">Покупка статуса Premium</h5>
+    <hr class="mt-0">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Выбери сервер</label>
+          <select class="selector" id="by_server" style="display: none;">
+            
+            <option data-id="8" value="TechMagic">SkyTech</option>
+            
+          </select><div class="nice-select selector" tabindex="0"><span class="current">SkyTech</span><ul class="list"><li data-value="TechMagic" class="option selected focus">SkyTech</li></ul></div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Выбери
+            продолжительность</label>
+            <select class="selector" id="by_time" style="display: none;">
+              <option value="0">1 месяц</option>
+
+            </select><div class="nice-select selector" tabindex="0"><span class="current">1 месяц</span><ul class="list"><li data-value="0" class="option selected">1 месяц</li></ul></div>
+          </div>
+        </div>
+
+        <div class="col-7 mx-auto mt-4">
+          <p class="text-center" id="outtext">Купить статус Premium?</p>
+          <form action="" phx-submit="buy" id="buystatus" phx-target={@father_component}>
+            <input type="hidden" name="csrf_token" value="IjQwODk5MzQ0OWNlNzZlZTNmODM2M2U5OTQ5NjgxMDQyOTdkMDM3NmYi.Ybr4ug.kJmBJOVwqzNz4t7m-FwMBbYycfs">
+            <input type="hidden" name="status" value="7">
+            <input type="hidden" name="server" value="TechMagic">
+            <input type="hidden" name="time" value="0">
+            <input type="hidden" name="type" value="buy">
+            <input type="hidden" name="statustype" value="">
+
+            <button class="btn btn-om btn-reg mx-auto" type="submit" id="buystatusb" style="display: block;">Купить за 299 Рубинов</button>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+</div>

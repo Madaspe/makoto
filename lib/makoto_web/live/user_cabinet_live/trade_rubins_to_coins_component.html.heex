@@ -1,0 +1,18 @@
+<div class="container"> 
+  <p class="d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
+
+  <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
+
+            <h6 class="mx-auto fs-18 text-center">Перевод рубинов на сервер</h6>
+
+          <div class="pay-sum text-center d-flex flex-column mt-5 w-50 mx-auto">
+<form phx-change="validate" phx-submit="submit" phx-target={@myself}>
+                <div class="form-group">
+                  <h6 class="mb-3">Сумма к пополнению</h6>
+<input class="form-control" id="user_rubins" name="sum" type="text" value="1">
+                </div>
+                      <div id="r2mout"><p><span class="text-success"><b><%= @rubins_count %></b> Рубина</span> будут переведены в <span class="text-warning"><%= @rubins_count * 100 %> монет</span></p><button class="btn btn-om btn-success mb-4" id="r2msend">Перевести <%= @rubins_count * 100 %> монет на SkyTech</button></div>
+          </form>
+            </div>
+            
+          </div>

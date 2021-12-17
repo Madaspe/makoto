@@ -8,7 +8,9 @@ defmodule Makoto.Accounts do
 
   alias Makoto.Accounts.{User, UserToken, UserNotifier}
 
+  require Logger
   ## Database getters
+
 
   @doc """
   Gets a user by email.
@@ -44,6 +46,30 @@ defmodule Makoto.Accounts do
     if User.valid_password?(user, password), do: user
   end
 
+  def get_user_by_username_and_password(username, password)
+  when is_binary(username) and is_binary(password) do
+  user = Repo.get_by(User, username: username)
+  if User.valid_password?(user, password), do: user
+end
+
+  @doc """
+  Updates a user.
+
+  ## Examples
+
+      iex> update_user(user, %{field: new_value})
+      {:ok, %User{}}
+
+      iex> update_user(user, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.changeset(attrs)
+    |> Repo.update()
+  end
+
   ## User registration
 
   @doc """
@@ -58,7 +84,14 @@ defmodule Makoto.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def register_user(attrs) do
+  def register_user(attrs, %{"inviter_id" => inviter_id} = params) do
+    user =
+      %User{}
+      |> User.registration_changeset(Map.merge(attrs, %{"inviter_id" => inviter_id}))
+      |> Repo.insert()
+  end
+
+  def register_user(attrs, _session) do
     %User{}
     |> User.registration_changeset(attrs)
     |> Repo.insert()
@@ -360,7 +393,7 @@ defmodule Makoto.Accounts do
 
   """
   def get_user_by_id!(id), do: Repo.get!(User, id)
-
+  def get_user_by_id(id), do: Repo.get(User, id)
 
   @doc """
   Gets a single user.
@@ -380,6 +413,11 @@ defmodule Makoto.Accounts do
   def get_user_by_username(username), do: Repo.get_by(User, username: username)
   def get_user_by_username_and_preload!(username), do: Repo.get_by!(User, username: username) |> Repo.preload([:discord_info])
 
+  def get_all_discord_inviter_by_id(id), do: Makoto.Accounts.DiscordInviter |> where(inviter_id: ^id) |> Repo.all()
+  def get_discord_invited_by_id(id), do: Makoto.Accounts.DiscordInviter |> where(user_id: ^id) |> Repo.one()
+
+  def get_user_discord_info_by_id(id), do: Makoto.Discord.User |> where(discord_id: ^id) |> Repo.one()
+  def get_all_referrals(id), do: User |> where(inviter_id: ^id) |> Repo.all()
   @doc """
   Creates a user.
 
@@ -396,24 +434,6 @@ defmodule Makoto.Accounts do
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
-  end
-
-  @doc """
-  Updates a user.
-
-  ## Examples
-
-      iex> update_user(user, %{field: new_value})
-      {:ok, %User{}}
-
-      iex> update_user(user, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_user(%User{} = user, attrs) do
-    user
-    |> User.changeset(attrs)
-    |> Repo.update()
   end
 
   @doc """

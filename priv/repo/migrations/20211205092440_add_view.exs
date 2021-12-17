@@ -4,7 +4,7 @@ defmodule Makoto.Repo.Migrations.AddView do
   def change do
       alter table(:users) do
         add :avatar_url, :string
-        add :skin_url, :string
+        add :skin_url, :string, default: "/uploads/steave"
         add :cloak_url, :string
       end
   end

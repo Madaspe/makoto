@@ -12,11 +12,19 @@ defmodule MakotoWeb.UserCabinetLive.Index do
       Accounts.get_user_by_session_token(user_token)
       |> Accounts.preload([:discord_info])
 
-    {:ok, socket |> assign(:user, user)}
+    refs =
+      Accounts.get_all_referrals(user.id)
+
+    {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"])}
+  end
+
+  def mount(params, session, socket) do
+    {:ok, socket |> assign(:user, nil)}
   end
 
   @impl true
   def handle_params(params, _url, socket) do
+    Logger.info socket.assigns.live_action
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
@@ -37,7 +45,8 @@ defmodule MakotoWeb.UserCabinetLive.Index do
     |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, username))
   end
 
-  defp apply_action(socket, _action, %{"username" => username}) do
+  defp apply_action(socket, action, _params) do
+    Logger.info action
      socket
   end
 

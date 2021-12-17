@@ -1,107 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "Makoto", suffix: " · Phoenix Framework" %>
+<html lang="ru" class=""><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/fav/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/fav/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/fav/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fav/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/fav/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/fav/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/fav/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/fav/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/fav/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/fav/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/fav/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/fav/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/fav/favicon-16x16.png">
+  <link rel="manifest" href="/img/fav/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/img/fav/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&family=Rubik:wght@400;500;600&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+  <%= csrf_meta_tag() %>
+  <%= live_title_tag assigns[:page_title] || "Makoto", suffix: " · Phoenix Framework" %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  <title> Optimine </title>
+    <link rel="stylesheet" href="/assets/jquery.Jcrop.min.css" />
+    <link rel="stylesheet" href="/assets/bootstrap.min.css">
+    <script src="/assets/jquery.Jcrop.min.js" ></script>
+    <script src="/assets/skinview3d.bundle.js" ></script>
+     <script src="/assets/jquery.nice-select.min.js" ></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
-  </head>
-  <body>
-    <header class="bg-white">
-      <!-- This example requires Tailwind CSS v2.0+ -->
-      <nav class="bg-white-800">
-        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div class="relative flex items-center justify-between h-12">
-            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start ">
-              <div class="flex-shrink-0 flex items-center">
-                    <a href="/"><img src="/images/logo.svg"></a>
-              </div>
-              <div class="hidden sm:block sm:mx-auto flex items-center">
-                <div class="flex space-x-4">
-                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <a href="/" class="text-black hover:text-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Главная</a>
+</head>
+<body class="d-flex flex-column h-100">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-om-bg">
+      <div class="container">
+        <a class="navbar-brand logo" href="/"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/page/donate">Донат</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/page/rules">Правила</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://forum.optimine.su/">Форум</a>
+            </li>
+          </ul>
+          <label id="switch" class="switch theme-switch my-auto mr-3">
+        <input type="checkbox" id="checkbox">
+        <span class="slider round sdn"></span>
+    </label>
 
-                  <a href="#" class="text-black hover:text-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Донат</a>
-
-                  <a href="#" class="text-black hover:text-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Правила</a>
-
-                  <a href="#" class="text-black hover:text-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Форум</a>
-                </div>
-              </div>
-            </div>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
+          <div>
               <%= if @current_user do %>
-                <%#= @current_user.email %>
-                <%= link "Личный кабинет", to: Routes.user_settings_path(@conn, :redirect_to_liveview), class: "hidden sm:block text-black hover:text-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-                <%= link "Выйти", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "hidden sm:block text-black hover:text-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+                <%= link "Личный кабинет", to: Routes.user_cabinet_index_path(@conn, :index, @current_user.username), class: "btn btn-om btn-login mr-3" %>
+                <%= link "Выйти", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "btn btn-om btn-reg" %>
               <% else %>
-                <%= link "Регистрация", to: Routes.user_registration_path(@conn, :new), class: "hidden sm:block text-black hover:text-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-                <%= link "Вход", to: Routes.user_session_path(@conn, :new), class: "hidden sm:block text-black hover:text-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+                            <a href={Routes.user_session_path(@conn, :new)} class="btn btn-om btn-login mr-3"><span class="button-helper"></span>Войти</a>
+                            <a href={Routes.user_registration_path(@conn, :new)} class="btn btn-om btn-reg"><span class="button-helper"></span>Регистрация</a>
               <% end %>
-
-
-              <!-- Profile dropdown -->
-              <%# <div class="ml-3 relative">
-                <div>
-                  <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                  </button>
-                </div> %>
-
-                <!--
-                  Dropdown menu, show/hide based on menu state.
-
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
-                <%# <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                  <!-- Active: "bg-gray-100", Not Active: "" -->
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-                </div> %>
-              <%# </div> %>
-            </div>
           </div>
+
         </div>
+      </div>
+    </nav>
+  </header>
+<%= @inner_content %>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="sm:hidden flex items-center" id="mobile-menu">
-          <div class="px-2 pt-2 pb-3 space-y-1">
 
-            <%= if @current_user do %>
-                <%#= @current_user.email %>
-                <%= link "Личный кабинет", to: Routes.user_settings_path(@conn, :redirect_to_liveview), class: "text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" %>
-                <%= link "Выйти", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" %>
-              <% else %>
-                <%= link "Регистрация", to: Routes.user_registration_path(@conn, :new), class: "text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" %>
-                <%= link "Вход", to: Routes.user_session_path(@conn, :new), class: "ttext-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" %>
-              <% end %>
 
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Главная(Тут нужно джс меню прикрутить для мобилы)</a>
 
-            <a href="#" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Донат</a>
 
-            <a href="#" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Правила</a>
+<script type="text/javascript">
 
-            <a href="#" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Форум</a>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <div class="">
-          <%= @inner_content %>
-    </div>
 
-  </body>
-</html>
+  function getRandomArbitrary(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  $(".sale-block").hover(
+    function() {
+      var itms = $(this).find('.crystal');
+
+      $.each(itms, function (index, div) {
+          var randL = getRandomArbitrary(0,50);
+          var randT = getRandomArbitrary(0,50);
+          var randRot = getRandomArbitrary(-85,85);
+          $(this).css({"transform": "translate("+randL+"%, "+randT+"%) rotate("+randRot+"deg)"});
+      });
+
+    },function() {
+      var itms = $(this).find('.crystal');
+      $.each(itms, function (index, div) {
+          $(this).css({"transform": ""});
+      });
+
+    },
+  );
+
+
+
+    var scroll_start = 50;
+    var startchange = $('.nav-om-bg');
+    var offset = startchange.offset();
+    if (window.location.pathname === '/') {
+        if (startchange.length){
+          $(document).scroll(function() {
+            scroll_start = $(document).scrollTop();
+            if(scroll_start > offset.top) {
+              // $(".nav-om-bg").css('background-color', '#f0f0f0');
+              startchange.addClass("nav-om-bg-c");
+            } else {
+              // $('.nav-om-bg').css('background-color', 'transparent');
+              if (startchange.hasClass("nav-om-bg")) {
+                startchange.removeClass("nav-om-bg-c");
+              }
+            }
+          });
+        }
+    }
+    else {
+        startchange.addClass("nav-om-bg-c");
+    }
+
+
+
+  async function postData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json',
+        "X-CSRFToken": "IjEzYmUwNTAwYmRkNzlmMzM3NDZlNmFhZjY4YmI4N2RkMWZhN2NmZjki.Ybi0aw.M_N6xzbqjOf8atE-U2lX66o0448"
+
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *client
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return await response.json(); // parses JSON response into native JavaScript objects
+  }
+
+
+
+
+
+  $(document).ready(function() {
+    $('.selector').niceSelect();
+  });
+
+  function request(url,data) {
+
+    var out = '';
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: data,
+      async:false,
+      success: function (datas) {
+        out = datas;
+      }
+    });
+
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+        if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", "IjEzYmUwNTAwYmRkNzlmMzM3NDZlNmFhZjY4YmI4N2RkMWZhN2NmZjki.Ybi0aw.M_N6xzbqjOf8atE-U2lX66o0448")
+        }
+      }
+    });
+
+    return out;
+
+  }
+
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({trigger: "hover"});
+  });
+
+  setInterval(() => {
+    alerts = document.getElementsByClassName("info-alert")
+    for(alert of alerts) {
+      if (alert.innerHTML !== "") {
+      $.notify({
+      message: alert.innerHTML
+    },{
+      type: 'info',
+      animate: {
+		    enter: 'animated fadeInUp',
+        exit: 'animated fadeOutRight'
+      },
+      placement: {
+        from: "bottom",
+        align: "left"
+      },
+      offset: 20,
+      spacing: 10,
+      z_index: 1031,
+    });
+
+    alert.innerHTML = ""
+    }
+      }
+
+    alerts = document.getElementsByClassName("danger-alert")
+    for(alert of alerts) {
+      if (alert.innerHTML !== "") {
+      $.notify({
+      message: alert.innerHTML
+    },{
+      type: 'info',
+      animate: {
+		    enter: 'animated fadeInUp',
+        exit: 'animated fadeOutRight'
+      },
+      placement: {
+        from: "bottom",
+        align: "left"
+      },
+      offset: 20,
+      spacing: 10,
+      z_index: 1031,
+    });
+
+    alert.innerHTML = ""
+    }
+      }
+  }, 100)
+</script>
+
+<script type="text/javascript">
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+// const currentTheme = localStorage.getItem('theme');
+const currentTheme = getCookie('theme') || false;
+
+if (currentTheme) {
+  document.documentElement.setAttribute('class', currentTheme);
+
+  if (currentTheme === 'dark-theme') {
+    toggleSwitch.checked = true;
+  }
+}
+
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute('class', 'dark-theme');
+    // localStorage.setItem('theme', 'dark-theme');
+    document.cookie = 'theme' + "=" + ('dark-theme' || "") + "; path=/ ;max-age=31536000";
+  }
+  else {        document.documentElement.setAttribute('class', 'light-theme');
+  // localStorage.setItem('theme', 'light-theme');
+  document.cookie = 'theme' + "=" + ('light-theme' || "") + "; path=/ ;max-age=31536000";
+
+}
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+
+</script>
+</body></html>
