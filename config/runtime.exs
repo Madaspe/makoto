@@ -108,9 +108,9 @@ if config_env() == :prod do
                     """
 
   rcon_port =
-    System.get_env("RCON_PASSWORD") ||
+    System.get_env("RCON_PORT") ||
                     raise """
-                    environment variable RCON_PASSWORD is missing.
+                    environment variable RCON_PORT is missing.
                     """
 
   config :makoto,
