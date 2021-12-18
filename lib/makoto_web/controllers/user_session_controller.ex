@@ -45,9 +45,7 @@ defmodule MakotoWeb.UserSessionController do
             end)
         end
     end
-
     conn
-    |> put_flash(:info, "Успешно")
     |> redirect(to: "/user/#{ecto_user.username}")
 
   end

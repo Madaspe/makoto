@@ -22,12 +22,16 @@ defmodule MakotoWeb.Router do
   end
 
   get "/uploads/:filename", MakotoWeb.UploadViewController, :index
-
   scope "/", MakotoWeb do
     pipe_through :browser
 
+    post "/pay/ok", MakotoWeb.PostController, :index
+    post "/pay/error", MakotoWeb.PostController, :index
+    get "/pay/ok", MakotoWeb.PageController, :index
+    get "/pay/error", MakotoWeb.PageController, :index
+    post "/", MakotoWeb.PostController, :index
     get "/", PageController, :index
-    post "/", PageController, :index
+
 
     get "/ref/:id", ReferralContorller, :index
   end

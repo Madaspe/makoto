@@ -1,8 +1,9 @@
-defmodule MakotoWeb.PageController do
+defmodule MakotoWeb.PostController do
   use MakotoWeb, :controller
 
   require Logger
   def index(conn, _params) do
-    render(conn, "index.html")
+    conn
+    |> redirect(to: "/")
   end
 end
