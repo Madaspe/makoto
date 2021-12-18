@@ -33,9 +33,9 @@ defmodule MakotoWeb.UserCabinetLive.UpBalanceComponent do
       socket.assigns.user
 
     if Map.has_key?(discounts, rubins_up) do
-      {:noreply, socket |> redirect(external: Makoto.CentApp.Api.bill_create(%{amount: discounts[rubins_up]}, user.id)["link_page_url"])}
+      {:noreply, socket |> redirect(external: Makoto.CentApp.Api.bill_create(%{amount: discounts[rubins_up]}, user.id, rubins_up)["link_page_url"])}
     else
-      {:noreply, socket |> redirect(external: Makoto.CentApp.Api.bill_create(%{amount: rubins_up}, user.id)["link_page_url"])}
+      {:noreply, socket |> redirect(external: Makoto.CentApp.Api.bill_create(%{amount: rubins_up}, user.id, rubins_up)["link_page_url"])}
     end
 
     # new_count_rubins =
