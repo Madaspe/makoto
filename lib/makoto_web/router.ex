@@ -71,6 +71,11 @@ defmodule MakotoWeb.Router do
 
   ## Authentication routes
   scope "/", MakotoWeb do
+    scope "/" do
+      pipe_through :api
+      post "/pay/ff0IHzMh4uvGZ4Awl2QItxnsaNvL9t92", CentAppContorller, :postback
+    end
+
     pipe_through [:browser, :redirect_if_user_is_authenticated]
     get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
@@ -148,12 +153,9 @@ defmodule MakotoWeb.Router do
       live "/coins", UserCabinetLive.Index, :rubins_to_coins
     end
   end
-
   scope "/api", MakotoWeb do
     pipe_through :api
     post "/centapp", CentAppContorller, :index
-    post "/pay/ff0IHzMh4uvGZ4Awl2QItxnsaNvL9t92", CentAppContorller, :postback
-
     scope "/launcher" do
       get "/auth", LauncherAuthController, :index
     end
