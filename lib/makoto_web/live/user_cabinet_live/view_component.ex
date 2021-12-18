@@ -18,7 +18,7 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
     socket
     |> assign(assigns)
     |> assign(:uploaded_files, [])
-    |> allow_upload(:avatar, accept: ~w".png", auto_upload: true, progress: &handle_progress/3)
+    |> allow_upload(:avatar, accept: ~w".png .jpg .jpeg", auto_upload: true, progress: &handle_progress/3)
     |> allow_upload(:cloak, accept: ~w".png", auto_upload: true, progress: &handle_progress/3)
     |> allow_upload(:skin, accept: ~w".png", auto_upload: true, progress: &handle_progress/3)}
 
@@ -29,6 +29,7 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
     {:noreply, socket}
   end
 
+  @impl Phoenix.LiveView
   def handle_progress(:avatar, entry, socket) do
     if entry.done? do
       user =
