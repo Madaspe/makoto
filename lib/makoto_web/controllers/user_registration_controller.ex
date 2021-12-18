@@ -22,7 +22,7 @@ defmodule MakotoWeb.UserRegistrationController do
           ) end)
 
         conn
-        |> put_flash(:info, "User created successfully.")
+        |> put_flash(:info, "Регистрация успешна")
         |> assign(:static_url, conn.request_path)
         |> UserAuth.log_in_user(user)
 

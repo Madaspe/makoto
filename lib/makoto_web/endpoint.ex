@@ -20,7 +20,7 @@ defmodule MakotoWeb.Endpoint do
     at: "/",
     from: :makoto,
     gzip: false,
-    only: ~w(assets fonts img favicon.ico robots.txt uploads optimine)
+    only: ~w(assets fonts img favicon.ico robots.txt optimine)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

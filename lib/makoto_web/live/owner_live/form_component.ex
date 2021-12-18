@@ -32,7 +32,7 @@ defmodule MakotoWeb.OwnerLive.FormComponent do
       {:ok, _user} ->
         {:noreply,
          socket
-         |> put_flash(:info, "User updated successfully")
+         |> put_flash(:info, "Успешно")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -45,7 +45,7 @@ defmodule MakotoWeb.OwnerLive.FormComponent do
       {:ok, _user} ->
         {:noreply,
          socket
-         |> put_flash(:info, "User created successfully")
+         |> put_flash(:info, "Юзер зарегестрирован")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

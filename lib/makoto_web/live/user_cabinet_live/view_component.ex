@@ -36,13 +36,13 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
 
       {flash_type, info} =
         consume_uploaded_entries(socket, :avatar, fn %{path: path}, _entry ->
-          dest = Path.join("priv/static/uploads", Path.basename(path))
+          dest = Path.join("priv/static/uploads", "#{user.username}_avatar.png")
           File.cp!(path, dest)
           case ExImageInfo.info File.read!(dest) do
             nil ->
               {:error, "Файл должен быть в формате png"}
             {_, x, y, _} ->
-              Makoto.Accounts.update_user(user, %{avatar_url: "/uploads/#{Path.basename(dest)}"})
+              Makoto.Accounts.update_user(user, %{avatar_url: "/uploads/#{user.username}_avatar.png"})
               {:info, "Успешно"}
           end
       end) |> Enum.at(0)
@@ -61,7 +61,7 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
 
       {flash_type, info} =
         consume_uploaded_entries(socket, :skin, fn %{path: path}, _entry ->
-          dest = Path.join("priv/static/uploads", Path.basename(path))
+          dest = Path.join("priv/static/uploads", "#{user.username}_skin.png")
           File.cp!(path, dest)
           Logger.info inspect(ExImageInfo.type File.read!(dest))
           case ExImageInfo.info File.read!(dest) do
@@ -69,7 +69,7 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
               {:error, "Файл должен быть в формате png"}
             {_, x, y, _} ->
               if {x, y} in Application.get_env(:makoto, :allowed_expansion_skin) do
-                Makoto.Accounts.update_user(user, %{skin_url: "/uploads/#{Path.basename(dest)}"})
+                Makoto.Accounts.update_user(user, %{skin_url: "/uploads/#{user.username}_skin.png"})
                 {:info, "Успешно"}
               else
                 {:info, "Недоступное расширение"}
@@ -91,7 +91,7 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
 
       {flash_type, info} =
         consume_uploaded_entries(socket, :cloak, fn %{path: path}, _entry ->
-          dest = Path.join("priv/static/uploads", Path.basename(path))
+          dest = Path.join("priv/static/uploads", "#{user.username}_cape.png")
           File.cp!(path, dest)
           Logger.info inspect(ExImageInfo.type File.read!(dest))
           case ExImageInfo.info File.read!(dest) do
@@ -99,7 +99,7 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
               {:error, "Файл должен быть в формате png"}
             {_, x, y, _} ->
               if {x, y} in Application.get_env(:makoto, :allowed_expansion_cloak) do
-                Makoto.Accounts.update_user(user, %{cloak_url: "/uploads/#{Path.basename(dest)}"})
+                Makoto.Accounts.update_user(user, %{cloak_url: "/uploads/#{user.username}_cape.png"})
                 {:info, "Успешно"}
               else
                 {:info, "Недоступное расширение"}

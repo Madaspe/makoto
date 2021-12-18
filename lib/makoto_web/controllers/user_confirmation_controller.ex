@@ -35,7 +35,7 @@ defmodule MakotoWeb.UserConfirmationController do
     case Accounts.confirm_user(token) do
       {:ok, _} ->
         conn
-        |> put_flash(:info, "User confirmed successfully.")
+        |> put_flash(:info, "Регистрация успешна")
         |> redirect(to: "/")
 
       :error ->
@@ -49,7 +49,7 @@ defmodule MakotoWeb.UserConfirmationController do
 
           %{} ->
             conn
-            |> put_flash(:error, "User confirmation link is invalid or it has expired.")
+            |> put_flash(:error, "Действие ссылки закончилось")
             |> redirect(to: "/")
         end
     end

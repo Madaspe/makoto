@@ -116,7 +116,7 @@ viewBox="0 0 16 16">
        <form phx-submit="save-avatar" phx-change="validate" phx-target={@myself}>
         <input type="file" name="image" class="image d-none" id="inputGroupFile01">
         <%= live_file_input @uploads.avatar, class: "image avatar_upload", style: "display: none;" %>
-        <label for="inputGroupFile01" class="btn btn-success mt-2" onclick='document.getElementsByClassName("avatar_upload")[0].click()'>Загрузить</label>
+        <label class="btn btn-success mt-2" onclick='document.getElementsByClassName("avatar_upload")[0].click()'>Загрузить</label>
       </form>
 
 

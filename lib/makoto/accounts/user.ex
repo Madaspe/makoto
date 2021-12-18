@@ -15,7 +15,7 @@ defmodule Makoto.Accounts.User do
     field :otp_secret, :string
 
     field :avatar_url, :string
-    field :skin_url, :string, default: "/uploads/steave"
+    field :skin_url, :string, default: "/uploads/steave.png"
     field :cloak_url, :string
 
     field :inviter_id, :integer

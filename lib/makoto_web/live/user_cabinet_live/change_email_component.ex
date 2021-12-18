@@ -32,7 +32,7 @@ defmodule MakotoWeb.UserCabinetLive.ChangeEmailComponent do
         {:noreply, socket
         |> put_flash(
           :info,
-          "A link to confirm your email change has been sent to the new address."
+          "Ссылка для подтверждения отправленна вам на почту"
         )}
 
 

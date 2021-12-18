@@ -11,7 +11,7 @@ defmodule MakotoWeb.UserSessionController do
 
   def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
     conn
-    |> put_flash(:error, "Failed to authenticate.")
+    |> put_flash(:error, "Не удалось авторизоватся")
     |> redirect(to: "/")
   end
 
@@ -46,10 +46,10 @@ defmodule MakotoWeb.UserSessionController do
         end
     end
 
-    Logger.info inviter_id
-
     conn
+    |> put_flash(:info, "Успешно")
     |> redirect(to: "/user/#{ecto_user.username}")
+
   end
 
   def new(conn, _params) do

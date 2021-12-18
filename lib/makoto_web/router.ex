@@ -17,14 +17,11 @@ defmodule MakotoWeb.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :user do
-    # plug :require_user_role, [user: 1, admin: 2, mod: 3, developer: 4, owner: 5]
-    plug :check_role_user, [:user, :admin, :mod, :developer, :owner]
-  end
-
   pipeline :owner do
     plug :check_role_user, [:owner]
   end
+
+  get "/uploads/:filename", MakotoWeb.UploadViewController, :index
 
   scope "/", MakotoWeb do
     pipe_through :browser

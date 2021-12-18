@@ -9,23 +9,23 @@
 ## effect: edit them in PO (`.po`) files instead.
 
 ## From Ecto.Changeset.cast/4
-msgid "can't be blank"
+msgid "Не может быть пустым"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-msgid "has already been taken"
+msgid "Уже занято"
 msgstr ""
 
 ## From Ecto.Changeset.put_change/3
-msgid "is invalid"
+msgid "Невалидный"
 msgstr ""
 
 ## From Ecto.Changeset.validate_acceptance/3
-msgid "must be accepted"
+msgid "Должен принять"
 msgstr ""
 
 ## From Ecto.Changeset.validate_format/3
-msgid "has invalid format"
+msgid "Невалидный формат"
 msgstr ""
 
 ## From Ecto.Changeset.validate_subset/3
@@ -33,33 +33,33 @@ msgid "has an invalid entry"
 msgstr ""
 
 ## From Ecto.Changeset.validate_exclusion/3
-msgid "is reserved"
+msgid "Зарезервировано"
 msgstr ""
 
 ## From Ecto.Changeset.validate_confirmation/3
-msgid "does not match confirmation"
+msgid "Не соответствует подтверждению"
 msgstr ""
 
 ## From Ecto.Changeset.no_assoc_constraint/3
-msgid "is still associated with this entry"
+msgid "Все еще связан с этой записью"
 msgstr ""
 
-msgid "are still associated with this entry"
+msgid "Все еще связаны с этой записью"
 msgstr ""
 
 ## From Ecto.Changeset.validate_length/3
-msgid "should be %{count} character(s)"
-msgid_plural "should be %{count} character(s)"
+msgid "Минимальная длина: %{count} символ(ов)"
+msgid_plural "Минимальная длина: %{count} символ(ов)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should have %{count} item(s)"
-msgid_plural "should have %{count} item(s)"
+msgid "Должен иметь: %{count} предмет(ов)"
+msgid_plural "Должен иметь: %{count} предмет(ов)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should be at least %{count} character(s)"
-msgid_plural "should be at least %{count} character(s)"
+msgid "Минимальная длина: %{count} символ(ов)"
+msgid_plural "Минимальная длина: %{count} символ(ов)"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -68,8 +68,8 @@ msgid_plural "should have at least %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should be at most %{count} character(s)"
-msgid_plural "should be at most %{count} character(s)"
+msgid "Минимальная длина: %{count} символ(ов)"
+msgid_plural "Минимальная длина: %{count} символ(ов)"
 msgstr[0] ""
 msgstr[1] ""
 

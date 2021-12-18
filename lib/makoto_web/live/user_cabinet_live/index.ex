@@ -54,12 +54,12 @@ defmodule MakotoWeb.UserCabinetLive.Index do
     case Accounts.update_user_email(socket.assigns.user, token) do
       :ok ->
         socket
-        |> put_flash(:info, "Email changed successfully.")
+        |> put_flash(:info, "Успешно")
         |> redirect(to: Routes.user_settings_path(socket, :edit))
 
       :error ->
         socket
-        |> put_flash(:error, "Email change link is invalid or it has expired.")
+        |> put_flash(:error, "Действие ссылки закончилось")
         |> redirect(to: Routes.user_settings_path(socket, :edit))
     end
   end

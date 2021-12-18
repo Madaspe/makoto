@@ -20,7 +20,7 @@ defmodule MakotoWeb.UserCabinetLive.ChangePasswordComponent do
        {:ok, user} ->
         Logger.info(inspect(user))
         {:noreply, socket
-         |> put_flash(:info, "Password updated successfully.")
+         |> put_flash(:info, "Пароль обновлен")
          }
 
        {:error, changeset} ->
