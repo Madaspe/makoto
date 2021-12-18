@@ -26,16 +26,19 @@ defmodule MakotoWeb.UserCabinetLive.UpBalanceComponent do
   def handle_event("submit", %{"user" => %{"rubins" => rubins}} = _unsigned_params, socket) do
     rubins_up =
       String.to_integer(rubins)
+    if rubins_up >= 25 do
+      discounts = Application.get_env(:makoto, :discount_on_rubins)
 
-    discounts = Application.get_env(:makoto, :discount_on_rubins)
+      user =
+        socket.assigns.user
 
-    user =
-      socket.assigns.user
-
-    if Map.has_key?(discounts, rubins_up) do
-      {:noreply, socket |> redirect(external: Makoto.CentApp.Api.bill_create(%{amount: discounts[rubins_up]}, user.id, rubins_up)["link_page_url"])}
+      if Map.has_key?(discounts, rubins_up) do
+        {:noreply, socket |> redirect(external: Makoto.CentApp.Api.bill_create(%{amount: discounts[rubins_up]}, user.id, rubins_up)["link_page_url"])}
+      else
+        {:noreply, socket |> redirect(external: Makoto.CentApp.Api.bill_create(%{amount: rubins_up}, user.id, rubins_up)["link_page_url"])}
+      end
     else
-      {:noreply, socket |> redirect(external: Makoto.CentApp.Api.bill_create(%{amount: rubins_up}, user.id, rubins_up)["link_page_url"])}
+      {:noreply, socket |> put_flash(:error, "Минимальная сумма платежа 25 рублей")}
     end
 
     # new_count_rubins =

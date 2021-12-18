@@ -152,7 +152,7 @@ defmodule MakotoWeb.Router do
   scope "/api", MakotoWeb do
     pipe_through :api
     post "/centapp", CentAppContorller, :index
-    post "/centapp/kljsdfglkdsjfgioertpoierwutlksfdjgxcv", CentAppContorller, :postback
+    post "/pay/ff0IHzMh4uvGZ4Awl2QItxnsaNvL9t92", CentAppContorller, :postback
 
     scope "/launcher" do
       get "/auth", LauncherAuthController, :index

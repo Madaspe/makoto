@@ -4,7 +4,9 @@
     <div class="col-12 col-lg-6">
       <div class="row no-gutters saleblist">
         
+      <p class="d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
 
+  <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
         <div id="sale-block-0" class="col-6 p-1 p-lg-2">
           <div class="sale-block" style="background-color: var(--success)">
 
