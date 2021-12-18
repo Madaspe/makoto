@@ -18,6 +18,13 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
       status
       |> String.to_integer
 
+    name_status = %{
+      6 => "vip",
+      7 => "premium",
+      8 => "optimum",
+      9 => "ultimate"
+    } |> Map.get(status)
+
     price =
       Application.get_env(:makoto, :status_prices)
       |> Map.get(status)
@@ -30,7 +37,7 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
     else
       {:ok, conn} = RCON.Client.connect(Application.get_env(:makoto, :rcon_host), Application.get_env(:makoto, :rcon_port))
       {:ok, conn, true} = RCON.Client.authenticate(conn,  Application.get_env(:makoto, :rcon_password))
-      {:ok, _conn, result} = RCON.Client.exec(conn, "lp user #{user.username} parent add #{status |> String.downcase()}")
+      {:ok, _conn, result} = RCON.Client.exec(conn, "lp user #{user.username} parent add #{name_status}")
 
       {:ok, user} =
         user
