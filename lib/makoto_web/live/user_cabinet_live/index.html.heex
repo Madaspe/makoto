@@ -266,7 +266,7 @@
             <a class="add_bal" href={Routes.user_cabinet_index_path(@socket, :up_balance, @user.username)}>+ ПОПОЛНИТЬ</a>
           </div>
           <div class="om-block__body">
-            <h1 class="int py-3" data-toggle="tooltip" data-placement="top" title="" data-original-title={@user.rubins}><%= @user.rubins %><i class="icon-ruby"></i></h1>
+            <h1 class="int py-3" data-toggle="tooltip" data-placement="top" title=""><%= round(@user.rubins) %><i class="icon-ruby"></i></h1>
           </div>
         </div>
       </div>
