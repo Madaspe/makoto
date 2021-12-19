@@ -31,6 +31,7 @@ defmodule MakotoWeb.CentAppContorller do
 
     new_count_rubins =
         user.rubins + rubins
+
     if user.inviter_id do
       case Makoto.Accounts.get_user_by_id(user.inviter_id) do
         nil ->
@@ -44,7 +45,7 @@ defmodule MakotoWeb.CentAppContorller do
 
       :ok
     else
-      Makoto.Accounts.update_user(user, %{rubins: new_count_rubins})
+      Makoto.Accounts.update_user(user, %{rubins: new_count_rubins, rubins_for_inviter: rubins * 0.15 + user.rubins_for_inviter})
       :ok
     end
   end
