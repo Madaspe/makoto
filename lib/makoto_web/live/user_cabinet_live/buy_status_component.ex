@@ -36,7 +36,7 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
       {:noreply, socket |> put_flash(:error, "Недостаточно рубинов")}
     else
       {:ok, %HTTPoison.Response{body: body}} =
-        HTTPoison.post(
+        HTTPoison.get(
           "#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp user #{user.username} parent add #{name_status}"
       )
 

@@ -33,7 +33,7 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
 
     if user.rubins >= sum do
       {:ok, %HTTPoison.Response{body: body}} =
-        HTTPoison.post(
+        HTTPoison.get(
         "#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=eco give #{user.username} add #{sum*100}"
         )
       user
