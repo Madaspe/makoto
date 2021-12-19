@@ -23,7 +23,7 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
      |> assign(:changeset, User.balance_changeset(user))}
   end
 
-  def handle_event("submit", %{"sum" => sum_binary} = _unsigned_params, socket) when sum_binary != "" do
+  def handle_event("submit", %{"sum" => sum_binary} = _unsigned_params, socket) when sum_binary do
     user =
       socket.assigns.user
 
@@ -32,10 +32,10 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
       |> String.to_integer()
 
     if user.rubins >= sum do
-      {:ok, conn} = RCON.Client.connect(Application.get_env(:makoto, :rcon_host), Application.get_env(:makoto, :rcon_port))
-      {:ok, conn, true} = RCON.Client.authenticate(conn,  Application.get_env(:makoto, :rcon_password))
-      {:ok, _conn, result} = RCON.Client.exec(conn, "eco add #{user.username} add #{sum*100}")
-
+      {:ok, %HTTPoison.Response{body: body}} =
+        HTTPoison.post(
+        Application.get_env(:makoto, :rcon_host) <> ":" <> Application.get_env(:makoto, :rcon_port) <> "/console?command=eco give #{user.username} add #{sum*100}"
+      )
       user
       |> Accounts.update_user(%{rubins: user.rubins - sum})
 
@@ -45,7 +45,7 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
     end
   end
 
-  def handle_event("submit", _unsigned_params, socket) do
+  def handle_event("submit", %{"sum" => sum_binary} = _unsigned_params, socket) when sum_binary do
     {:noreply, socket}
   end
 
