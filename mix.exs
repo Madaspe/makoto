@@ -56,7 +56,8 @@ defmodule Makoto.MixProject do
       {:poison, "~> 5.0"},
       {:ueberauth_discord, "~> 0.6"},
       {:ex_image_info, "~> 0.2.4"},
-      {:rcon, "~> 0.4.0"}
+      {:rcon, "~> 0.4.0"},
+      {:myxql, ">= 0.0.0"}
     ]
   end
 
