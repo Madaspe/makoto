@@ -32,13 +32,20 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
       |> String.to_integer()
 
     if user.rubins >= sum do
-      {:ok, %HTTPoison.Response{body: body}} =
-        HTTPoison.get(
-        "#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=eco give #{user.username} add #{sum*100}"
-        )
-      user
-      |> Accounts.update_user(%{rubins: user.rubins - sum})
+      url = "http://#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=eco%20give%20#{user.username}%20add%20#{sum * 100}"
+      case HTTPoison.get(url) do
+          {:ok, %HTTPoison.Response{body: body}} ->
+            {:ok, user} =
+              user
+              |> Accounts.update_user(%{rubins: user.rubins - sum})
 
+              {:noreply, socket |> put_flash(:info, "Успешно") |> assign(:rubins_count, 1)
+              |> assign(:user, user)
+              |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
+          _ ->
+            Logger.error("Error buy status #{url}")
+            {:noreply, socket |> put_flash(:error, "Обратитесь к администрации проекта")}
+      end
       {:noreply, socket |> put_flash(:info, "Успешно") |> assign(:rubins_count, 1)}
     else
       {:noreply, socket |> put_flash(:error, "Не достаточно рубинов") |> assign(:rubins_count, 1)}

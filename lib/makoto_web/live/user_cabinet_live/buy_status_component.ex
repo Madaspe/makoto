@@ -35,18 +35,20 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
     if price > user.rubins do
       {:noreply, socket |> put_flash(:error, "Недостаточно рубинов")}
     else
-      {:ok, %HTTPoison.Response{body: body}} =
-        HTTPoison.get(
-          "#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp user #{user.username} parent add #{name_status}"
-      )
+      url = "http://#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp%20user%20#{user.username}%20parent%20add%20#{name_status}"
+      case HTTPoison.get(url) do
+          {:ok, %HTTPoison.Response{body: body}} ->
+            {:ok, user} =
+              user
+              |> Accounts.update_user(%{role: status, rubins: user.rubins - price})
 
-      {:ok, user} =
-        user
-        |> Accounts.update_user(%{role: status, rubins: user.rubins - price})
-
-      {:noreply, socket |> put_flash(:error, "Покупка прошла успешно")
-      |> assign(:user, user)
-      |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
+              {:noreply, socket |> put_flash(:error, "Покупка прошла успешно")
+              |> assign(:user, user)
+              |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
+          _ ->
+            Logger.error("Error buy status #{url}")
+            {:noreply, socket |> put_flash(:error, "Обратитесь к администрации проекта")}
+      end
     end
   end
 
