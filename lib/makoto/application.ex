@@ -15,9 +15,10 @@ defmodule Makoto.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Makoto.PubSub},
       # Start the Endpoint (http/https)
-      MakotoWeb.Endpoint
+      MakotoWeb.Endpoint,
       # Start a worker by calling: Makoto.Worker.start_link(arg)
       # {Makoto.Worker, arg}
+      MakotoMinecraft.Repo
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

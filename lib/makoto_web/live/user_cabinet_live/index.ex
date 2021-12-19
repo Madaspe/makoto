@@ -15,7 +15,23 @@ defmodule MakotoWeb.UserCabinetLive.Index do
     refs =
       Accounts.get_all_referrals(user.id)
 
-    {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"])}
+    online =
+      MakotoMinecraft.Minecraft.get_online(user.username) |> Enum.reduce(0, fn (x, y) -> x.online + y end)
+
+    status = %{
+      user: "Игрок"
+    }
+
+    if online != 0 do
+      love_server =
+        "SkyTech"
+        {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"]) |> assign(:online, online) |> assign(:love_server, love_server)}
+      else
+      love_server =
+        "Нет"
+        {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"]) |> assign(:online, online) |> assign(:love_server, love_server)}
+
+      end
   end
 
   def mount(params, session, socket) do

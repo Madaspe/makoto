@@ -25,8 +25,19 @@ if config_env() == :prod do
       For example: ecto://USER:PASS@HOST/DATABASE
       """
 
+  minecraft_database_url =
+    System.get_env("MINECRAFT_DATABASE_URL") ||
+      raise """
+      environment variable MINECRAFT_DATABASE_URL is missing.
+      For example: ecto://USER:PASS@HOST/DATABASE
+      """
+
   config :makoto, Makoto.Repo,
     url: database_url,
+    pool_size: 10
+
+  config :makoto, MakotoMinecraft.Repo,
+    url: minecraft_database_url,
     pool_size: 10
 
   relay_email =

@@ -56,7 +56,7 @@
       <div class="card bg-icon-gamepad">
         <div class="card-body">
           <h5 class="card-title">Наигранно</h5>
-          <p class="card-text">0ч</p>
+          <p class="card-text"><%= round(@online / 60 / 60) %>ч</p>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
       <div class="card bg-icon-favorite">
         <div class="card-body">
           <h5 class="card-title">Любимый сервер</h5>
-          <p class="card-text">Нет</p>
+          <p class="card-text"><%= @love_server %></p>
         </div>
       </div>
     </div>

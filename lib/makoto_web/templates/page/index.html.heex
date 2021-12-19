@@ -1,157 +1,45 @@
-<main class="flex-shrink-0">
-    <div class="row no-gutters ind">
-      <div class="col-12 h-100" style="background-size: cover; background-image: linear-gradient(to bottom, rgba(17, 24, 32, 0.01), rgba(17, 24, 32, 1)),
-      url('/img/index/bg-1.jpg');">
-      <div class="container ind_first">
-        <div class="_hello">
-          <h1>НАЧАТЬ ИГРУ</h1>
-          <h5>Давай к нам, мы тебя ждали!</h5>
-          <p>Всего два шага, а всё остальное сделаем мы</p>
-        </div>
-        <div class="row d-flex justify-content-around">
-          <div class="col-12 col-md-5 col-lg-4 p-0">
-            <div class="om-block om-block-o text-left p-4">
-              
-              <h3>Создай аккаунт</h3>
-              <ul>
-                <li>Придумай ник</li>
-                <li>Установи сложный пароль</li>
-              </ul>
-              <a class="btn btn-success btn-block" href="/users/register">Зарегистрироваться</a>
-              
-            </div>
-            <a href="https://vk.com/opti_mine">
-              <div class="om-block vk_w py-2 mt-4">
-                <div class="container">
-                  <div class="w_top">
-                    <img src="" class="float-left d-block d-md-none d-lg-block" width="40" alt="">
-                    <div class="d-inline-block ml-2">
-                      <h6>Optimine - сервера Minecraft</h6>
-                      <span class="d-block small m5">Присоединяйся!</span>
-                    </div>
-                    <img class="float-right" src="/img/vk.png" width="40">
-                  </div>
-                </div>
+<header class="i_main min-vh-100">
+  <style>
+  </style>
+      
+    <div class="container">
+
+
+    <div class="row">
+      <div class="col-12 col-lg-6">
+          <div class="d-flex align-items-md-center justify-content-center justify-content-md-start mt-5 mt-md" style="height: 80vh;">
+            <div class="main-block d-flex align-items-start flex-column">
+              <span class="main-title d-none d-md-block">OPTIMINE</span>
+              <span class="main-title main-title-md d-block d-md-none text-center">OPTIMINE</span>
+
+              <span class="main-subtitle d-none d-md-block">Сервера твоей мечты</span>
+
+              <%= if @current_user do%>
+                <a class="btn btn-om btn-success my-3 mx-auto mx-md-0" href={Routes.user_cabinet_index_path(@conn, :index, @current_user.username)}>Играть сейчас</a>
+              <%= else %>
+                <a class="btn btn-om btn-success my-3 mx-auto mx-md-0" href={Routes.user_registration_path(@conn, :new)}>Играть сейчас</a>
+              <% end %>
+              <div class="dws-main mx-auto mx-md-0 mt-4 mt-md-0">
+
+                <a href="https://launch.optimine.su/OptimineLoader.exe"><img class="dws-main-w" src="img/windows.svg" alt=""></a>
+                <a href="https://launch.optimine.su/Optimine.jar" class="px-4"><img class="dws-main-m" src="img/mac.svg" alt=""></a>
+                <a href="https://launch.optimine.su/Optimine.jar"><img class="dws-main-l" src="img/linux.svg" alt=""></a>
               </div>
-            </a>
-            <a href="https://discord.gg/AGerzA3fsr">
-              <div class="om-block dis_w py-2">
-                <div class="container">
-                  <div class="w_top">
-                    <img src="" class="float-left d-block d-md-none d-lg-block" width="40" alt="">
-                    <div class="d-inline-block ml-2">
-                      <h6>Optimine</h6>
-                      <span class="d-block small m5">Присоединяйся!</span>
-                    </div>
-                    <img class="float-right" src="/img/discord.png" width="40">
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-md-7 mt-5">
-            <div class="om-block om-block-o text-left p-4">
-              <h3>Скачай лаунчер</h3>
-              <p>Для игры в Minecraft нужен лаунчер, он защищает твой аккаунт от взлома,
-                не пускает читеров, а также дает тебе кучу возможностей,
-                например ты можешь установить шейдеры, HD скин, играть с модами
-                и наслаждаться тесной интеграцией сервера и клиента, что позволяет нам сделать
-                твою игру еще приятней.
-                <br>Так вот, чего же ты ждешь? Качай лаунчер и давай к нам!</p>
-                <ul class="nav justify-content-around">
-                  <li class="nav-item">
-                    <a class="btn btn-dw btn-win pl-1" href="https://launch.optimine.su/Optimine.exe"><img src="/img/icons/windows.svg" height="28" alt="">Windows</a>
-                  </li>
-                  <li class="nav-item mb-2">
-                    <a class="btn btn-dw btn-mac" href="https://launch.optimine.su/Optimine.jar"><img src="/img/icons/apple.svg" height="26" alt="">MacOS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="btn btn-dw btn-linux" href="https://launch.optimine.su/Optimine.jar"><img src="/img/icons/linux.svg" height="26" alt="">Linux</a>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </div>
-        </div>
+
       </div>
-      <div class="col-12 text-center">
-        <div class="container ind_first">
-          <div class="_hello">
-            <h2>Наши сервера</h2>
-          </div>
-        </div>
-        <div class="container-fluid">
-          
-          <div class="row i_server d-flex justify-content-center py-5" style="background-size: cover; background-image: linear-gradient(0deg, rgba(17, 24, 32,1) 0%, rgba(17, 24, 32 ,0.3) 40%, rgba(17, 24, 32,0.3) 60%, rgba(17, 24, 32,1) 100%),
-          url('/img/servers/8_back.jpg');">
-          <div class="col-0">
-            <img src="/img/servers/8.png" alt="" width="150" class="d-block d-md-none d-lg-block">
-          </div>
-          <div class="col-5 col-md-7 col-lg-5">
-            <h1 style="margin-top: -32px;">SkyTech</h1>
-          </div>
-          <div class="col-2 col-md-3 col-lg-2">
-            <div class="s-items d-flex flex-column text-left">
-              <div class="flex-row">
-                <span>Версия:</span>
-                <span>1.7.10</span>
-              </div>
-              <div class="flex-row">
-                <span>PVP:</span>
-                <span>Отключено</span>
-              </div>
-              
-              
-            </div>
-          </div>
-          <div class="col-8">
-            <p>Маленький остров посреди пустоты. Сможешь ли ты выжить на этом клочке земли? <br> Используй все подручные средства и технологии, чтобы сделать свой остров лучшим на сервере!</p>
-          </div>
-        </div>
-        
-      </div>
-      <div class="container mt-3">
-        <div class="om-block om-block-o text-center p-2 pl-4 w-75 mx-auto">
-          <h4 class="mb-0">Сервера в разработке: Classic, Magic, OneBlock</h4>
-        </div>
-      </div>
-      <div class="container ind_first mt-3 w-75">
-        <div class="_hello">
-          <h1>Почему играть у нас?</h1>
-        </div>
-        <div class="om-block om-block-o text-center px-5 py-3 w-75 mx-auto mb-3 pulse">
-          <h4>Опытная команда</h4>
-          <p>Наша команда состоит из опытных разработчиков, администраторов и модераторов. Мы все неустанно трудимся, чтобы предоставить нашим игрокам лучший игровой опыт.</p>
-        </div>
-        <div class="om-block om-block-o text-center px-5 py-3 w-75 mx-auto mb-3 raise">
-          <h4>Качественные сборки</h4>
-          <p>Предоставление качественной сборки нашим игрокам - это важнейшая задача, стоящая перед нами. В наших сборках отсутствуют дюпы и баги, мы выстроили систему по защите от читеров, все моды в нашей сьорке подобраны с умом и грамотно интегрированы в игровой процесс, чтобы игроку было как можно комфортнее играть.</p>
-        </div>
-        <div class="om-block om-block-o text-center px-5 py-3 w-75 mx-auto mb-3">
-          <h4>Моды собственной разработки</h4>
-          <p>На серверах установлены моды и плагины собственной разработки, созданные для улучшения стабильности и повышения безопасности игры, а также мы создаем моды и плагины, чтобы внести разнообразия в игру, дать игрокам новые приключения и помочь найти что-то новое в уже изученных ими модах.</p>
-        </div>
-        <div class="om-block om-block-o text-center px-5 py-3 w-75 mx-auto mb-3">
-          <h4>Чистая репутация</h4>
-          <p>Мы НЕ продаем модерки, админки и т.д. Правила и наказания едины для всех, все зависимости от того, какой у игрока донат статус, или сколько у него денег. Чистая репутация в глазах наших игроков - это главная ценность нашей команды и ничто не может нарушить эти принципы.</p>
+      <div class="col-6">
+        <div class="steves">
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
       </div>
     </div>
-    <div class="container text-center mx-auto col-5">
-      <div class="col-12 footer-om">
-  <nav class="nav justify-content-center">
-    <a class="nav-link pl-0" href="#">Помощь</a>
-    <a class="nav-link" href="#">Администрация</a>
-    <a class="nav-link" href="#">Оферта</a>
-    <a class="nav-link pr-0" href="#">Оферта</a>
-
-  </nav>
-  <span>© 2021 Optimine </span><br>
-<small class="text-muted">Деятельность проекта не связана с Mojang Studios.</small>
 </div>
-    </div>
-  </div>
-
-
-
-</main>
+    </header>
+    <main>
+      kekekkek
+    </main>
