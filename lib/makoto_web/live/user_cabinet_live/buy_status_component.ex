@@ -37,7 +37,7 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
     else
       {:ok, %HTTPoison.Response{body: body}} =
         HTTPoison.post(
-        Application.get_env(:makoto, :rcon_host) <> ":" <> Application.get_env(:makoto, :rcon_port) <> "/console?command=lp user #{user.username} parent add #{name_status}"
+          "#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp user #{user.username} parent add #{name_status}"
       )
 
       {:ok, user} =
