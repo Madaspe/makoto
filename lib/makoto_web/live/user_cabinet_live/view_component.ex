@@ -63,8 +63,8 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
       |> String.replace("&r", "")
 
     prefix =
-      "\" [#{clean_prefix}] #{nick_color_symbol}\""
-    
+      "\" [#{clean_prefix}&7] #{nick_color_symbol}\""
+
     url =
       "http://#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp user #{user.username} meta setprefix 99 #{prefix}"
       |> URI.encode()
