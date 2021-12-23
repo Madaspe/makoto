@@ -133,10 +133,10 @@ defmodule MakotoWeb.Router do
       live "/:page", UserCabinetLive.Index, :list_referrals
     end
 
+    live "/view", UserCabinetLive.Index, :view_settings
+
     scope "/settings" do
-      live "/email", UserCabinetLive.Index, :settings_email
-      live "/password", UserCabinetLive.Index, :settings_password
-      live "/view", UserCabinetLive.Index, :view_settings
+      live "/:type_of_settings", UserCabinetLive.Index, :settings
 
       scope "/update" do
         live "/email", UserCabinetLive.Index, :update_email

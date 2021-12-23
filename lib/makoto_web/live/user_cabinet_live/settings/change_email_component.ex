@@ -8,8 +8,6 @@ defmodule MakotoWeb.UserCabinetLive.ChangeEmailComponent do
 
   @impl true
   def update(assigns, socket) do
-    Logger.info inspect(assigns)
-
     user =
       Accounts.get_user_by_username!(assigns.username)
 
@@ -37,14 +35,12 @@ defmodule MakotoWeb.UserCabinetLive.ChangeEmailComponent do
 
 
       {:error, changeset} ->
-        Logger.info inspect(changeset)
         {:noreply, socket}
     end
   end
 
   @impl true # TODO Нужно сделать валидацию
   def handle_event("validate", params, socket) do
-    Logger.info inspect(params)
     {:noreply, socket}
   end
 end
