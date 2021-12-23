@@ -9,7 +9,7 @@ defmodule Makoto.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     field :has_2fa, :boolean, default: false
-    field :role, Ecto.Enum, values: [user: 1, admin: 2, mod: 3, developer: 4, owner: 5, VIP: 6, Premium: 7, Optimum: 8, Ultimate: 9]
+    field :role, Ecto.Enum, values: [user: 1, admin: 2, mod: 3, developer: 4, owner: 5, vip: 6, premium: 7, optimum: 8, ultimate: 9]
     field :rubins, :float, default: 0.0
     field :otp_last, :integer, default: 0
     field :otp_secret, :string
@@ -23,6 +23,8 @@ defmodule Makoto.Accounts.User do
     field :referrals_procent, :float
 
     has_one :discord_info, Makoto.Discord.User
+
+    field :prefix, :string, default: "&7"
 
     timestamps()
   end

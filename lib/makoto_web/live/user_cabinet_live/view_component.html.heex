@@ -129,6 +129,40 @@ viewBox="0 0 16 16">
       <li>Аватар для таба</li>
     </div>
 </div>
+
+
 </div>
+
+<%= if @user.role in [:optimum, :owner, :admin, :ultimate] do %>
+
+<div class="col-12">
+  <h6 class="pb-1 pt-2 mt-2">Префикс</h6>
+  <hr class="mt-0">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active py-2" id="home">
+
+                <%= f = form_for :user, "#", [phx_submit: "change_prefix", phx_target: @myself] %>
+              <div class="form-group row">
+
+              <label class="col-5 col-form-label">Новый префикс</label>
+                <div class="col-7">
+                <%= text_input f, :prefix, class: "form-control", id: "input"%>
+                </div>
+
+                <label class="col-5 col-form-label">Превью префикса</label>
+                <div class="col-7">
+
+                  <p id="output" type="text" readonly="" class="form-control-plaintext render text-left" id="staticDiscord"></p>
+                </div>
+                </div>
+                
+                <div class="float-right mb-3">
+                <%= submit "Сменить", class: "btn btn-success"%>
+                </div>
+            </div>
+        </div>
+
+</div>
+<% end %>
 </div></div>
 

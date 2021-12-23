@@ -5,8 +5,6 @@ defmodule MakotoWeb.UserCabinetLive.ListReferralsComponent do
 
   @impl true
   def update(assigns, socket) do
-    Logger.info inspect(socket)
-    
     refs =
       assigns.user.id
       |> Makoto.Accounts.get_all_referrals

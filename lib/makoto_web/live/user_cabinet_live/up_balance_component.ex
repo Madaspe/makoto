@@ -8,7 +8,6 @@ defmodule MakotoWeb.UserCabinetLive.UpBalanceComponent do
 
   @impl true
   def update(assigns, socket) do
-    Logger.info inspect(assigns)
     {:ok, socket |> assign(assigns)}
   end
 
@@ -40,37 +39,5 @@ defmodule MakotoWeb.UserCabinetLive.UpBalanceComponent do
     else
       {:noreply, socket |> put_flash(:error, "Минимальная сумма платежа 25 рублей")}
     end
-
-    # new_count_rubins =
-    #   user.rubins + rubins_up
-
-    # Logger.info inspect(Accounts.get_user_by_id(user.inviter_id))
-    # case Accounts.get_user_by_id(user.inviter_id) do
-    #   nil ->
-    #     Accounts.update_user(user, %{rubins: new_count_rubins})
-    #   inviter ->
-    #     Accounts.update_user(user, %{rubins: new_count_rubins, rubins_for_inviter: rubins_up * inviter.referrals_procent + user.rubins_for_inviter})
-    # end
-
-    # {:noreply, socket
-    # |> put_flash(:info, "balance has been successfully replenished with #{rubins_up} rubies")
-    # |> push_redirect(to: socket.assigns.return_to)}
-  end
-
-  def handle_event("submit", %{"user" => %{"rubins" => rubins}} = _unsigned_params, socket) when socket.assigns.user.inviter_id == nil  do
-    # user =
-    #   socket.assigns.user
-
-    # rubins_up =
-    #   String.to_float(rubins)
-
-    # new_count_rubins =
-    #   user.rubins +  rubins_up
-
-    # Accounts.update_user(user, %{rubins: new_count_rubins})
-
-    # {:noreply, socket
-    # |> put_flash(:info, "balance has been successfully replenished with #{rubins_up} rubies")
-    # |> push_redirect(to: socket.assigns.return_to)}
   end
 end

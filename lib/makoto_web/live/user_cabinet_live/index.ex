@@ -8,6 +8,7 @@ defmodule MakotoWeb.UserCabinetLive.Index do
 
   @impl true
   def mount(params, %{"user_token" => user_token} = session, socket) do
+    Logger.info(inspect(params))
     user =
       Accounts.get_user_by_session_token(user_token)
       |> Accounts.preload([:discord_info])
@@ -18,18 +19,19 @@ defmodule MakotoWeb.UserCabinetLive.Index do
     online =
       MakotoMinecraft.Minecraft.get_online(user.username) |> Enum.reduce(0, fn (x, y) -> x.online + y end)
 
-    status = %{
-      user: "Игрок"
-    }
+
+    status_name =
+      Application.get_env(:makoto, :status_name)
+      |> Map.get(user.role)
 
     if online != 0 do
       love_server =
         "SkyTech"
-        {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"]) |> assign(:online, online) |> assign(:love_server, love_server)}
+        {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"]) |> assign(:online, online) |> assign(:love_server, love_server) |> assign(:status_name, status_name) |> assign(:type_of_settings, params["type_of_settings"])}
       else
       love_server =
         "Нет"
-        {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"]) |> assign(:online, online) |> assign(:love_server, love_server)}
+        {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"]) |> assign(:online, online) |> assign(:love_server, love_server) |> assign(:status_name, status_name) |> assign(:type_of_settings, params["type_of_settings"])}
 
       end
   end
@@ -40,7 +42,6 @@ defmodule MakotoWeb.UserCabinetLive.Index do
 
   @impl true
   def handle_params(params, _url, socket) do
-    Logger.info socket.assigns.live_action
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
@@ -62,7 +63,6 @@ defmodule MakotoWeb.UserCabinetLive.Index do
   end
 
   defp apply_action(socket, action, _params) do
-    Logger.info action
      socket
   end
 

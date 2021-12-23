@@ -32,6 +32,19 @@ config :makoto,
     3450 => 2990,
     6000 => 4990,
     12_500 => 9900
+  },
+
+  status_name: %{
+    user: "Игрок",
+    admin: "Админ",
+    mod: "Модератор",
+    developer: "Разработчик",
+    owner: "Владелец",
+    vip: "VIP",
+    premium: "Premium",
+    optimum: "Oprimum",
+    ultimate: "Ultimate"
+
   }
 
 config :makoto, MakotoWeb.Endpoint,

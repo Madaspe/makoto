@@ -3,7 +3,6 @@ defmodule MakotoWeb.CentAppContorller do
 
   require Logger
   def index(conn, params) do
-    Logger.info(inspect(params))
     text(conn, "ok")
   end
 

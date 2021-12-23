@@ -9,8 +9,6 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
 
   @impl true
   def update(assigns, socket) do
-    Logger.info inspect(assigns)
-
     user =
       Accounts.get_user_by_username!(assigns.username)
 
@@ -26,6 +24,27 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
 
   @impl Phoenix.LiveView
   def handle_event("validate", _params, socket) do
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("change_prefix", params = %{"user" => %{"prefix" => prefix}}, socket) do
+    user =
+      socket.assigns.user
+
+    url =
+      "http://#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp user #{user.username} meta setprefix 99 #{prefix}"
+      |> URI.encode()
+      case HTTPoison.get(url) do
+          {:ok, %HTTPoison.Response{body: body}} ->
+            {:ok, user} =
+              {:noreply, socket |> put_flash(:error, "Префикс сменен")
+              |> assign(:user, user)
+              |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
+          _ ->
+            Logger.error("Error change prefix #{url}")
+            {:noreply, socket |> put_flash(:error, "Обратитесь к администрации проекта")}
+      end
     {:noreply, socket}
   end
 
@@ -64,7 +83,6 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
         consume_uploaded_entries(socket, :skin, fn %{path: path}, _entry ->
           dest = Path.join("priv/static/uploads", "#{user.username}_skin.png")
           File.cp!(path, dest)
-          Logger.info inspect(ExImageInfo.type File.read!(dest))
           case ExImageInfo.info File.read!(dest) do
             nil ->
               {:error, "Файл должен быть в формате png"}
@@ -94,7 +112,6 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
         consume_uploaded_entries(socket, :cloak, fn %{path: path}, _entry ->
           dest = Path.join("priv/static/uploads", "#{user.username}_cape.png")
           File.cp!(path, dest)
-          Logger.info inspect(ExImageInfo.type File.read!(dest))
           case ExImageInfo.info File.read!(dest) do
             nil ->
               {:error, "Файл должен быть в формате png"}

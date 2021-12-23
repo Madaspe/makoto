@@ -8,7 +8,6 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
 
   @impl true
   def update(assigns, socket) do
-    Logger.info inspect(assigns)
     {:ok, socket |> assign(assigns) |> assign(:rubins_count, 1)}
   end
 
@@ -39,7 +38,7 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
               user
               |> Accounts.update_user(%{rubins: user.rubins - sum})
 
-              {:noreply, socket |> put_flash(:info, "Успешно") |> assign(:rubins_count, 1)
+             {:noreply, socket |> put_flash(:info, "Успешно") |> assign(:rubins_count, 1)
               |> assign(:user, user)
               |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
           _ ->
