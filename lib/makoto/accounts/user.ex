@@ -24,7 +24,7 @@ defmodule Makoto.Accounts.User do
 
     has_one :discord_info, Makoto.Discord.User
 
-    field :prefix, :string, default: "&7"
+    field :prefix, :string
 
     timestamps()
   end
@@ -73,7 +73,7 @@ defmodule Makoto.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :role, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter])
+    |> cast(attrs, [:username, :email, :role, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter, :prefix])
     |> validate_required([:username, :email, :role, :rubins])
   end
 

@@ -4539,23 +4539,24 @@ within:
   window.addEventListener("phx:page-loading-stop", (info) => import_topbar.default.hide());
   liveSocket.connect();
   window.liveSocket = liveSocket;
+
   var nick_color = {
-  "Черный": "&0",
-  "Темно-синий": "&1",
-  "Темно-зеленый": "&2",
-  "Биризовый": "&3",
-  "Темно-красный": "&4",
-  "Темно-фиолетовый": "&5",
-  "Золотой": "&6",
-   "Серый": "&7",
-  "Темно-серый": "&8",
-   "Синий": "&9",
-  "Зеленый": "&a",
-   "Сине-зеленый": "&b",
-  "Красный": "&c",
-  "Фиолетовый": "&d",
-  "Желтый": "&e",
-  "Белый": "&f"
+    "Черный": "&0",
+    "Темно-синий": "&1",
+    "Темно-зеленый": "&2",
+    "Биризовый": "&3",
+    "Темно-красный": "&4",
+    "Темно-фиолетовый": "&5",
+    "Золотой": "&6",
+    "Серый": "&7",
+    "Темно-серый": "&8",
+    "Синий": "&9",
+    "Зеленый": "&a",
+    "Сине-зеленый": "&b",
+    "Красный": "&c",
+    "Фиолетовый": "&d",
+    "Желтый": "&e",
+    "Белый": "&f"
 }
 
   var color = {
@@ -4576,11 +4577,13 @@ within:
     'e': 'yellow',
     'f': 'white'
   };
-  
   var input = $('#input');
   var output = $('#output');
   var select = document.getElementById("user_nick_color");
 
+  window.addEventListener("load", function(){
+    render(input.val());
+  });
   select.addEventListener('change',function(){
     render(input.val());
   });

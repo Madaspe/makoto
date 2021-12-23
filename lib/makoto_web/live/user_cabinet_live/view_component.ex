@@ -9,9 +9,6 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
 
   @impl true
   def update(assigns, socket) do
-    user =
-      Accounts.get_user_by_username!(assigns.username)
-
     {:ok,
     socket
     |> assign(assigns)
@@ -49,7 +46,6 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
       "Белый" =>  "&f"
     } |> Map.get(nick_color)
 
-
     user =
       socket.assigns.user
 
@@ -62,8 +58,9 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
       |> String.replace("&n", "")
       |> String.replace("&r", "")
 
+    Logger.info(clean_prefix)
     prefix =
-      "\" [#{clean_prefix}&7] #{nick_color_symbol}\""
+      "\"[#{clean_prefix}&7]#{nick_color_symbol}\""
 
     url =
       "http://#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp user #{user.username} meta setprefix 99 #{prefix}"
@@ -75,8 +72,13 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
       case HTTPoison.get(url) do
           {:ok, %HTTPoison.Response{body: body}} ->
             {:ok, user} =
+              new_user =
+                socket.assigns.user
+                |> Accounts.update_user %{prefix: clean_prefix}
+
+              Logger.info inspect(new_user)
               {:noreply, socket |> put_flash(:error, "Префикс сменен")
-              |> assign(:user, user)
+              |> assign(:user, new_user)
               |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
           _ ->
             Logger.error("Error change prefix #{url}")
