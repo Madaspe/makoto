@@ -42,8 +42,6 @@ liveSocket.connect()
 window.liveSocket = liveSocket
 
 
+q
 
-
-
-import "./anims/showAlert"
-
+qwe

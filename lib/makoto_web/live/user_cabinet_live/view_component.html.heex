@@ -133,8 +133,6 @@ viewBox="0 0 16 16">
 
 </div>
 
-<%= if @user.role in [:optimum, :owner, :admin, :ultimate] do %>
-
 <div class="col-12">
   <h6 class="pb-1 pt-2 mt-2">Префикс</h6>
   <hr class="mt-0">
@@ -160,10 +158,6 @@ viewBox="0 0 16 16">
                   <p id="output" type="text" nickname={@user.username} readonly="" class="form-control-plaintext render text-left mt-1" id="staticDiscord"></p>
                 </div>
                 
-
-                
-        
-                
                 </div>
                 
                 </div>
@@ -174,6 +168,5 @@ viewBox="0 0 16 16">
         </div>
 
 </div>
-<% end %>
 </div></div>
 
