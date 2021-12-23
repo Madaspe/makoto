@@ -35,6 +35,10 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
     url =
       "http://#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp user #{user.username} meta setprefix 99 #{prefix}"
       |> URI.encode()
+      |> String.replace(" ", "%20")
+      |> String.replace("&", "%26")
+      |> String.replace("[", "%5B")
+      |> String.replace("]", "%5D")
       case HTTPoison.get(url) do
           {:ok, %HTTPoison.Response{body: body}} ->
             {:ok, user} =

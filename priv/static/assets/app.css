@@ -2684,118 +2684,77 @@ left: 8px;
 }
 
 
-
-html, body {
-  font-family: 'Rubik', sans-serif;
-}
-
-.i_main {
-background-image: url('/img/bg-1.png');
-background-size: cover;
-}
-
-.navbar-brand-logo {
-font-weight: 600;
-font-size: 26px;
-padding: 0;
-}
-
-.navbar-brand-logo img {
-width: 42px;
-height: 42px;
-margin-right: 4px;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-color: #fff;
-font-weight: 600;
-}
-.navbar-main {
-background-color: rgba(255, 255, 255, 0.15);
+.wrapper {
+  background-color: rgba(110, 110, 110, 0.7);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 2em;
 }
 
 
-.main-title {
-color: #fff;
-font-weight: 600;
-font-size: 100px;
-margin-left: -2px;
+.render .blue {
+  color: #00c;
 }
 
-.main-title-md {
-font-size: 60px;
-margin-left: 0;
-
+.render .green {
+  color: #090;
 }
 
-.main-subtitle {
-color: #fff;
-font-weight: 300;
-font-size: 38px;
-
-margin-top: -30px;
+.render .darkaqua {
+  color: #0aa;
 }
 
-.dws-main img {
-opacity: .8;
-transition: var(--transition-time);
-
-}
-.dws-main img:hover {
-opacity: 1;
+.render .red {
+  color: #b00;
 }
 
-.dws-main-w {
-width: 30px;
-margin-left: -3px;
-}
-.dws-main-m {
-width: 20px;
-margin-top: -1px;
-}
-.dws-main-l {
-width: 20px;
+.render .purple {
+  color: #909;
 }
 
-.steves {
-position: absolute;
-height: 100%;
-width: 100%;
+.render .orange {
+  color: #d60;
 }
 
-.steves div:nth-child(2) {
-background-image: url('/img/Character1.png');
-position: absolute;
-display: block;
-width: 175px;
-height: 340px;
-background-size: contain;
-top: 200px;
-left: 130px;
-
-
+.render .gray {
+  color: #999;
 }
-.steves div:nth-child(1) {
-background-image: url('/img/Character2.png');
-position: absolute;
-display: block;
-width: 219px;
-height: 294px;
-background-size: contain;
-top: 200px;
-left: -80px;
 
-
+.render .darkgray {
+  color: #555;
 }
-.steves div:nth-child(3) {
-background-image: url('/img/Character3.png');
-position: absolute;
-display: block;
-width: 182.5px;
-height: 286px;
-background-size: contain;
-top: 200px;
-left: 300px;
 
+.render .lightblue {
+  color: #66f;
+}
 
+.render .black {
+  color: #000;
+}
+
+.render .lime {
+  color: #0f0;
+}
+
+.render .aqua {
+  color: #0ff;
+}
+
+.render .lightred {
+  color: #f55;
+}
+
+.render .pink {
+  color: #c0f;
+}
+
+.render .yellow {
+  color: #ff0;
+}
+
+.render .white {
+  color: #fff;
 }
