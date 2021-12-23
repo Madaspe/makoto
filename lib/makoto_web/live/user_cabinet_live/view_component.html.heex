@@ -1,4 +1,5 @@
 <div class="container py-2">
+
   <h5 class="py-1">Внешний вид персонажа</h5>
   <hr class="mt-0">
   <div class="row text-center">
@@ -70,7 +71,6 @@ viewBox="0 0 16 16">
 </a>
 </form>
 </div>
-
 <script type="text/javascript">
   let skin_container_1 = document.getElementById("skin_container_1")
   if (skin_container_1) {
@@ -142,20 +142,31 @@ viewBox="0 0 16 16">
           <div class="tab-pane fade show active py-2" id="home">
 
                 <%= f = form_for :user, "#", [phx_submit: "change_prefix", phx_target: @myself] %>
-              <div class="form-group row">
+                <div class="form-group row">
 
-              <label class="col-5 col-form-label">Новый префикс</label>
+                <label class="col-5 col-form-label">Новый префикс</label>
+                  <div class="col-7">     
+                  <%= text_input f, :prefix, class: "form-control", id: "input"%>
+                  </div>
+
+                <label class="col-5 col-form-label mt-1">Цвет ника</label>
+                  <div class="col-7 ">
+                  <%= select f, :nick_color, @colors, class: "form-control mt-1" %>
+                  </div>
+                  
+
+                <label class="col-5 col-form-label mt-1">Превью префикса</label>
                 <div class="col-7">
-                <%= text_input f, :prefix, class: "form-control", id: "input"%>
-                </div>
-
-                <label class="col-5 col-form-label">Превью префикса</label>
-                <div class="col-7">
-
-                  <p id="output" type="text" readonly="" class="form-control-plaintext render text-left" id="staticDiscord"></p>
-                </div>
+                  <p id="output" type="text" nickname={@user.username} readonly="" class="form-control-plaintext render text-left mt-1" id="staticDiscord"></p>
                 </div>
                 
+
+                
+        
+                
+                </div>
+                
+                </div>
                 <div class="float-right mb-3">
                 <%= submit "Сменить", class: "btn btn-success"%>
                 </div>

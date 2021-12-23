@@ -16,6 +16,7 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
     socket
     |> assign(assigns)
     |> assign(:uploaded_files, [])
+    |> assign(:colors, ["Черный", "Темно-синий", "Темно-зеленый", "Биризовый", "Темно-красный", "Темно-фиолетовый", "Золотой", "Серый", "Темно-серый", "Синий", "Зеленый", "Сине-зеленый", "Красный", "Фиолетовый", "Желтый", "Белый"])
     |> allow_upload(:avatar, accept: ~w".png .jpg .jpeg", auto_upload: true, progress: &handle_progress/3)
     |> allow_upload(:cloak, accept: ~w".png", auto_upload: true, progress: &handle_progress/3)
     |> allow_upload(:skin, accept: ~w".png", auto_upload: true, progress: &handle_progress/3)}
@@ -28,10 +29,42 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
   end
 
   @impl Phoenix.LiveView
-  def handle_event("change_prefix", params = %{"user" => %{"prefix" => prefix}}, socket) do
+  def handle_event("change_prefix", params = %{"user" => %{"prefix" => prefix_user, "nick_color" => nick_color}}, socket) do
+    nick_color_symbol = %{
+      "Черный" =>  "&0",
+      "Темно-синий" =>  "&1",
+      "Темно-зеленый" =>  "&2",
+      "Биризовый" =>  "&3",
+      "Темно-красный" =>  "&4",
+      "Темно-фиолетовый" =>  "&5",
+      "Золотой" =>  "&6",
+       "Серый" =>  "&7",
+      "Темно-серый" =>  "&8",
+       "Синий" =>  "&9",
+      "Зеленый" =>  "&a",
+       "Сине-зеленый" =>  "&b",
+      "Красный" =>  "&c",
+      "Фиолетовый" =>  "&d",
+      "Желтый" =>  "&e",
+      "Белый" =>  "&f"
+    } |> Map.get(nick_color)
+
+
     user =
       socket.assigns.user
 
+    clean_prefix =
+      prefix_user
+      |> String.replace("&k", "")
+      |> String.replace("&m", "")
+      |> String.replace("&o", "")
+      |> String.replace("&l", "")
+      |> String.replace("&n", "")
+      |> String.replace("&r", "")
+
+    prefix =
+      "\" [#{clean_prefix}] #{nick_color_symbol}\""
+    
     url =
       "http://#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=lp user #{user.username} meta setprefix 99 #{prefix}"
       |> URI.encode()

@@ -4539,7 +4539,24 @@ within:
   window.addEventListener("phx:page-loading-stop", (info) => import_topbar.default.hide());
   liveSocket.connect();
   window.liveSocket = liveSocket;
-  
+  var nick_color = {
+  "Черный": "&0",
+  "Темно-синий": "&1",
+  "Темно-зеленый": "&2",
+  "Биризовый": "&3",
+  "Темно-красный": "&4",
+  "Темно-фиолетовый": "&5",
+  "Золотой": "&6",
+   "Серый": "&7",
+  "Темно-серый": "&8",
+   "Синий": "&9",
+  "Зеленый": "&a",
+   "Сине-зеленый": "&b",
+  "Красный": "&c",
+  "Фиолетовый": "&d",
+  "Желтый": "&e",
+  "Белый": "&f"
+}
 
   var color = {
     '1': 'blue',
@@ -4562,6 +4579,12 @@ within:
   
   var input = $('#input');
   var output = $('#output');
+  var select = document.getElementById("user_nick_color");
+
+  select.addEventListener('change',function(){
+    render(input.val());
+  });
+  
   var append;
   
   input.keyup(function() {
@@ -4573,16 +4596,30 @@ within:
     output.html(replacers(string));
   }
   
+  function replacers_input(string) {
+    replaced = string
+      .replace(/&k/gi, '')
+      .replace(/&l/gi, '')
+      .replace(/&m/gi, '')
+      .replace(/&n/gi, '')
+      .replace(/&o/gi, '')
+      .replace(/&r/gi, '')
+      .replace(/\\n/gi, '');
+    return replaced;
+  }
+
   function replacers(string) {
+    string = '&7[&6L&7] ' + "&7[" + string + "&7] " + nick_color[select.value] + document.getElementById("output").getAttribute("nickname") + "&7:" + " Hello world"
+    
     replaced = string
       .replace(/&([a-f0-9])/gi, setColor)
-      .replace(/&k/gi, setMagic)
-      .replace(/&l/gi, '<strong>')
-      .replace(/&m/gi, '<s>')
-      .replace(/&n/gi, '<u>')
-      .replace(/&o/gi, '<em>')
-      .replace(/&r/gi, resetFormat)
-      .replace(/\\n/gi, '<br />');
+      .replace(/&k/gi, '')
+      .replace(/&l/gi, '')
+      .replace(/&m/gi, '')
+      .replace(/&n/gi, '')
+      .replace(/&o/gi, '')
+      .replace(/&r/gi, '')
+      .replace(/\\n/gi, '');
     return replaced;
   }
   
@@ -4592,29 +4629,10 @@ within:
     return '<span class="' + value + '">';
   }
   
-  function setMagic(match) {
-    return '<span class="magic"></span>';
-  }
-  
-  function getMagic() {
-  return Math.random().toString(16).substr(1,2).split('.').join("");
-  }
-  
-  function runMagic() {
-    $('.magic').text(getMagic);
-    window.setTimeout(runMagic, 60);
-  };
-  runMagic();
-  
-  function resetFormat(match) {
-    addClose;
-    return '</strong></s></u></em><span class="white">';
-  }
   
   function addClose() {
     append = '</span>' + append;
   }
-
 })();
 /**
  * @license MIT
