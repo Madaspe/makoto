@@ -11,3 +11,4 @@ defmodule MakotoWeb.UserCabinetLive.RulesPageComponent do
     {:ok, socket |> assign(assigns)}
   end
 end
+

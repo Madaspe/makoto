@@ -21,8 +21,9 @@ defmodule Makoto.Accounts.User do
     field :inviter_id, :integer
     field :rubins_for_inviter, :float, default: 0.0
     field :referrals_procent, :float
-
+    field :privilege_disable_time, :naive_datetime, default: nil
     has_one :discord_info, Makoto.Discord.User
+    many_to_many :promocodes, Makoto.Accounts.Promocode, join_through: "users_promocodes"
 
     field :prefix, :string
 
@@ -73,7 +74,7 @@ defmodule Makoto.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :role, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter, :prefix])
+    |> cast(attrs, [:username, :email, :role, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter, :prefix, :privilege_disable_time])
     |> validate_required([:username, :email, :role, :rubins])
   end
 

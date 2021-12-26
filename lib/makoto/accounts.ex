@@ -378,6 +378,10 @@ end
     Repo.all(User)
   end
 
+  def list_promocodes do
+    Repo.all(Makoto.Accounts.Promocode)
+  end
+
   @doc """
   Gets a single user.
 
@@ -418,6 +422,8 @@ end
 
   def get_user_discord_info_by_id(id), do: Makoto.Discord.User |> where(discord_id: ^id) |> Repo.one()
   def get_all_referrals(id), do: User |> where(inviter_id: ^id) |> Repo.all()
+
+  def get_online(username), do: MakotoMinecraft.Minecraft.Info |> where(player: ^username) |> Repo.all()
   @doc """
   Creates a user.
 
@@ -433,6 +439,12 @@ end
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_promocode(attrs \\ %{}) do
+    %Makoto.Accounts.Promocode{}
+    |> Makoto.Accounts.Promocode.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -465,6 +477,9 @@ end
     User.changeset(user, attrs)
   end
 
+  def change_promocode(%Makoto.Accounts.Promocode{} = promocode, attrs \\ %{}) do
+    Makoto.Accounts.Promocode.changeset(promocode, attrs)
+  end
 
   @doc """
   Returns the current interval TOTP code for a given user.

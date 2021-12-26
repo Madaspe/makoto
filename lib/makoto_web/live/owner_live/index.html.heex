@@ -1,34 +1,48 @@
-<h1>Listing Users</h1>
-
-<%= if @live_action in [:new, :edit] do %>
-  <%= live_modal MakotoWeb.OwnerLive.FormComponent,
-    id: @user.id || :new,
+<%= if @live_action in [:promocodes] do %>
+  <%= live_modal MakotoWeb.OwnerLive.CreatePromocodeComponent,
+    id: :new,
+    promocodes: @promocodes,
     title: @page_title,
-    action: @live_action,
-    user: @user,
     return_to: Routes.owner_index_path(@socket, :index) %>
-<% end %>
+<% else %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
+  <h1>Listing Users</h1>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="users">
-    <%= for user <- @users do %>
-      <tr id={"user-#{user.id}"}>
-        <td><%= user.email %></td>
-        <td>
-          <span><%= live_redirect "Show", to: Routes.owner_show_path(@socket, :show, user) %></span>
-          <span><%= live_patch "Edit", to: Routes.owner_index_path(@socket, :edit, user) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: user.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
+  <%= if @live_action in [:new, :edit] do %>
+    <%= live_modal MakotoWeb.OwnerLive.FormComponent,
+      id: @user.id || :new,
+      title: @page_title,
+      action: @live_action,
+      user: @user,
+      return_to: Routes.owner_index_path(@socket, :index) %>
+  <% end %>
+    
+  <table>
+    <thead>
+      <tr>
+      <th>User ID</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Actions</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody id="users">
+      <%= for user <- @users do %>
+        <tr id={"user-#{user.id}"}>
+        <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.username %></td>
+          <td>
+            <span><%= live_redirect "Show", to: Routes.owner_show_path(@socket, :show, user) %></span>
+            <span><%= live_patch "Edit", to: Routes.owner_index_path(@socket, :edit, user) %></span>
+            <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: user.id, data: [confirm: "Are you sure?"] %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<span><%= live_patch "New User", to: Routes.owner_index_path(@socket, :new) %></span>
+  <span><%= live_patch "New User", to: Routes.owner_index_path(@socket, :new) %></span>
+
+<% end %>

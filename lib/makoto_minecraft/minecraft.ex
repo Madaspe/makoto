@@ -4,7 +4,7 @@ defmodule MakotoMinecraft.Minecraft do
   """
 
   import Ecto.Query, warn: false
-  alias MakotoMinecraft.Repo
+  alias MakotoMinecraft.MinecraftRepo
   require Logger
-  def get_online(username), do: MakotoMinecraft.Minecraft.Info |> where(player: ^username) |> Repo.all()
+  def get_online(username), do: MakotoMinecraft.Minecraft.Info |> where(player: ^username) |> MinecraftRepo.all()
 end

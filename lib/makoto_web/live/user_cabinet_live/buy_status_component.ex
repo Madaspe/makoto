@@ -40,7 +40,7 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
           {:ok, %HTTPoison.Response{body: body}} ->
             {:ok, user} =
               user
-              |> Accounts.update_user(%{role: status, rubins: user.rubins - price})
+              |> Accounts.update_user(%{role: status, rubins: user.rubins - price, privilege_disable_time: DateTime.utc_now() |> DateTime.add(30 *  86400)})
 
               {:noreply, socket |> put_flash(:error, "Покупка прошла успешно")
               |> assign(:user, user)

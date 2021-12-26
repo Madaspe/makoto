@@ -32,6 +32,13 @@ defmodule MakotoWeb.OwnerLive.Index do
     |> assign(:user, nil)
   end
 
+  defp apply_action(socket, :promocodes, _params) do
+    socket
+    |> assign(:page_title, "Listing Promocode")
+    |> assign(:promocodes, list_promocodes())
+    |> assign(:user, nil)
+  end
+
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
     user = Accounts.get_user_by_id!(id)
@@ -42,5 +49,9 @@ defmodule MakotoWeb.OwnerLive.Index do
 
   defp list_users do
     Accounts.list_users()
+  end
+
+  defp list_promocodes do
+    Accounts.list_promocodes()
   end
 end

@@ -115,6 +115,8 @@ defmodule MakotoWeb.Router do
   scope "/owner", MakotoWeb do
     pipe_through [:browser, :require_authenticated_user, :owner]
 
+    live "/promocodes", OwnerLive.Index, :promocodes
+
     live "/users", OwnerLive.Index, :index
     live "/users/new", OwnerLive.Index, :new
     live "/users/:id/edit", OwnerLive.Index, :edit
@@ -158,6 +160,10 @@ defmodule MakotoWeb.Router do
     post "/centapp", CentAppContorller, :index
     scope "/launcher" do
       get "/auth", LauncherAuthController, :index
+    end
+
+    scope "/user" do
+      get ":username", UserGameController, :index
     end
   end
 end

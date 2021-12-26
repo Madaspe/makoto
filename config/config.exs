@@ -14,7 +14,7 @@ host_url =
               """
 
 config :makoto,
-  ecto_repos: [Makoto.Repo, MakotoMinecraft.Repo],
+  ecto_repos: [Makoto.Repo, MakotoMinecraft.MinecraftRepo],
   allowed_expansion_skin: [{32, 32}, {64, 32}, {64, 64}, {1024, 512}, {1024, 1024}],
   allowed_expansion_cloak: [{22, 17}, {64, 32}, {176, 136},{1024, 512}],
   allowed_expansion_avatar: [{64, 32}, {64, 64}, {1024, 512}, {1024, 1024}],

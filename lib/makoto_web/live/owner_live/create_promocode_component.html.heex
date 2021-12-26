@@ -1,0 +1,36 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <%= for promocode <- @promocodes do %>
+    <%= inspect(promocode) %>
+  <% end %>
+
+
+    <.form
+    let={f}
+    for={@changeset}
+    id="user-form"
+    phx-target={@myself}
+    phx-submit="save">
+
+    <%= label f, :promocode %>
+    <%= text_input f, :promocode %>
+    <%= error_tag f, :promocode %>
+
+    <%= label f, :count_use %>
+    <%= text_input f, :count_use %>
+    <%= error_tag f, :count_use %>
+  
+    <%= label f, :item %>
+    <%= text_input f, :item %>
+    <%= error_tag f, :item %>
+
+    <%= label f, :owner_id %>
+    <%= text_input f, :owner_id %>
+    <%= error_tag f, :owner_id %>
+
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>
