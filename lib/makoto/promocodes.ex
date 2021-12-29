@@ -31,17 +31,19 @@ defmodule Makoto.Promocodes do
           promocode.item
           |> String.split(":")
         cond do
-          promocode.count_use == -100 or promocode.count_use > 0 and (promocode in user_with_promocodes.promocodes) != true ->
+          (promocode.count_use == -100 or promocode.count_use > 0) and (promocode in user_with_promocodes.promocodes) != true ->
+
             user_with_promocodes
-            |> Ecto.Changeset.change()
-            |> Ecto.Changeset.put_assoc(:promocodes, [promocode])
+            |> Makoto.Accounts.change_user
+            |> Ecto.Changeset.put_assoc(:promocodes, [promocode] ++ user_with_promocodes.promocodes)
             |> Repo.update!
 
-            apply_promocode_item(user, item)
             if promocode.count_use > 0 do
               promocode
               |> update_promocode(%{count_use: promocode.count_use - 1})
             end
+
+            apply_promocode_item(user, item)
 
             :ok
           true ->
