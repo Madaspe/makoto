@@ -123,6 +123,8 @@ defmodule MakotoWeb.Router do
 
     live "/users/:id", OwnerLive.Show, :show
     live "/users/:id/show/edit", OwnerLive.Show, :edit
+
+    live "/promocode/:id", OwnerLive.ShowPromo, :show
   end
 
   scope "/user/:username", MakotoWeb do

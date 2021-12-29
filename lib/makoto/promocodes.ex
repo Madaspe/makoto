@@ -17,6 +17,7 @@ defmodule Makoto.Promocodes do
   end
 
   def get_promocode(name_promocode), do: Makoto.Promocodes.Promocode |> where(promocode: ^name_promocode) |> Repo.one()
+  def get_promocode_by_id!(id), do: Makoto.Promocodes.Promocode |> where(id: ^id) |> Repo.one!() |> Repo.preload([:users])
 
   def apply_promocode(promocode, user) do
     user_with_promocodes =
@@ -58,8 +59,12 @@ defmodule Makoto.Promocodes do
   end
 
   def apply_promocode_item(user, ["give", "role", role, days]) do
-    user
-    |> Makoto.Accounts.update_user(%{role: String.to_atom(role), privilege_disable_time: DateTime.utc_now() |> DateTime.add(String.to_integer(days) *  86400)})
+    if user.role == :user do
+      user
+      |> Makoto.Accounts.update_user(%{role: String.to_atom(role), privilege_disable_time: DateTime.utc_now() |> DateTime.add(String.to_integer(days) *  86400)})
+    else
+      :ok
+    end
   end
 
   def apply_promocode_item(user, ["give", "discount", procent]) do

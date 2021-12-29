@@ -1,9 +1,29 @@
 <div>
   <h2><%= @title %></h2>
 
-  <%= for promocode <- @promocodes do %>
-    <%= inspect(promocode) %>
-  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+      <th>Promocode</th>
+        <th>Item</th>
+        <th>Count USE</th>
+        <th>Owner ID</th>
+        <th>Actions</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="users">
+      <%= for promocode <- @promocodes do %>
+        <tr>
+        <td><%= promocode.promocode %></td>
+          <td><%= promocode.item %></td>
+          <td><%= promocode.count_use %></td>
+          <td><%= promocode.owner_id %></td>
+          <td><%= live_redirect "Show", to: Routes.owner_show_promo_path(@socket, :show, promocode) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 
     <.form

@@ -4584,6 +4584,9 @@ within:
   window.addEventListener("load", function(){
     render(input.val());
   });
+  document.addEventListener("DOMContentLoaded", function(){
+    render(input.val());
+  });
   select.addEventListener('change',function(){
     render(input.val());
   });

@@ -1,0 +1,28 @@
+<h1>Show User</h1>
+
+
+<h1>Promocode <%= @promocode.promocode %> activators</h1>
+<table class="table">
+    <thead>
+      <tr>
+      <th>User ID</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Actions</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="users">
+      <%= for user <- @promocode.users do %>
+        <tr id={"user-#{user.id}"}>
+        <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.username %></td>
+          <td>
+            <span><%= live_redirect "Show", to: Routes.owner_show_path(@socket, :show, user) %></span>
+            <span><%= live_patch "Edit", to: Routes.owner_index_path(@socket, :edit, user) %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
