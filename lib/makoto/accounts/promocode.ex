@@ -1,4 +1,4 @@
-defmodule Makoto.Accounts.Promocode do
+defmodule Makoto.Promocodes.Promocode do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -11,10 +11,10 @@ defmodule Makoto.Accounts.Promocode do
     many_to_many :users, Makoto.Accounts.User, join_through: "users_promocodes"
   end
 
-    @doc false
-    def changeset(promocode, attrs) do
-      promocode
-      |> cast(attrs, [:promocode, :count_use, :item, :owner_id])
-      |> validate_required([:promocode, :count_use, :item, :owner_id])
-    end
+  @doc false
+  def changeset(promocode, attrs) do
+    promocode
+    |> cast(attrs, [:promocode, :count_use, :item, :owner_id])
+    |> validate_required([:promocode, :count_use, :item, :owner_id])
+  end
 end

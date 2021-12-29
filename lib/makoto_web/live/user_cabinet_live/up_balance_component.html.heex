@@ -3,10 +3,6 @@
   <div class="row no-gutters mb-3">
     <div class="col-12 col-lg-6">
       <div class="row no-gutters saleblist">
-        
-      <p class="d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
-
-  <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
         <div id="sale-block-0" class="col-6 p-1 p-lg-2">
           <div class="sale-block" style="background-color: var(--success)">
 
@@ -191,16 +187,39 @@
           <div class="container">
             <h5 class="py-2 text-center">Пополнение счета</h5>
 
-          <div class="pay-sum text-center d-flex flex-column mt-5 w-50 mx-auto">
-              <%= f = form_for :user, "#", [phx_submit: "submit", phx_target: @myself] %>
+          <div class="pay-sum text-center d-flex flex-column mt-5 w-30 mx-auto">
+            <div>
+              <form phx-submit="submit" phx-target={@myself}>
                 <div class="form-group">
                   <h6 class="mb-3">Сумма к пополнению</h6>
-                  <%= text_input f, :rubins, value: "", class: "form-control" %>
+                  <input class="form-control" id="promocode" name="user[rubins]" type="number">
                 </div>
                 <%= submit "Пополнить", class: "btn btn-primary"  %>
-          </div>
+              </form>
+            </div>
+              <div>
+              <h5 class="py-2 text-center mt-5">Ввод промокода</h5>
+              <form phx-submit="submit_promocode" phx-target={@myself}>
+                <p class="d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
+
+                <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
+                <div class="form-group mt-4">
+                  <h6 class="mb-3">Промокод</h6>
+                  <input class="form-control" id="promocode" name="promocode" type="text">
+                  <small>Промокоды чувствительны к регистру</small>
+                </div>
+                <%= submit "Применить", class: "btn btn-primary"  %>
+ 
+              </form>
+              </div>
 
           </div>
+
+          
+
+          </div>
+
+          
           </div>
       </div>
     </div>

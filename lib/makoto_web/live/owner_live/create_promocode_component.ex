@@ -7,8 +7,8 @@ defmodule MakotoWeb.OwnerLive.CreatePromocodeComponent do
   @impl true
   def update(assigns, socket) do
     promocode_changeset =
-      %Makoto.Accounts.Promocode{}
-      |> Accounts.change_promocode
+      %Makoto.Promocodes.Promocode{}
+      |> Makoto.Promocodes.change_promocode
     {:ok,
      socket
     |> assign(:changeset, promocode_changeset)

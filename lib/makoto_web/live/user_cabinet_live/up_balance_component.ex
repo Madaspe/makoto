@@ -40,4 +40,19 @@ defmodule MakotoWeb.UserCabinetLive.UpBalanceComponent do
       {:noreply, socket |> put_flash(:error, "Минимальная сумма платежа 25 рублей")}
     end
   end
+
+
+  def handle_event("submit_promocode", %{"promocode" => promocode} = _unsigned_params, socket) do
+    user =
+      socket.assigns.user
+
+    result = promocode |> Makoto.Promocodes.get_promocode |> Makoto.Promocodes.apply_promocode(user)
+    case result do
+      :error ->
+        {:noreply, socket |> clear_flash(:info) |> put_flash(:info, "Промокод недействителен")}
+
+      :ok ->
+        {:noreply, socket |> clear_flash(:info) |> put_flash(:info, "Промокод применен")}
+    end
+  end
 end

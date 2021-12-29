@@ -23,7 +23,7 @@ defmodule Makoto.Accounts.User do
     field :referrals_procent, :float
     field :privilege_disable_time, :naive_datetime, default: nil
     has_one :discord_info, Makoto.Discord.User
-    many_to_many :promocodes, Makoto.Accounts.Promocode, join_through: "users_promocodes"
+    many_to_many :promocodes, Makoto.Promocodes.Promocode, join_through: "users_promocodes"
 
     field :prefix, :string
 
@@ -75,7 +75,7 @@ defmodule Makoto.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:username, :email, :role, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter, :prefix, :privilege_disable_time])
-    |> validate_required([:username, :email, :role, :rubins])
+    |> validate_required([:username, :email, :rubins])
   end
 
   defp validate_email(changeset) do
@@ -90,7 +90,7 @@ defmodule Makoto.Accounts.User do
   defp validate_username(changeset) do
     changeset
     |> validate_required([:username])
-    |> validate_length(:username, max: 50, min: 4)
+    |> validate_length(:username, max: 50, min: 5)
     |> unsafe_validate_unique(:username, Makoto.Repo)
     |> unique_constraint(:username)
   end
@@ -99,9 +99,6 @@ defmodule Makoto.Accounts.User do
     changeset
     |> validate_required([:password])
     |> validate_length(:password, min: 8, max: 72)
-    |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
-    |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
-    |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
     |> maybe_hash_password(opts)
   end
 

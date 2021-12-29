@@ -12,8 +12,8 @@ defmodule MakotoWeb.UserRegistrationController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    Logger.info inspect(get_session(conn))
-    case Accounts.register_user(user_params, get_session(conn)) do
+    Logger.info inspect(user_params)
+    case Accounts.register_user(user_params, Map.merge(get_session(conn), user_params)) do
       {:ok, user} ->
         Task.start(fn ->
           Accounts.deliver_user_confirmation_instructions(

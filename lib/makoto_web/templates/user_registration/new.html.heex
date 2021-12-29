@@ -44,6 +44,17 @@
                   <% end %>
                   </div>
                   <small class="form-text text-muted">Придумай сложный пароль (мин. 8 символов)</small>
+
+                <label class="col-form-label w-100">Промокод</label>
+                <%= text_input f,
+                :promocode,
+                  class: "form-control"
+                %>
+                  <div class="w-100" id="check-n"></div>
+                   <%= if message = f.errors[:promocode] do %>
+                    <small class="form-text text-danger"><%= translate_error(message) %></small>
+                  <% end %>
+
                 </div>
                 <%= submit "Зарегистрироваться", class: "btn btn-om btn-reg mt-3 float-right"%>
               </.form>

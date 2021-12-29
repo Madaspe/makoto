@@ -84,6 +84,32 @@ end
       {:error, %Ecto.Changeset{}}
 
   """
+  def register_user(attrs, %{"promocode" => name_promocode} = params) do
+    promocode =
+      Makoto.Promocodes.get_promocode name_promocode
+    case promocode do
+      nil ->
+        user =
+          %User{}
+          |> User.registration_changeset(attrs)
+          |> Repo.insert()
+        promocode ->
+          Logger.info inspect(promocode)
+          user_info =
+            %User{}
+            |> User.registration_changeset(Map.merge(attrs, %{"inviter_id" => promocode.owner_id}))
+            |> Repo.insert()
+
+          case user_info do
+            {:ok, user} ->
+              Makoto.Promocodes.apply_promocode(promocode, user)
+              user_info
+            _ ->
+              user_info
+          end
+    end
+  end
+
   def register_user(attrs, %{"inviter_id" => inviter_id} = params) do
     user =
       %User{}
@@ -379,7 +405,7 @@ end
   end
 
   def list_promocodes do
-    Repo.all(Makoto.Accounts.Promocode)
+    Repo.all(Makoto.Promocodes.Promocode)
   end
 
   @doc """
@@ -443,8 +469,8 @@ end
   end
 
   def create_promocode(attrs \\ %{}) do
-    %Makoto.Accounts.Promocode{}
-    |> Makoto.Accounts.Promocode.changeset(attrs)
+    %Makoto.Promocodes.Promocode{}
+    |> Makoto.Promocodes.Promocode.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -475,10 +501,6 @@ end
   """
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
-  end
-
-  def change_promocode(%Makoto.Accounts.Promocode{} = promocode, attrs \\ %{}) do
-    Makoto.Accounts.Promocode.changeset(promocode, attrs)
   end
 
   @doc """
