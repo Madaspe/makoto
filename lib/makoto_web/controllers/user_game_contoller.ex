@@ -3,7 +3,7 @@ defmodule MakotoWeb.UserGameController do
 
   require Logger
   def index(conn, _params = %{"username" => username}) do
-    case Makoto.Accounts.get_user_by_username(username) do
+    case Makoto.Accounts.get_user_by_username(username) |> Makoto.Repo.preload([:discord_info]) do
       nil ->
         text(
             conn
@@ -26,7 +26,7 @@ defmodule MakotoWeb.UserGameController do
 
   defp remove_unnecessary_fields(user) do
     user
-    |> Map.take([:username, :rubins, :avatar_url, :role, :privilege_disable_time])
+    |> Map.take([:username, :rubins, :avatar_url, :role, :privilege_disable_time, :discord_info])
   end
 
   defp response(user) do
