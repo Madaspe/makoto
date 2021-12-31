@@ -25,8 +25,11 @@ defmodule MakotoWeb.UserGameController do
   end
 
   defp remove_unnecessary_fields(user) do
+    discord_info = user.discord_info || %{discord_id: nil}
+
     user
-    |> Map.take([:username, :rubins, :avatar_url, :role, :privilege_disable_time, :discord_info])
+    |> Map.take([:username, :rubins, :avatar_url, :role, :privilege_disable_time])
+    |> Map.merge(Map.take(discord_info, [:discord_id]))
   end
 
   defp response(user) do
