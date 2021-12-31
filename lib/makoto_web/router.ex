@@ -167,5 +167,7 @@ defmodule MakotoWeb.Router do
     scope "/user" do
       get ":username", UserGameController, :index
     end
+
+    get "/discord/:discord_id", UserDiscordController, :index
   end
 end
