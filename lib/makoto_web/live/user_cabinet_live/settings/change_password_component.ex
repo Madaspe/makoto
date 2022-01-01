@@ -3,7 +3,7 @@ defmodule MakotoWeb.UserCabinetLive.ChangePasswordComponent do
 
   alias Makoto.Accounts
   alias Makoto.Accounts.User
-
+  alias MakotoXenForo.XenForo
   require Logger
 
   @impl true
@@ -17,6 +17,7 @@ defmodule MakotoWeb.UserCabinetLive.ChangePasswordComponent do
 
      case Accounts.update_user_password(user, current_password, %{password: new_password}) do
        {:ok, user} ->
+        XenForo.update_user_by_username(user.username, %{password: new_password})
         {:noreply, socket
          |> put_flash(:info, "Пароль обновлен")
          }

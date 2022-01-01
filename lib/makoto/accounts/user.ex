@@ -23,7 +23,7 @@ defmodule Makoto.Accounts.User do
     field :referrals_procent, :float
     field :privilege_disable_time, :naive_datetime, default: nil
     has_one :discord_info, Makoto.Discord.User
-    many_to_many :promocodes, Makoto.Promocodes.Promocode, join_through: "users_promocodes"
+    many_to_many :promocodes, Makoto.Promocodes.Promocode, join_through: "users_promocodes", on_replace: :delete
 
     field :prefix, :string
 
@@ -112,7 +112,6 @@ defmodule Makoto.Accounts.User do
       # If using Bcrypt, then further validate it is at most 72 bytes long
       |> validate_length(:password, max: 72, count: :bytes)
       |> put_change(:hashed_password, Bcrypt.hash_pwd_salt(password))
-      |> delete_change(:password)
     else
       changeset
     end

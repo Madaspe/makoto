@@ -59,7 +59,7 @@ defmodule Makoto.Promocodes do
   end
 
   def apply_promocode_item(user, ["give", "role", role, days]) do
-    if user.role == :user do
+    if user.role == :user or user.role == nil do
       user
       |> Makoto.Accounts.update_user(%{role: String.to_atom(role), privilege_disable_time: DateTime.utc_now() |> DateTime.add(String.to_integer(days) *  86400)})
     else

@@ -8,7 +8,7 @@ defmodule Makoto.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"Optimine", "contact@madaspe-software.ru"})
+      |> from({"Optimine", "no-reply@optimine.su"})
       |> subject(subject)
       |> text_body(body)
 
@@ -25,13 +25,11 @@ defmodule Makoto.Accounts.UserNotifier do
 
     ==============================
 
-    Hi #{user.email},
+    Привет #{user.username},
 
-    You can confirm your account by visiting the URL below:
+    Ты можешь подтвердить свою почту по ссылке ниже:
 
     #{url}
-
-    If you didn't create an account with us, please ignore this.
 
     ==============================
     """)
@@ -45,13 +43,11 @@ defmodule Makoto.Accounts.UserNotifier do
 
     ==============================
 
-    Hi #{user.email},
+    Привет #{user.username},
 
-    You can reset your password by visiting the URL below:
+    Ты можешь сбросить свой пароль по ссылке ниже:
 
     #{url}
-
-    If you didn't request this change, please ignore this.
 
     ==============================
     """)
@@ -65,13 +61,11 @@ defmodule Makoto.Accounts.UserNotifier do
 
     ==============================
 
-    Hi #{user.email},
+    Привет #{user.username},
 
-    You can change your email by visiting the URL below:
+    Ты можешь поменять свою почту по ссылке ниже:
 
     #{url}
-
-    If you didn't request this change, please ignore this.
 
     ==============================
     """)

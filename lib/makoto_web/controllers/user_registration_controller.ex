@@ -15,6 +15,8 @@ defmodule MakotoWeb.UserRegistrationController do
     Logger.info inspect(user_params)
     case Accounts.register_user(user_params, Map.merge(get_session(conn), user_params)) do
       {:ok, user} ->
+        MakotoXenForo.XenForo.create_forum_user(user)
+        user = Map.drop(user, [:password])
         Task.start(fn ->
           Accounts.deliver_user_confirmation_instructions(
             user,

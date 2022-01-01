@@ -4,7 +4,7 @@ defmodule MakotoWeb.UserSessionController do
   alias Makoto.Accounts
   alias MakotoWeb.UserAuth
   alias Ueberauth.Strategy.Helpers
-
+  alias MakotoXenForo.XenForo
   plug Ueberauth
 
   require Logger
@@ -58,6 +58,7 @@ defmodule MakotoWeb.UserSessionController do
     %{"username" => username, "password" => password} = user_params
 
     if user = Accounts.get_user_by_username_and_password(username, password) do
+      register_forum_account(%{username: username, password: password, email: user.email})
       UserAuth.log_in_user(conn, user, user_params)
     else
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
@@ -69,5 +70,14 @@ defmodule MakotoWeb.UserSessionController do
     conn
     |> put_flash(:info, "Logged out successfully.")
     |> UserAuth.log_out_user()
+  end
+
+  def register_forum_account(user) do
+    if XenForo.find_forum_user_by_username(user.username)["exact"] == nil do
+      XenForo.create_forum_user(user)
+      :ok
+    else
+      :ok
+    end
   end
 end

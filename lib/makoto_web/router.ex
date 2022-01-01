@@ -99,8 +99,8 @@ defmodule MakotoWeb.Router do
     delete "/users/log_out", UserSessionController, :delete
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
-    get "/users/confirm/:token", UserConfirmationController, :edit
-    post "/users/confirm/:token", UserConfirmationController, :update
+    get "/users/confirm/:token", UserConfirmationController, :update
+    post "/users/confirm/:token", UserConfirmationController, :edit
 
     scope "/connect" do
       get "/:provider", UserSessionController, :request

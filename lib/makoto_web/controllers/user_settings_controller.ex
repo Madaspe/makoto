@@ -27,7 +27,7 @@ defmodule MakotoWeb.UserSettingsController do
           :info,
           "Ссылка для подверждения отправленна вам на почту"
         )
-        |> redirect(to: Routes.user_settings_path(conn, :edit))
+        |> redirect(to: "/")
 
       {:error, changeset} ->
         render(conn, "edit.html", email_changeset: changeset)
@@ -42,7 +42,7 @@ defmodule MakotoWeb.UserSettingsController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Пароль обновлен")
-        |> put_session(:user_return_to, Routes.user_settings_path(conn, :edit))
+        |> put_session(:user_return_to, "/")
         |> UserAuth.log_in_user(user)
 
       {:error, changeset} ->
@@ -55,12 +55,12 @@ defmodule MakotoWeb.UserSettingsController do
       :ok ->
         conn
         |> put_flash(:info, "Почта обновлена")
-        |> redirect(to: Routes.user_settings_path(conn, :edit))
+        |> redirect(to: "/")
 
       :error ->
         conn
         |> put_flash(:error, "Действие ссылки закончилось")
-        |> redirect(to: Routes.user_cabinet_index_path(conn, :edit, conn.assigns.current_user.username))
+        |> redirect(to: "/")
     end
   end
 

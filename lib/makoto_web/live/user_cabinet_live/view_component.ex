@@ -102,6 +102,7 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
               {:error, "Файл должен быть в формате png"}
             {_, x, y, _} ->
               Makoto.Accounts.update_user(user, %{avatar_url: "/uploads/#{user.username}_avatar.png"})
+              MakotoXenForo.XenForo.update_avatar_by_username(user.username, "/uploads/#{user.username}_avatar.png")
               {:info, "Успешно"}
           end
       end) |> Enum.at(0)
