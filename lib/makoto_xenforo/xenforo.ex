@@ -55,7 +55,7 @@ defmodule MakotoXenForo.XenForo do
     end
   end
 
-  defp update_forum_avatar(%{"user" => %{"user_id" => user_id}}, %{avatar_url: avatar_path}) do
+  def update_forum_avatar(%{"user" => %{"user_id" => user_id}}, %{avatar_url: avatar_path}) do
     case avatar_path do
       nil ->
         nil
@@ -122,7 +122,7 @@ defmodule MakotoXenForo.XenForo do
 
   def update_user_by_username(username, updates) do
     user_id = find_forum_user_by_username(username)["exact"]["user_id"]
-      
+
     {:ok, %HTTPoison.Response{body: body}} =
       HTTPoison.post(
       @xenforo_api <> "/users/#{user_id}",
