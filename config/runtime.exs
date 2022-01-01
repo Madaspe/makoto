@@ -128,6 +128,14 @@ if config_env() == :prod do
     rcon_host: rcon_host,
     rcon_port: String.to_integer(rcon_port),
     rcon_password: rcon_password
+
+  xenforo_token =
+    System.get_env("XENFORO_TOKEN") ||
+                    raise """
+                    environment variable XENFORO_TOKEN is missing.
+                    """
+  config :makoto,
+    xenforo_token: xenforo_token
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix
