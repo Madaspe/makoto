@@ -93,11 +93,16 @@ defmodule MakotoXenForo.XenForo do
 
   def update_avatar_by_username(username, avatar_path) do
     user_id = find_forum_user_by_username(username)["exact"]["user_id"]
+    update_avatar_by_user_id(user_id, avatar_path)
+  end
+
+  def update_user_by_username(username, updates) do
+    user_id = find_forum_user_by_username(username)["exact"]["user_id"]
 
     {:ok, %HTTPoison.Response{body: body}} =
       HTTPoison.post(
-      @xenforo_api <> "/users/#{user_id}/avatar",
-      {:multipart, [{:file, "priv/static#{avatar_path}", {"form-data", [name: "avatar", filename: parse_file_name(avatar_path)]}, []}]},
+      @xenforo_api <> "/users/#{user_id}",
+      URI.encode_query(updates),
       [
         "XF-Api-Key": "#{Application.get_env(:makoto, :xenforo_token)}",
         "Content-type": "application/x-www-form-urlencoded",
@@ -120,13 +125,15 @@ defmodule MakotoXenForo.XenForo do
     end
   end
 
-  def update_user_by_username(username, updates) do
-    user_id = find_forum_user_by_username(username)["exact"]["user_id"]
+  def auth_forum_by_username(username, params \\ %{return_url: "http://localhost:4000/lk"}) do
+    auth_forum_by_id(find_forum_user_by_username(username)["exact"]["user_id"], params)
+  end
 
+  def auth_forum_by_id(id, params \\ %{return_url: "http://localhost:4000/lk"}) do
     {:ok, %HTTPoison.Response{body: body}} =
       HTTPoison.post(
-      @xenforo_api <> "/users/#{user_id}",
-      URI.encode_query(updates),
+      @xenforo_api <> "/auth/login-token",
+      URI.encode_query(Map.merge(params, %{user_id: id})),
       [
         "XF-Api-Key": "#{Application.get_env(:makoto, :xenforo_token)}",
         "Content-type": "application/x-www-form-urlencoded",

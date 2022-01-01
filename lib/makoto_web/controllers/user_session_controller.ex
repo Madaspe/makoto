@@ -72,10 +72,32 @@ defmodule MakotoWeb.UserSessionController do
     |> UserAuth.log_out_user()
   end
 
+  def lk(conn, _params) do
+    user =
+      conn.assigns.current_user
+
+    if user do
+      redirect(conn, to: Routes.user_cabinet_index_path(conn, :index, user.username))
+    else
+      render(conn, "new.html", error_message: "")
+    end
+  end
+
+  def forum(conn, _params) do
+    user =
+      conn.assigns.current_user
+
+    if user do
+      redirect(conn, external: XenForo.auth_forum_by_username(user.username, %{})["login_url"])
+    else
+      redirect(conn, external: "https://forum.optimine.su")
+    end
+  end
+
   def register_forum_account(user) do
-    if XenForo.find_forum_user_by_username(user.username)["exact"] == nil do
+    forum_user = XenForo.find_forum_user_by_username(user.username)["exact"]
+    if forum_user == nil do
       user |> register_forum
-      :ok
     else
       :ok
     end

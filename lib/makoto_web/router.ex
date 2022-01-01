@@ -97,6 +97,8 @@ defmodule MakotoWeb.Router do
   scope "/", MakotoWeb do
     pipe_through [:browser]
     delete "/users/log_out", UserSessionController, :delete
+    get "/lk", UserSessionController, :lk
+    get "/forum", UserSessionController, :forum
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :update
