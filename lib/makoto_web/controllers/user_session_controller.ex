@@ -58,7 +58,7 @@ defmodule MakotoWeb.UserSessionController do
     %{"username" => username, "password" => password} = user_params
 
     if user = Accounts.get_user_by_username_and_password(username, password) do
-      register_forum_account(%{username: username, password: password, email: user.email})
+      register_forum_account(%{username: username, password: password, email: user.email, avatar_url: user.avatar_url})
       UserAuth.log_in_user(conn, user, user_params)
     else
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
