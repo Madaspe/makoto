@@ -74,10 +74,19 @@ defmodule MakotoWeb.UserSessionController do
 
   def register_forum_account(user) do
     if XenForo.find_forum_user_by_username(user.username)["exact"] == nil do
-      XenForo.create_forum_user(user)
+      user |> register_forum
       :ok
     else
       :ok
+    end
+  end
+
+  defp register_forum(user) do
+    forum_user =
+      XenForo.create_forum_user(user)
+
+    if user.avatar_url != nil do
+      XenForo.update_forum_avatar(forum_user, user)
     end
   end
 end
