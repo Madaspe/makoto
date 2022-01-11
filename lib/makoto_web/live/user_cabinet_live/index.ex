@@ -1,43 +1,56 @@
 defmodule MakotoWeb.UserCabinetLive.Index do
+
   use MakotoWeb, :live_view
 
   alias Makoto.Accounts
   alias Makoto.Accounts.User
-
+  alias Phoenix.PubSub
+  alias MakotoMinecraft.Minecraft
   require Logger
 
   @impl true
   def mount(params, %{"user_token" => user_token} = session, socket) do
-    Logger.info(inspect(params))
+    PubSub.subscribe Makoto.PubSub, "servers"
+
     user =
       Accounts.get_user_by_session_token(user_token)
-      |> Accounts.preload([:discord_info])
-
+      |> Accounts.preload([:discord_info, :roles])
     refs =
       Accounts.get_all_referrals(user.id)
 
-    online =
-      MakotoMinecraft.Minecraft.get_online(user.username) |> Enum.reduce(0, fn (x, y) -> x.online + y end)
+    {love_server, online} =
+      Minecraft.get_online(user.username)
+      |> Enum.group_by(fn x -> x.server end)
+      |> Enum.map(fn x ->
+         {server, info} = x
+         {server, info |> Enum.reduce(0, fn (x, acc) -> x.online + acc end)}
+      end)
+      |> Enum.max_by(fn x ->
+        {server, online} = x
 
+        online
+      end, fn -> {"Нет", 0} end)
 
-    status_name =
-      Application.get_env(:makoto, :status_name)
-      |> Map.get(user.role)
+    servers =
+      Minecraft.get_servers_info_from_cache()
 
-    if online != 0 do
-      love_server =
-        "SkyTech"
-        {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"]) |> assign(:online, online) |> assign(:love_server, love_server) |> assign(:status_name, status_name) |> assign(:type_of_settings, params["type_of_settings"])}
-      else
-      love_server =
-        "Нет"
-        {:ok, socket |> assign(:user, user) |> assign(:refs, refs) |> assign(:host, get_connect_params(socket)["host"]) |> assign(:online, online) |> assign(:love_server, love_server) |> assign(:status_name, status_name) |> assign(:type_of_settings, params["type_of_settings"])}
-
-      end
+      {:ok, socket
+      |> assign(:user, user)
+      |> assign(:refs, refs)
+      |> assign(:host, get_connect_params(socket)["host"])
+      |> assign(:online, online)
+      |> assign(:love_server, love_server)
+      |> assign(:status_name, status_name(user.roles))
+      |> assign(:type_of_settings, params["type_of_settings"])
+      |> assign(:servers, servers)}
   end
 
   def mount(params, session, socket) do
     {:ok, socket |> assign(:user, nil)}
+  end
+
+  def handle_info(servers, socket) do
+    {:noreply, socket |> assign(:servers, servers)}
   end
 
   @impl true
@@ -77,6 +90,20 @@ defmodule MakotoWeb.UserCabinetLive.Index do
         socket
         |> put_flash(:error, "Действие ссылки закончилось")
         |> redirect(to: Routes.user_settings_path(socket, :edit))
+    end
+  end
+
+  defp status_name(roles) do
+    status_names =
+      Application.get_env(:makoto, :status_name)
+
+    cond do
+      roles == [] ->
+        status_names
+        |> Map.get("user")
+      true ->
+        status_names
+        |> Map.get(List.last(roles).name) || List.last(roles).name
     end
   end
 end

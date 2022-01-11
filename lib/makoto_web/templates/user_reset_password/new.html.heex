@@ -1,17 +1,34 @@
-<h1>Forgot your password?</h1>
+<div class="container">
+  <div class="row mt-70">
+    <div class="col-8 mx-auto">
+      <h4 class="page_title">Восстановление пароля</h4>
+      <div class="om-block">
+        <div class="container">
+          <div class="row">
+            <div class="col-6 py-3">
+              <.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}>
+                <div class="input-group m-0">
+                <label class="col-form-label w-100">Почта</label>
+                 <%= email_input f, :email, required: true, class: "form-control" %>
+                 </div>
+                 
+                <%= submit "Востоновить пароль", class: "btn btn-om btn-reg mt-3 float-right"%>
+              </.form>
+            </div>
 
-<.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}>
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
+            <div class="col-6 d-flex vr-l">
 
-  <div>
-    <%= submit "Send instructions to reset password" %>
-  </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
-
-
+              <div class="align-self-center">
+                <h5>Восстановление пароля</h5>
+                <span>На почту придет ссылка для восстановления пароля</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      
+      
+   

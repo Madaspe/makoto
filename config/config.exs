@@ -35,15 +35,15 @@ config :makoto,
   },
 
   status_name: %{
-    user: "Игрок",
-    admin: "Админ",
-    mod: "Модератор",
-    developer: "Разработчик",
-    owner: "Владелец",
-    vip: "VIP",
-    premium: "Premium",
-    optimum: "Oprimum",
-    ultimate: "Ultimate"
+    "user" => "Игрок",
+    "admin" => "Админ",
+    "mod" => "Модератор",
+    "developer" => "Разработчик",
+    "owner" => "Владелец",
+    "vip" => "VIP",
+    "premium" => "Premium",
+    "optimum" => "Oprimum",
+    "ultimate" => "Ultimate"
 
   }
 

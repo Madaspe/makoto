@@ -16,7 +16,7 @@
         Внешний вид</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href={Routes.user_cabinet_index_path(@socket, :buy_status, @user.username)}>
+        <a class="nav-link" href={Routes.user_cabinet_index_path(@socket, :buy_status, @user.username)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders mr-1" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"></path>
         </svg>
@@ -80,7 +80,7 @@
       <div class="card bg-icon-like">
         <div class="card-body">
           <h5 class="card-title">Голосования в рейтингах</h5>
-          <p class="card-text">0</p>
+          <p class="card-text"><%= @user.count_voting %></p>
         </div>
       </div>
     </div>
@@ -182,6 +182,7 @@
     user: @user,
     username: @user.username,
     live_action: @live_action,
+    servers: @servers,
     return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>       
 <% end %>
 
@@ -286,32 +287,54 @@
 
     </div>
     <% end %>
-    <div class="col-12">
+  <%= for server_info <- @servers do %>
+  <%
+  {:ok, info} = server_info.info
+  %>
+
+  <%= if info != nil and info.info != nil do %>
+
+      <div class="col-12">
       <div class="om-block monitoring-s">
         <div class="monitoring-s_list">
           
           <a class="s_item">
             <div class="container">
               <div class="s_name">
-                <h1>SkyTech <span>1.7.10</span></h1>
-                <p>Погрузись в мир, совмещающий ванильный скайблок и высокие технологии</p>
+                <h1><%= server_info.server.server_name %></h1>
+                <p><%= server_info.server.description %></p>
 
               </div>
               <div class="s_line">
-                <span></span>
+                <span><%= info.info["players"]["online"] %>/<%= info.info["players"]["max"] %></span>
               </div>
             </div>
           </a>
-          
-
-
-
-
-
-
         </div>
       </div>
     </div>
+  <% else %>
+<div class="col-12">
+      <div class="om-block monitoring-s" style="background-color: #a0a0a0; !important">
+        <div class="monitoring-s_list">
+          
+          <a class="s_item">
+            <div class="container">
+              <div class="s_name">
+                <h1><%= server_info.server.server_name %></h1>
+                <p><%= server_info.server.description %></p>
+
+              </div>
+              <div class="s_line">
+                <span>Offline</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
     <%= if @user != nil do %>
 
     <div class="d-flex align-items-stretch pb-2">

@@ -36,7 +36,7 @@ if config_env() == :prod do
     url: database_url,
     pool_size: 10
 
-  config :makoto, MakotoMinecraft.Repo,
+  config :makoto, MakotoMinecraft.MinecraftRepo,
     url: minecraft_database_url,
     pool_size: 10
 
@@ -135,7 +135,8 @@ if config_env() == :prod do
                     environment variable XENFORO_TOKEN is missing.
                     """
   config :makoto,
-    xenforo_token: xenforo_token
+    xenforo_token: xenforo_token,
+    mctop_voting_token: "853e013202fb06e5ee4cfb608efd6658"
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix

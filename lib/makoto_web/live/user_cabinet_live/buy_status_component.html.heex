@@ -1,4 +1,7 @@
 <div>
+  <p class="hidden d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
+
+  <p class="hidden d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
 <%= if @view_status_current == "vip" do%>
     <%= live_component MakotoWeb.UserCabinetLive.VipStatusComponent,
     id: @user.id,
@@ -6,6 +9,8 @@
     username: @user.username,
     live_action: @live_action,
     father_component: @myself,
+    time: @time,
+    servers: @servers,
     return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>      
 <% end %>
 
@@ -38,4 +43,34 @@
     father_component: @myself,
     return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>      
 <% end %>
+
+<div class="col-12 mt-3">
+  <div class="status_list-status_buy p-3">
+    <h5 class="status_list-status_buy-title py-1">Покупка статуса</h5>
+    <hr class="mt-0">
+    <form action="" phx-submit="buy" id="buystatus" phx-target={@myself} phx-change="validate">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Выбери сервер</label>
+          <%= select :servers, :server, @servers_to_buy, class: "form-control mt-1" %>
+          </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Выбери 
+            продолжительность</label>
+            <%= select :times, :time, @time, class: "form-control mt-1" %>
+          </div>
+        </div>
+        <div class="col-7 mx-auto mt-4">
+          <p class="text-center" id="outtext">Купить статус <%= Macro.camelize @view_status_current %>?</p>     
+            <input type="hidden" name="status" value={@view_status_current}>
+            <button class="btn btn-om btn-reg mx-auto" type="submit" id="buystatusb" style="display: block;">Купить за <%= @price %> Рубинов</button>
+
+          </div>
+        </div>
+      </form> 
+    </div>
+  </div>
 </div>

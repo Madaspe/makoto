@@ -1,26 +1,51 @@
-<h1>Reset password</h1>
 
-<.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="container">
+  <div class="row mt-70">
+    <div class="col-8 mx-auto">
+      <h4 class="page_title">Сброс пароля</h4>
+      <div class="om-block">
+        <div class="container">
+          <div class="row">
+            <div class="col-6 py-3">
+              <.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)}>
+                <div class="input-group m-0">
+                <label class="col-form-label w-100">Новый пароль</label>
+                <%= password_input f,
+                :password,
+                  required: true,
+                  class: "form-control"
+                %>
+                <div class="w-100" id="check-n"></div>
+                <%= if message = f.errors[:password] do %>
+                    <small class="form-text text-danger"><%= translate_error(message) %></small>
+                  <% end %>
+                </div>
+                <div class="form-group m-0">
+                  <label class="col-form-label">Новый пароль еще раз</label>
+                  <%= password_input f,
+                  :password_confirmation,
+                    required: true,
+                    class: "form-control",
+                    autocomplete: "current-password" %>
+                  <div class="w-100" id="check-n">
+                  </div>
+                  <%= if message = f.errors[:password_confirmation] do %>
+                    <small class="form-text text-danger"><%= translate_error(message) %></small>
+                  <% end %>
+                </div>
+                <%= submit "Сбросить пароль", class: "btn btn-om btn-reg mt-3 float-right"%>
+              </.form>
+            </div>
+
+            <div class="col-6 d-flex vr-l">
+
+              <div class="align-self-center">
+                <h5>Форма для сброса пароля!</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <%= label f, :password, "New password" %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <%= label f, :password_confirmation, "Confirm new password" %>
-  <%= password_input f, :password_confirmation, required: true %>
-  <%= error_tag f, :password_confirmation %>
-
-  <div>
-    <%= submit "Reset password" %>
   </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+</div>

@@ -18,7 +18,9 @@ defmodule Makoto.Application do
       MakotoWeb.Endpoint,
       # Start a worker by calling: Makoto.Worker.start_link(arg)
       # {Makoto.Worker, arg}
-      MakotoMinecraft.MinecraftRepo
+      MakotoMinecraft.MinecraftRepo,
+      {Cachex, name: :minecraft_server_cache},
+      Makoto.Monitoring
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

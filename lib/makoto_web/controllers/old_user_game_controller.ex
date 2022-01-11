@@ -1,9 +1,9 @@
-defmodule MakotoWeb.UserGameController do
+defmodule MakotoWeb.OldUserGameController do
   use MakotoWeb, :controller
 
   require Logger
   def index(conn, _params = %{"username" => username}) do
-    case Makoto.Accounts.get_user_by_username(username) |> Makoto.Repo.preload([:discord_info, :roles]) do
+    case Makoto.Accounts.get_user_by_username(username) |> Makoto.Repo.preload([:discord_info]) do
       nil ->
         text(
             conn
@@ -26,12 +26,9 @@ defmodule MakotoWeb.UserGameController do
 
   defp remove_unnecessary_fields(user) do
     discord_info = user.discord_info || %{discord_id: nil}
-    roles =
-      user.roles
-      |> Enum.map(fn role -> Map.take(role, [:name, :server, :privilege_disable_time]) end)
+
     user
-    |> Map.take([:username, :rubins, :avatar_url, :count_voting, :prefix])
-    |> Map.put(:roles, roles)
+    |> Map.take([:username, :rubins, :avatar_url, :role, :privilege_disable_time])
     |> Map.merge(Map.take(discord_info, [:discord_id]))
   end
 

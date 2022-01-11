@@ -9,7 +9,6 @@ defmodule Makoto.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     field :has_2fa, :boolean, default: false
-    field :role, Ecto.Enum, values: [user: 1, admin: 2, mod: 3, developer: 4, owner: 5, vip: 6, premium: 7, optimum: 8, ultimate: 9]
     field :rubins, :float, default: 0.0
     field :otp_last, :integer, default: 0
     field :otp_secret, :string
@@ -21,11 +20,13 @@ defmodule Makoto.Accounts.User do
     field :inviter_id, :integer
     field :rubins_for_inviter, :float, default: 0.0
     field :referrals_procent, :float
-    field :privilege_disable_time, :naive_datetime, default: nil
     has_one :discord_info, Makoto.Discord.User
     many_to_many :promocodes, Makoto.Promocodes.Promocode, join_through: "users_promocodes", on_replace: :delete
 
+    has_many :roles, Makoto.Accounts.Role
     field :prefix, :string
+
+    field :count_voting, :integer, default: 0
 
     timestamps()
   end
@@ -74,7 +75,7 @@ defmodule Makoto.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :role, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter, :prefix, :privilege_disable_time])
+    |> cast(attrs, [:username, :email, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter, :prefix, :count_voting])
     |> validate_required([:username, :email, :rubins])
   end
 

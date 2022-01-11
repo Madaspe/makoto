@@ -31,6 +31,13 @@ defmodule MakotoWeb.UploadViewController do
     end
   end
 
+  def for_mc_top(conn, params) do
+    file = File.read!("priv/static/uploads/xui.txt")
+
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, file)
+  end
 
   defp check_file_name_for_skin(filename) do
     filename

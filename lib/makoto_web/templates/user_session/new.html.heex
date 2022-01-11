@@ -28,8 +28,12 @@
                     autocomplete: "current-password" %>
                   <div class="w-100" id="check-n">
                   </div>
+                  <small class="form-text text-muted"><a href={Routes.user_reset_password_path(@conn, :new)}>Забыл пароль</a></small>
                 </div>
+              <div class="d-flex">
+                <small class="form-text text-muted mr-auto text-left">Запомнить пароль                 <%= checkbox f, :remember_me %></small>
                 <%= submit "Авторизоваться", class: "btn btn-om btn-reg mt-3 float-right"%>
+              </div>
               </.form>
             </div>
 

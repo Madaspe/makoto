@@ -84,6 +84,7 @@ end
       {:error, %Ecto.Changeset{}}
 
   """
+
   def register_user(attrs, %{"promocode" => name_promocode} = params) do
     promocode =
       Makoto.Promocodes.get_promocode name_promocode

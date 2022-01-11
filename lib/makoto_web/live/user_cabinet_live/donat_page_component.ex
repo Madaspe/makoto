@@ -5,9 +5,4 @@ defmodule MakotoWeb.UserCabinetLive.DonatPageComponent do
   alias Makoto.Accounts.User
 
   require Logger
-
-  @impl true
-  def update(assigns, socket) do
-    {:ok, socket |> assign(assigns)}
-  end
 end
