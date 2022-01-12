@@ -57,7 +57,10 @@ defmodule Makoto.MixProject do
       {:ueberauth_discord, "~> 0.6"},
       {:ex_image_info, "~> 0.2.4"},
       {:rcon, "~> 0.4.0"},
-      {:myxql, ">= 0.0.0"}
+      {:myxql, ">= 0.0.0"},
+      {:cachex, "~> 3.4"},
+      {:socket, "~> 0.3"},
+      {:mcping, "~> 0.1.0"}
     ]
   end
 

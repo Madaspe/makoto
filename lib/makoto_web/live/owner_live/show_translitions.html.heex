@@ -1,0 +1,20 @@
+<h1>Log</h1>
+<table class="table">
+    <thead>
+      <tr>
+      <th>ID</th>
+        <th>Name</th>
+        <th>Count</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="users">
+      <%= for log <- @logs do %>
+        <tr>
+        <td><%= log.id %></td>
+          <td><%= log.name %></td>
+          <td><%= log.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

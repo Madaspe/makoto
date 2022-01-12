@@ -143,8 +143,13 @@ defmodule MakotoWeb.UserAuth do
   @doc """
   User for routes that requre the user role
   """
-  def check_role_user(%Plug.Conn{assigns: %{current_user: %{role: role}}} = conn, accepted_roles) do
-    if Enum.member?(accepted_roles, role) do
+  def check_role_user(%Plug.Conn{assigns: %{current_user: user}} = conn, accepted_roles) do
+    check_roles =
+      Makoto.Repo.preload(user, [:roles])
+      |> Map.get(:roles)
+      |> Enum.map(fn role -> role.name in accepted_roles end)
+
+    if true in check_roles do
       conn
     else
       must_log_message(conn, "You dont have role to view this page")

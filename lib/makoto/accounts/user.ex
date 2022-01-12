@@ -91,7 +91,8 @@ defmodule Makoto.Accounts.User do
   defp validate_username(changeset) do
     changeset
     |> validate_required([:username])
-    |> validate_length(:username, max: 50, min: 5)
+    |> validate_length(:username, max: 16, min: 4)
+    |> validate_format(:username, ~r/^(([1-9])|([A-z])|(_))+$/, message: "В никнейме присутствуют недопустимые символы")
     |> unsafe_validate_unique(:username, Makoto.Repo)
     |> unique_constraint(:username)
   end

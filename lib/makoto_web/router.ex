@@ -18,7 +18,7 @@ defmodule MakotoWeb.Router do
   end
 
   pipeline :owner do
-    plug :check_role_user, [:owner]
+    plug :check_role_user, ["owner"]
   end
 
   get "/mcrate_9f334e48a30d197356cc849be0049aad.txt", MakotoWeb.UploadViewController, :for_mc_top
@@ -33,6 +33,8 @@ defmodule MakotoWeb.Router do
     get "/pay/error", PageController, :index
     post "/", PostController, :index
     get "/", PageController, :index
+
+    get "/c/:name", CountTranslitionsController, :index
 
 
     get "/ref/:id", ReferralContorller, :index
@@ -129,6 +131,8 @@ defmodule MakotoWeb.Router do
     live "/users/:id/show/edit", OwnerLive.Show, :edit
 
     live "/promocode/:id", OwnerLive.ShowPromo, :show
+
+    live "/translitions", OwnerLive.ShowTranslitions, :index
   end
 
   scope "/user/:username", MakotoWeb do
