@@ -6,13 +6,11 @@ defmodule MakotoWeb.UserRegistrationController do
   alias MakotoWeb.UserAuth
   require Logger
   def new(conn, _params) do
-    Logger.info(inspect(get_session(conn)))
     changeset = Accounts.change_user_registration(%User{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do
-    Logger.info inspect(user_params)
     case Accounts.register_user(user_params, Map.merge(get_session(conn), user_params)) do
       {:ok, user} ->
         MakotoXenForo.XenForo.create_forum_user(user)

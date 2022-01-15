@@ -59,7 +59,10 @@ defmodule MakotoWeb.UserCabinetLive.Index do
   end
 
   def mount(params, session, socket) do
-    {:ok, socket |> assign(:user, nil)}
+    servers =
+      Minecraft.get_servers_info_from_cache()
+      
+    {:ok, socket |> assign(:user, nil) |> assign(:servers, servers)}
   end
 
   def handle_info(servers, socket) do

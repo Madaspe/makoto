@@ -76,7 +76,6 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
                 socket.assigns.user
                 |> Accounts.update_user %{prefix: clean_prefix}
 
-              Logger.info inspect(new_user)
               {:noreply, socket |> put_flash(:error, "Префикс сменен")
               |> assign(:user, new_user)
               |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}

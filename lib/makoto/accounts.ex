@@ -95,7 +95,6 @@ end
           |> User.registration_changeset(attrs)
           |> Repo.insert()
         promocode ->
-          Logger.info inspect(promocode)
           user_info =
             %User{}
             |> User.registration_changeset(Map.merge(attrs, %{"inviter_id" => promocode.owner_id}))

@@ -11,6 +11,7 @@ defmodule MakotoMinecraft.Minecraft do
 
   def get_online(username), do: Minecraft.Info |> where(player: ^username) |> MinecraftRepo.all()
   def get_servers(), do: Minecraft.ServerInfo |> Repo.all()
+  def get_server_by_name(name), do: from(info in  Minecraft.ServerInfo, where: fragment("lower(?)", info.server_name) == ^name) |> Repo.one()
 
   def get_servers_info(), do: get_servers() |> Enum.map(fn server -> get_server_info(server) end)
   def get_server_info(server) do
