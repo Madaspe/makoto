@@ -18,18 +18,30 @@ defmodule MakotoWeb.UserCabinetLive.Index do
     refs =
       Accounts.get_all_referrals(user.id)
 
-    {love_server, online} =
-      Minecraft.get_online(user.username)
+    servers_with_online =
+      MakotoMinecraft.Minecraft.get_online(user.username)
       |> Enum.group_by(fn x -> x.server end)
       |> Enum.map(fn x ->
-         {server, info} = x
-         {server, info |> Enum.reduce(0, fn (x, acc) -> x.online + acc end)}
+        {server, info} = x
+        {server, info |> Enum.reduce(0, fn (x, acc) -> x.online + acc end)}
       end)
+
+    {love_server, _} =
+      servers_with_online
       |> Enum.max_by(fn x ->
         {server, online} = x
-
         online
       end, fn -> {"Нет", 0} end)
+
+    online =
+      servers_with_online
+      |> Enum.map(fn x ->
+        {_, server_online} = x
+
+        server_online
+      end)
+      |> Enum.sum()
+
 
     servers =
       Minecraft.get_servers_info_from_cache()
@@ -42,7 +54,8 @@ defmodule MakotoWeb.UserCabinetLive.Index do
       |> assign(:love_server, love_server)
       |> assign(:status_name, status_name(user.roles))
       |> assign(:type_of_settings, params["type_of_settings"])
-      |> assign(:servers, servers)}
+      |> assign(:servers, servers)
+      |> assign(:params, params)}
   end
 
   def mount(params, session, socket) do
