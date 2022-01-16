@@ -52,10 +52,10 @@
     </div>
     <%= if @live_action in [:shop] do %>
     <h1 class="py-1">Магазин предметов</h1>
+    <h4 class="py-1"><%= @server_name.server_name %></h4>
     <hr class="mt-0">
 
     <h6 class="py-1">Выбор сервера</h6>
-    <hr class="mt-0">
 
     <div class="d-flex">
         <%= for server <- @servers do %>
@@ -132,10 +132,4 @@
         <% end %>
         <% end %>
     </div>
-    
-    <script>
-        $('#myModal').on('shown.bs.modal', function () {
-            $('#myInput').trigger('focus')
-        })
-    </script>
 </div>

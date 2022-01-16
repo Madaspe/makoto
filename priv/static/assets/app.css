@@ -3081,12 +3081,7 @@ input:checked+.slider:before {
   width: 151px;
   margin-right: 14px;
   height: 77px;
-  box-shadow: 0 7px 10px rgba(155, 167, 188, .55);
-  border-top: 3px solid #26ac4e;
-  border-right: 3px solid #26ac4e;
-  border-radius: 3px 0 3px 0;
   color: #2c2c2c;
-  font-family: PF Din Text Comp Pro;
   font-size: 16px;
   font-weight: 700;
   line-height: 18px;
@@ -3287,6 +3282,20 @@ body{
 		Картинощки на фоне, по возможности можно даже сделать анимации.
 	*/
 	background-image: url(images/search.png);
+	background-position: center right+10px;
+	background-repeat: no-repeat;
+}
+
+.dark-theme .dev1-shop-interface input{
+	height: 40px;
+	padding: 10px 20px;
+	border-radius: 20px;
+	border: 1px solid #3a3a3a;
+	width: calc(100% - 245px);
+	/*
+		Картинощки на фоне, по возможности можно даже сделать анимации.
+	*/
+	background-color: rgb(78 78 78);
 	background-position: center right+10px;
 	background-repeat: no-repeat;
 }
@@ -3562,28 +3571,58 @@ body{
 	grid-template-columns: repeat(4, 1fr);
 	width: 100%;
 }
-.dev1-shop-cards > div{
+.dark-theme .dev1-shop-cards > div {
+  border-radius: 10%;
+  border-radius: 5px; 
 	position: relative;
 	display: flex;
 	justify-content: center;
 	width: 100% !important;
 	margin: 0px !important;
-	background-color: rgb(93, 220, 141, .5);
+	background-color: rgb(78 78 78);
 	min-height: 237px;
+  border-radius: 10%;
 }
+
+.dev1-shop-cards > div {
+  border-radius: 10%;
+  border-radius: 5px; 
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 100% !important;
+	margin: 0px !important;
+	background-color: #f1f1f1;
+	min-height: 237px;
+  border-radius: 10%;
+}
+
 .dev1-shop-cards > div p{
 	font-weight: bold;
 	text-align: center;
 	font-size: 12px;
 	margin: 8px 4px;
 }
-.dev1-card-image{
+.dark-theme .dev1-card-image{
+  background: #525252 no-repeat center; 
 	width: 100px;
 	height: 100px;
-	background: #FFF no-repeat center;
 	background-size: 64px;
 	border-radius: 50%;
-	box-shadow: 0px 0px 10px #bbb;
+
+	position: absolute;
+	top: 0px;
+	margin-top: 50px;
+	image-rendering: crisp-edges;
+	image-rendering: pixelated;
+}
+.dev1-card-image{
+  background: #dfdede no-repeat center; 
+	width: 100px;
+	height: 100px;
+	background-size: 64px;
+	border-radius: 50%;
+
 	position: absolute;
 	top: 0px;
 	margin-top: 50px;
@@ -3611,6 +3650,7 @@ body{
 	box-shadow: 0 3px 3px #bbb;
 }
 .dev1-shop-cards button, .dev1-shop-cards-button{
+  border-radius: 5px;
 	position: absolute;
 	bottom: 0px;
 	font-family: Arial !important;

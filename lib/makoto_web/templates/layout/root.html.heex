@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" class=""><head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/fav/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/fav/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/fav/favicon-16x16.png">
@@ -11,10 +10,8 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"> 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&family=Rubik:wght@400;500;600&family=Ubuntu+Mono&display=swap" rel="stylesheet">
@@ -407,5 +404,10 @@ trackLinks:true,
 accurateTrackBounce:true 
 }); 
 </script> 
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/87126071" style="position:absolute; left:-9999px;" alt="" /></div></noscript> 
 </body></html>
