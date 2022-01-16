@@ -116,6 +116,9 @@ defmodule MakotoWeb.Router do
     live "/page/donate", UserCabinetLive.Index, :donat_page
     live "/page/rules", UserCabinetLive.Index, :rules_page
 
+    live "/shop/:server/:page", UserCabinetLive.Index, :shop
+    live "/shop_basket", UserCabinetLive.Index, :shop_basket
+
   end
 
   scope "/owner", MakotoWeb do
@@ -165,6 +168,7 @@ defmodule MakotoWeb.Router do
       live "/coins", UserCabinetLive.Index, :rubins_to_coins
     end
   end
+
   scope "/api", MakotoWeb do
     pipe_through :api
     post "/rating/:rating", MinecraftRatingsController, :index

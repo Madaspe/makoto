@@ -40,7 +40,8 @@ defmodule MakotoMinecraft.Minecraft do
 
   def get_servers_info_from_cache() do
     get_servers() |> Enum.map(fn server -> %{server: server, info: get_server_from_cache(server.server_name)} end)
-   end
+  end
+
 end
 
 defmodule MinecraftPing do

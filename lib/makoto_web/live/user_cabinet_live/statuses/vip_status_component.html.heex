@@ -1,26 +1,73 @@
 <div class="container py-2">
- <h5 class="py-1">Управление статусами</h5>
-   <hr class="mt-0">
-    <div class="row no-gutters status_list row-eq-height">
+  <h5 class="py-1">Управление статусами</h5>
+  <hr class="mt-0">
+  <div class="row no-gutters status_list row-eq-height">
     <div class="col-3 pr-1">
-      <a style="text-decoration: none; important!" class="status_list-status b vip py-3 h-100 d-flex align-items-start flex-column active" data-price="[99, 169, 249, 990]" data-val="{&quot;id&quot;:&quot;2&quot;, &quot;name&quot;:&quot;VIP&quot;}"> 
-       <div class="status_list-status_img mx-auto py-3"><img src="/img/st/vip.svg?2" alt="">
-         </div>  <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;"> 
-            <li>Установка плаща</li> 
-               <li>Сохранение опыта</li>
-                   <li>Сохранение инвентаря</li>
-                     </ul><div class="text-center w-100 mt-auto">
-                       <hr>
-                         <span data-toggle="tooltip" data-placement="top" title="" data-original-title="99 Рубинов" class="status_list-status_price">99 <i class="icon-ruby"></i>
-                         </span>
-                         </div>
-                           </a>
-                           </div>
-                           <div class="col-3 px-1">
-                             <a style="text-decoration: none; important!" phx-click="premium" phx-target={@father_component} class="status_list-status b premium py-3 h-100 d-flex align-items-start flex-column" data-price="[299, 539, 799, 2990]" data-val="{&quot;id&quot;:&quot;3&quot;, &quot;name&quot;:&quot;Premium&quot;}">  <div class="status_list-status_img mx-auto py-3"><img src="/img/st/premium.svg?2" alt="">  </div>      <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">    <li>HD скин</li>    <li>HD плащ</li>    <li>Заход на переполненный сервер</li>  </ul><div class="text-center w-100 mt-auto">  <hr>  <span data-toggle="tooltip" data-placement="top" title="" data-original-title="299 Рубинов" class="status_list-status_price">299 <i class="icon-ruby"></i></span></div>  </a></div><div class="col-3 px-1">  <a style="text-decoration: none; important!" phx-click="optimum" phx-target={@father_component} class="status_list-status b optimum py-3 h-100 d-flex align-items-start flex-column" data-price="[699, 1199, 1799, 6990]" data-val="{&quot;id&quot;:&quot;4&quot;, &quot;name&quot;:&quot;Optimum&quot;}">  <div class="status_list-status_img mx-auto py-3"><img src="/img/st/optimum.svg?2" alt="">  </div>      <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">    <li>Телепорт на приват</li>    <li>HD плащ</li>    <li>Заход на переполненный сервер</li>  </ul><div class="text-center w-100 mt-auto">  <hr>  <span data-toggle="tooltip" data-placement="top" title="" data-original-title="699 Рубинов" class="status_list-status_price">699 <i class="icon-ruby"></i></span></div>  </a></div><div class="col-3 pl-1">  <a style="text-decoration: none; important!" phx-click="ultimate" phx-target={@father_component} class="status_list-status b ultimate py-3 h-100 d-flex align-items-start flex-column" data-price="[999, 1699, 2499, 9990]" data-val="{&quot;id&quot;:&quot;5&quot;, &quot;name&quot;:&quot;Ultimate&quot;}">  <div class="status_list-status_img mx-auto py-3"><img src="/img/st/ultimate.svg?2" alt="">  </div>      <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">    <li>Клевый</li>    <li>Ваще агонь</li>    <li>Дает бонусы</li>     </ul><div class="text-center w-100 mt-auto">  <hr>  <span data-toggle="tooltip" data-placement="top" title="" data-original-title="999 Рубинов" class="status_list-status_price">999 <i class="icon-ruby"></i>
-                       </span>
-                       </div>  
-                       </a>
-                       </div>
-                       </div>
-                       </div>
+      <a style="text-decoration: none; important!"
+        class="status_list-status b vip py-3 h-100 d-flex align-items-start flex-column active"
+        data-price="[99, 169, 249, 990]" data-val="{&quot;id&quot;:&quot;2&quot;, &quot;name&quot;:&quot;VIP&quot;}">
+        <div class="status_list-status_img mx-auto py-3"><img src="/img/st/vip.svg?2" alt="">
+        </div>
+        <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">
+          <li>Установка плаща</li>
+          <li>Сохранение опыта</li>
+          <li>Сохранение инвентаря</li>
+        </ul>
+        <div class="text-center w-100 mt-auto">
+          <hr>
+          <span data-toggle="tooltip" data-placement="top" title="" data-original-title="99 Рубинов"
+            class="status_list-status_price">99 <i class="icon-ruby"></i>
+          </span>
+        </div>
+      </a>
+    </div>
+    <div class="col-3 px-1">
+      <a style="text-decoration: none; important!" phx-click="premium" phx-target={@father_component}
+        class="status_list-status b premium py-3 h-100 d-flex align-items-start flex-column"
+        data-price="[299, 539, 799, 2990]"
+        data-val="{&quot;id&quot;:&quot;3&quot;, &quot;name&quot;:&quot;Premium&quot;}">
+        <div class="status_list-status_img mx-auto py-3"><img src="/img/st/premium.svg?2" alt=""> </div>
+        <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">
+          <li>HD скин</li>
+          <li>HD плащ</li>
+          <li>Заход на переполненный сервер</li>
+        </ul>
+        <div class="text-center w-100 mt-auto">
+          <hr> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="299 Рубинов"
+            class="status_list-status_price">299 <i class="icon-ruby"></i></span></div>
+      </a></div>
+    <div class="col-3 px-1"> <a style="text-decoration: none; important!" phx-click="optimum"
+        phx-target={@father_component}
+        class="status_list-status b optimum py-3 h-100 d-flex align-items-start flex-column"
+        data-price="[699, 1199, 1799, 6990]"
+        data-val="{&quot;id&quot;:&quot;4&quot;, &quot;name&quot;:&quot;Optimum&quot;}">
+        <div class="status_list-status_img mx-auto py-3"><img src="/img/st/optimum.svg?2" alt=""> </div>
+        <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">
+          <li>Телепорт на приват</li>
+          <li>HD плащ</li>
+          <li>Заход на переполненный сервер</li>
+        </ul>
+        <div class="text-center w-100 mt-auto">
+          <hr> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="699 Рубинов"
+            class="status_list-status_price">699 <i class="icon-ruby"></i></span></div>
+      </a></div>
+    <div class="col-3 pl-1"> <a style="text-decoration: none; important!" phx-click="ultimate"
+        phx-target={@father_component}
+        class="status_list-status b ultimate py-3 h-100 d-flex align-items-start flex-column"
+        data-price="[999, 1699, 2499, 9990]"
+        data-val="{&quot;id&quot;:&quot;5&quot;, &quot;name&quot;:&quot;Ultimate&quot;}">
+        <div class="status_list-status_img mx-auto py-3"><img src="/img/st/ultimate.svg?2" alt=""> </div>
+        <ul class="px-4 mt-2 status_list-status_d" style="font-size: 12px;">
+          <li>Клевый</li>
+          <li>Ваще агонь</li>
+          <li>Дает бонусы</li>
+        </ul>
+        <div class="text-center w-100 mt-auto">
+          <hr> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="999 Рубинов"
+            class="status_list-status_price">999 <i class="icon-ruby"></i>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
