@@ -3234,9 +3234,6 @@ body{
 	width: 320px !important;
 	height: 48px !important;
 }
-.dev1-shop-secondary-nav button, .dev1-shop-modal-button-square, .dev1-shop-cards button, .dev1-shop-cards-button, .dev1-btn-teal{
-	background-color: #27B3B2;
-}
 .dev1-admin-button{
 	background-color: #E13F3F !important;
 }
@@ -3653,10 +3650,8 @@ body{
   border-radius: 5px;
 	position: absolute;
 	bottom: 0px;
-	font-family: Arial !important;
-	border-radius: unset !important;
 	width: calc(100% - 24px);
-	margin: 0px 0px 33px 0px!important;
+	margin: 0px 0px 20px 0px!important;
 	font-size: 16px;
 	transition: 0.3s;
 	display: flex;
@@ -3664,11 +3659,17 @@ body{
 	gap: 4px;
 	align-items: center;
 }
+
+.dev1-shop-cards .dev1-shop-cards-price{
+	position: absolute;
+	bottom: 60px;
+}
+
 .dev1-shop-cards button i{
 	transform: scale(90%);
 }
 .dev1-shop-cards button:hover, .dev1-shop-cards-button:hover{
-	background-color: #23D0CF;
+	background-color: var(--success-hover);
 }
 .dev1-shop-cards button:active, .dev1-shop-cards-button:active{
 	transition: 0s;
@@ -3738,7 +3739,6 @@ body{
 }
 .dev1-shop-modal-button-square{
 	display: block;
-	font-family: Arial !important;
 	border-radius: unset !important;
 	width: max-content;
 	height: max-content;
@@ -4197,7 +4197,6 @@ i.dev1-i-emerald{
     z-index: 21;
     filter: hue-rotate(90deg) !important;
     display: block;
-	font-family: Arial !important;
 	border-radius: unset !important;
 	font-size: 21px;
 	transition: 0.3s;
@@ -4222,7 +4221,6 @@ i.dev1-i-emerald{
     z-index: 21;
     filter: hue-rotate(90deg) !important;
     display: block;
-	font-family: Arial !important;
 	border-radius: unset !important;
 	font-size: 19px;
 	transition: 0.3s;
@@ -4246,5 +4244,24 @@ i.dev1-i-emerald{
 }
 
 .server-card-shop:hover{
-  color: black
+  background-color: var(--success-hover) !important;
+  color: #FFF !important;
+  text-decoration: none !important;
+}
+
+.btn-buy {
+  background: var(--success);
+  margin-right: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  padding: 4px 12px;
+  transition: background var(--transition-time);
+  box-shadow: var(--box-shadow-min);
+  border-radius: 10%;
+}
+
+.btn:hover {
+  background-color: var(--success-hover) !important;
+  color: #FFF !important;
 }

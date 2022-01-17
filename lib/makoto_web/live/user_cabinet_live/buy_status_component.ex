@@ -24,7 +24,6 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
   def handle_event("buy", params = %{"servers" => %{"server" => server}, "times" => %{"time" => time}, "status" => status}, socket) do
     price =
       socket.assigns.price
-
     user =
       socket.assigns.user
 

@@ -11,7 +11,6 @@ defmodule Makoto.Accounts do
   require Logger
   ## Database getters
 
-
   @doc """
   Gets a user by email.
 

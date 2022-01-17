@@ -16,14 +16,12 @@ defmodule MakotoXenForo.XenForo do
     case Poison.decode(body) do
         {:ok, body} ->
           case body do
-            %{"success" => false, "message" => message} ->
-              Logger.error(message)
+            %{"success" => false, "message" => _message} ->
               body
             _ ->
               body
           end
-        {:error, error} ->
-          Logger.error(error)
+        {:error, _error} ->
           %{"success" => false, "message" => ""}
     end
   end
@@ -43,14 +41,12 @@ defmodule MakotoXenForo.XenForo do
     case Poison.decode(body) do
         {:ok, body} ->
           case body do
-            %{"success" => false, "message" => message} ->
-              Logger.error(message)
+            %{"success" => false, "message" => _message} ->
               body
             _ ->
               body
           end
-        {:error, error} ->
-          Logger.error(error)
+        {:error, _error} ->
           %{"success" => false, "message" => ""}
     end
   end
@@ -79,14 +75,12 @@ defmodule MakotoXenForo.XenForo do
     case Poison.decode(body) do
         {:ok, body} ->
           case body do
-            %{"success" => false, "message" => message} ->
-              Logger.error(message)
+            %{"success" => false, "message" => _message} ->
               body
             _ ->
               body
           end
-        {:error, error} ->
-          Logger.error(error)
+        {:error, _error} ->
           %{"success" => false, "message" => ""}
     end
   end
@@ -113,14 +107,12 @@ defmodule MakotoXenForo.XenForo do
     case Poison.decode(body) do
         {:ok, body} ->
           case body do
-            %{"success" => false, "message" => message} ->
-              Logger.error(message)
+            %{"success" => false, "message" => _message} ->
               body
             _ ->
               body
           end
-        {:error, error} ->
-          Logger.error(error)
+        {:error, _error} ->
           %{"success" => false, "message" => ""}
     end
   end
@@ -144,14 +136,12 @@ defmodule MakotoXenForo.XenForo do
     case Poison.decode(body) do
         {:ok, body} ->
           case body do
-            %{"success" => false, "message" => message} ->
-              Logger.error(message)
+            %{"success" => false, "message" => _message} ->
               body
             _ ->
               body
           end
-        {:error, error} ->
-          Logger.error(error)
+        {:error, _error} ->
           %{"success" => false, "message" => ""}
     end
   end

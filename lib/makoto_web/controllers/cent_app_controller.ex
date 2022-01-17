@@ -2,11 +2,11 @@ defmodule MakotoWeb.CentAppContorller do
   use MakotoWeb, :controller
 
   require Logger
-  def index(conn, params) do
+  def index(conn, _params) do
     text(conn, "ok")
   end
 
-  def postback(conn, params = %{"SignatureValue" => signature_value, "custom" => custom, "Status" => status}) do
+  def postback(conn, %{"SignatureValue" => _signature_value, "custom" => custom, "Status" => status}) do
     case status do
       "SUCCESS" ->
         custom

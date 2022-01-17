@@ -1,55 +1,8 @@
 <div class="container py-2 text-center">
-  <p class="d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
-
-  <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content d-table">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Покупка предмета "<%= @item.name %>"</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex">
-                        <img class="mt-auto mb-auto mr-4 ml-4" height="128" width="128"
-                            src={"/img/itemsForShop/#{String.replace(@item.mime_type, ":" , "_" )}.png"}>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Назвинае</td>
-                                    <td><%= @item.name %></td>
-                                </tr>
-                                <tr>
-                                    <td>Описание</td>
-                                    <td><%= @item.description %></td>
-                                </tr>
-                                <tr>
-                                    <td>Катигория</td>
-                                    <td><%= @item.category %></td>
-                                </tr>
-                                <tr>
-                                    <td>Цена</td>
-                                    <td><%= @item.price %></td>
-                                </tr>
-                                <tr>
-                                    <td>Количество</td>
-                                    <td><%= @item.count %></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
-                    <button type="button" class="btn btn-primary" phx-click="buy"  data-dismiss="modal"
-                phx-value-id={@item.id} phx-target={@myself}>Купить</button> 
-                </div>
-            </div>
-        </div>
-    </div>
+    <p class="d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
+<%= live_component @socket, MakotoWeb.Components.ModalComponent, id: "modal-one", item: @item do %>
+<% end %>
+    <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
     <%= if @live_action in [:shop] do %>
     <h1 class="py-1">Магазин предметов</h1>
     <h4 class="py-1"><%= @server_name.server_name %></h4>
@@ -59,60 +12,62 @@
 
     <div class="d-flex">
         <%= for server <- @servers do %>
-        <a class="card mr-auto ml-auto monitoring-s h-100 server-card-shop"
-            style="height: 58px !important; background-color: var(--success-hover);"
+        <a class="card mr-auto ml-auto monitoring-s h-100 server-card-shop btn-buy"
+            style="height: 58px !important; background-color: var(--success);"
             href={Routes.user_cabinet_index_path(@socket, :shop, server.server_name, 1)}>
             <span class="m-auto"><%= server.server_name %></span>
         </a>
         <% end %>
     </div>
-       <%= if length(@items) == 0 and @search == "" do %>
-         <hr class="mt-1">
-        <div class="dev1-shop-interface">
-            Магазин этого сервера пуст
-            <div>
+    <%= if length(@items) == 0 and @search == "" do %>
+    <hr class="mt-1">
+    <div class="dev1-shop-interface">
+        Магазин этого сервера пуст
+        <div>
             <a id="sorter" class="mr-1 ml-2" href={Routes.user_cabinet_index_path(@socket, :shop_basket)}> Корзина </a>
-            </div>
         </div>
+    </div>
     <% else %>
 
-                <hr class="mt-1">
-        <div class="dev1-shop-interface">
-            <form phx-change="search" phx-target={@myself}>
-                <input type="text" id="search" name="search" placeholder="Поиск товаров по названию">
-            </form>
-            <a id="sorter" class="mr-1 ml-2" href={Routes.user_cabinet_index_path(@socket, :shop_basket)}> Корзина </a>
-        </div>
-        <div class="d-flex">
-        </div>
+    <hr class="mt-1">
+    <div class="dev1-shop-interface">
+        <form phx-change="search" phx-target={@myself}>
+            <input type="text" id="search" name="search" placeholder="Поиск товаров по названию">
+        </form>
+        <a id="sorter" class="mr-1 ml-2" href={Routes.user_cabinet_index_path(@socket, :shop_basket)}> Корзина </a>
+    </div>
+    <div class="d-flex">
+    </div>
     <% end %>
     <% end %>
 
     <%= if @live_action in [:shop_basket] do %>
-        <%= if length(@items) == 0 and @search == "" do %>
+    <%= if length(@items) == 0 and @search == "" do %>
     <h1 class="py-1">Корзина пуста</h1>
     <% else %>
     <h1 class="py-1">Корзина</h1>
-        <hr class="mt-0">
+    <hr class="mt-0">
     <% end %>
     <% end %>
     <div class="dev1-shop-cards mr-auto mt-2" phx-update="replace">
         <%= if @live_action in [:shop] do %>
         <%= for item <- @items do %>
-
-
         <div class="dev1-classname-item" sort="0" style="">
             <p><%= item.name %></p>
             <div class="dev1-card-image nocrisp" style={"background-image:
                 url(/img/itemsForShop/#{String.replace(item.mime_type, ":" , "_" )}.png);"}>
             </div>
-            <button class="dev1-buy-md btn-reg" data-toggle="modal" data-target="#exampleModal" phx-click="item_info"
-                phx-value-id={item.id} phx-target={@myself}> <%= item.price %> <i class="icon-ruby"></i> |
-                <%= item.count %> шт. <i class="dev1_icon skillcoin"></i></button>
+            <div class="dev1-shop-cards-price d-flex">
+                <%= item.price %>&nbsp;<i class="icon-ruby"></i>
+            </div>
+            <button class="dev1-buy-md btn-buy"  phx-click="open"
+    phx-target="#modal-one" data-toggle="modal" data-target="#exampleModal" phx-click="item_info"
+                phx-value-id={item.id} phx-target={@myself}> Купить |
+                <%= item.count %> шт.</button>
         </div>
         <% end %>
         <% end %>
-        
+
         <%= if @live_action in [:shop_basket] do %>
 
 
@@ -124,11 +79,11 @@
             </div>
             <%= if item.taken_server_name do %>
             <button class="dev1-buy-md btn-reg">Получен</button>
-            <%= else %>
+            <% else %>
             <button class="dev1-buy-md btn-reg">Не получен</button>
             <% end %>
         </div>
-     
+
         <% end %>
         <% end %>
     </div>

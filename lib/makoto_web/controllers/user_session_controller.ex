@@ -3,7 +3,6 @@ defmodule MakotoWeb.UserSessionController do
 
   alias Makoto.Accounts
   alias MakotoWeb.UserAuth
-  alias Ueberauth.Strategy.Helpers
   alias MakotoXenForo.XenForo
   plug Ueberauth
 
@@ -14,7 +13,6 @@ defmodule MakotoWeb.UserSessionController do
     |> put_flash(:error, "Не удалось авторизоватся")
     |> redirect(to: "/")
   end
-
   def callback(%{assigns: %{ueberauth_auth: %Ueberauth.Auth{extra: %Ueberauth.Auth.Extra{raw_info: %{user: user}}}, current_user: ecto_user}} = conn, _params) do
     user =
       user
