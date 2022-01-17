@@ -156,7 +156,7 @@
                 <li class="page-item"><button class="page-link" href="#" phx-click="page" phx-value-page={1} phx-target={@myself}><%= 1 %></button></li>
             <% end %>
             <%= if @max_page > 1 do %>
-                <%= for page <- @page-1..@page+2 do %>
+                <%= for page <- @page-1..@page+1 do %>
                     <%= if page not in [0, 1] and page < @max_page do %>
                         <%= if @page == page do %>
                             <li class="page-item active">
