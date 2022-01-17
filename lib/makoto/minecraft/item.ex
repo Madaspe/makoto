@@ -11,8 +11,16 @@ defmodule MakotoMinecraft.Minecraft.Item do
     field :price, :integer
     field :mime_type, :string
     field :nbt, :string, [source: :NBT]
+    field :place, :integer
+    field :count_buy, :integer, default: 0
     many_to_many :servers, MakotoMinecraft.Minecraft.ServerInfo, join_through: "shop_items_servers"
   end
+
+    @doc false
+    def changeset(item, attrs) do
+      item
+      |> cast(attrs, [:count_buy])
+    end
 end
 
 defmodule MakotoMinecraft.Minecraft.ShopItem do

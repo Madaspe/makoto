@@ -28,4 +28,12 @@ defmodule Makoto.Shop do
   def get_shopping_basket_by_username(username), do: ShopItem |> where(username: ^username) |> MakotoMinecraft.MinecraftRepo.all()
 
   def get_item_by_id(id), do: Item |> where(id: ^id) |> Repo.one!()
+
+  def update_item(item, attrs), do: item |> Item.changeset(attrs) |> Repo.update()
+
+  def increate_count_buy_by_id(id) do
+    get_item_by_id(id)
+    |> Kernel.then(fn item -> update_item(item, %{count_buy: Kernel.+(item.count_buy, 1)}) end)
+  end
+
 end

@@ -94,7 +94,7 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
           lore: "",
           ench: ""
         })
-
+        Shop.increate_count_buy_by_id(item_to_buy.id)
         {:noreply, socket |> clear_flash() |> put_flash(:info, "Вы успешно приобрели предмет '#{item_to_buy.name}'") |> assign(:user, user)}
       true ->
         {:noreply, socket |> clear_flash() |> put_flash(:info, "У вас недостаточно рубинов")}
@@ -122,6 +122,8 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
     |> Makoto.Repo.preload([:shop_items])
     |> Map.get(:shop_items)
     |> Enum.sort_by(fn item -> String.to_integer(item.block_id) end)
+    |> Enum.sort_by(fn item -> item.count_buy end, :desc)
+    |> Enum.sort_by(fn item -> item.place end)
   end
 
   def shopping_basket_items(user) do
