@@ -1,12 +1,11 @@
 <div class="container py-2 text-center">
-    <p class="d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
-
-    <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
-    <div class="modal fade show" phx-update="replace" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<%= if @live_action in [:shop] do %>
+<%= for item <- @items do %>
+  <div class="modal fade" phx-update="replace" id={"modal#{item.id}"} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content d-table">
                 <div class="modal-header">
-                    <h5 class="modal-title" phx-update="replace" id="exampleModalLabel">Покупка предмета "<%= @item.name %>"</h5>
+                    <h5 class="modal-title" phx-update="replace" id="exampleModalLabel">Покупка предмета "<%= item.name %>"</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -14,28 +13,28 @@
                 <div class="modal-body">
                     <div class="d-flex">
                         <img class="mt-auto mb-auto mr-4 ml-4" height="128" width="128"
-                            src={"/img/itemsForShop/#{String.replace(@item.mime_type, ":" , "_" )}.png"}>
+                            src={"/img/itemsForShop/#{String.replace(item.mime_type, ":" , "_" )}.png"}>
                         <table class="table">
                             <tbody>
                                 <tr>
                                     <td>Назвинае</td>
-                                    <td><%= @item.name %></td>
+                                    <td><%= item.name %></td>
                                 </tr>
                                 <tr>
                                     <td>Описание</td>
-                                    <td><%= @item.description %></td>
+                                    <td><%= item.description %></td>
                                 </tr>
                                 <tr>
                                     <td>Катигория</td>
-                                    <td><%= @item.category %></td>
+                                    <td><%= item.category %></td>
                                 </tr>
                                 <tr>
                                     <td>Цена</td>
-                                    <td><%= @item.price %></td>
+                                    <td><%= item.price %></td>
                                 </tr>
                                 <tr>
                                     <td>Количество</td>
-                                    <td><%= @item.count %></td>
+                                    <td><%= item.count %></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -44,11 +43,18 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-buy" data-dismiss="modal">Назад</button>
                     <button type="button" class="btn btn-buy" phx-click="buy" data-dismiss="modal"
-                        phx-value-id={@item.id} phx-target={@myself}>Купить</button>
+                        phx-value-id={item.id} phx-target={@myself}>Купить</button>
                 </div>
             </div>
         </div>
     </div>
+    <% end %>
+    <% end %>
+    
+    <p class="d-none info-alert" id="info-alert"><%= live_flash(@flash, :info) %></p>
+
+    <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
+  
     <%= if @live_action in [:shop] do %>
     <h1 class="py-1">Магазин предметов</h1>
     <h4 class="py-1"><%= @server_name.server_name %></h4>
@@ -98,6 +104,7 @@
     <div class="dev1-shop-cards mr-auto mt-2" phx-update="replace">
         <%= if @live_action in [:shop] do %>
         <%= for item <- @items do %>
+
         <div class="dev1-classname-item" sort="0" style="">
             <p><%= item.name %></p>
             <div class="dev1-card-image nocrisp" style={"background-image:
@@ -106,7 +113,7 @@
             <div class="dev1-shop-cards-price d-flex">
                 <%= item.price %>&nbsp;<i class="icon-ruby"></i>
             </div>
-            <button class="dev1-buy-md btn-buy" data-toggle="modal" data-target="#exampleModal" phx-click="item_info"
+            <button class="dev1-buy-md btn-buy" data-toggle="modal" data-target={"#modal#{item.id}"} phx-click="item_info"
                 phx-value-id={item.id} phx-target={@myself}> Купить |
                 <%= item.count %> шт.</button>
         </div>
@@ -132,7 +139,48 @@
         <% end %>
         <% end %>
     </div>
+    <%= if length(@items) != 0 and @search == "" and @max_page != 1 do %>
+        <nav aria-label="..." class="pagination justify-content-center mt-4">
+        <ul class="pagination">
+            <%= if @page == 1 do %>
+                <li class="page-item disabled">
+                <button class="page-link" href="#" tabindex="-1">Назад</button>
+                </li>
+                <li class="page-item active">
+                <button class="page-link" href="#" ><%= 1 %> <span class="sr-only">(current)</span></button>
+                </li>
+            <% else %>  
+                <li class="page-item">
+                <button class="page-link" href="#" tabindex="-1" phx-click="page" phx-value-page={@page - 1} phx-target={@myself}>Назад</button>
+                </li>
+                <li class="page-item"><button class="page-link" href="#" phx-click="page" phx-value-page={1} phx-target={@myself}><%= 1 %></button></li>
+            <% end %>
+            <%= if @max_page > 1 do %>
+                <%= for page <- @page-1..@page+2 do %>
+                    <%= if page not in [0, 1] and page < @max_page do %>
+                        <%= if @page == page do %>
+                            <li class="page-item active">
+                            <button class="page-link" href="#"><%= page %> <span class="sr-only">(current)</span></button>
+                            </li>   
+                        <% else %>
+                            <li class="page-item"><button class="page-link" href="#" phx-click="page" phx-value-page={page} phx-target={@myself}><%= page %></button></li>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            <% end %>
 
-    <script>
-</script>
+            <%= if @page == @max_page do %>
+                        <li class="page-item active">
+                        <button class="page-link" href="#"><%= @max_page %> <span class="sr-only">(current)</span></button>
+                        </li>
+            <% else %>
+            <li class="page-item"><button class="page-link" href="#" phx-click="page" phx-value-page={@max_page} phx-target={@myself}><%= @max_page %></button></li>
+            <% end %>
+
+            <li class="page-item">
+            <button class="page-link" href="#"  phx-click="page" phx-value-page={@page + 1} phx-target={@myself}>Вперед</button>
+            </li>
+        </ul>
+        </nav>
+        <% end %>
 </div>

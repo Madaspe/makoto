@@ -4265,3 +4265,19 @@ i.dev1-i-emerald{
   background-color: var(--success-hover) !important;
   color: #FFF !important;
 }
+
+.page-link {
+  color: var(--success) !important;
+}
+
+.page-item.active .page-link {
+  background-color:  var(--success) !important;
+  color: #FFF !important;
+  border-color: var(--success-hover) !important;
+}
+
+.dark-theme   .page-link {
+  background-color: rgb(83,83,83) !important;
+  border-color: var(--background-color) !important;
+}
+

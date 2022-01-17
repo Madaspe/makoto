@@ -22,7 +22,7 @@ defmodule Makoto.Shop do
      where: like(item.name, ^"%#{search}%") or
      ilike(item.block_id, ^"%#{search}%") or
      ilike(item.description, ^"%#{search}%") or
-     ilike(item.category, ^"%#{search}%")) |> Repo.all() |> Repo.preload([:servers])
+     ilike(item.category, ^"%#{search}%"), order_by: item.block_id) |> Repo.all() |> Repo.preload([:servers])
   end
 
   def get_shopping_basket_by_username(username), do: ShopItem |> where(username: ^username) |> MakotoMinecraft.MinecraftRepo.all()
