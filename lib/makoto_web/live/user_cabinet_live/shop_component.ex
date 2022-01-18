@@ -67,6 +67,9 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
       |> Enum.sort_by(fn item -> String.to_integer(item.block_id) end)
       |> Enum.sort_by(fn item -> item.count_buy end, :desc)
       |> Enum.sort_by(fn item -> item.place end)
+      |> Enum.filter(fn item ->
+        File.exists?("priv/static/img/itemsForShop/#{String.replace(item.mime_type, ":" , "_" )}.png")
+      end)
 
     {:noreply, socket |> assign(:items, get_items_for_page(items, 1)) |> clear_flash() |> assign(:search, search) |> assign(:page, 1) |> assign(:max_page, get_max_page(items))}
   end
@@ -126,6 +129,9 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
     |> Enum.sort_by(fn item -> String.to_integer(item.block_id) end)
     |> Enum.sort_by(fn item -> item.count_buy end, :desc)
     |> Enum.sort_by(fn item -> item.place end)
+    |> Enum.filter(fn item ->
+      File.exists?("priv/static/img/itemsForShop/#{String.replace(item.mime_type, ":" , "_" )}.png")
+    end)
   end
 
   def shopping_basket_items(user) do

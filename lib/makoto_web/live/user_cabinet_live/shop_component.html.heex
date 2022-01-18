@@ -17,7 +17,7 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>Назвинае</td>
+                                    <td>Название</td>
                                     <td><%= item.name %></td>
                                 </tr>
                                 <tr>
@@ -106,7 +106,7 @@
         <%= for item <- @items do %>
 
         <div class="dev1-classname-item" sort="0" style="">
-            <p><%= item.name %></p>
+            <p style="overflow: hidden; width: 140px; height: 35px; text-overflow: ellipsis;"><%= item.name %></p>
             <div class="dev1-card-image nocrisp" style={"background-image:
                 url(/img/itemsForShop/#{String.replace(item.mime_type, ":" , "_" )}.png);"}>
             </div>
