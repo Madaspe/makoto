@@ -24,13 +24,13 @@ defmodule MakotoWeb.Router do
   get "/mcrate_9f334e48a30d197356cc849be0049aad.txt", MakotoWeb.UploadViewController, :for_mc_top
   get "/uploads/:filename", MakotoWeb.UploadViewController, :index
 
+  post "/pay/ok", MakotoWeb.PostController, :index
+  post "/pay/error", MakotoWeb.PostController, :index
+  get "/pay/ok", MakotoWeb.PostController, :index
+  get "/pay/error", MakotoWeb.PostController, :index
+
   scope "/", MakotoWeb do
     pipe_through :browser
-
-    post "/pay/ok", PostController, :index
-    post "/pay/error", PostController, :index
-    get "/pay/ok", PageController, :index
-    get "/pay/error", PageController, :index
     post "/", PostController, :index
     get "/", PageController, :index
 
@@ -189,6 +189,7 @@ defmodule MakotoWeb.Router do
 
     scope "/user" do
       get ":username", UserGameController, :index
+      post ":username", UserGameController, :change_user
     end
   end
 end
