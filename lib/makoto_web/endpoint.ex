@@ -1,4 +1,5 @@
 defmodule MakotoWeb.Endpoint do
+  use Sentry.PlugCapture
   use Phoenix.Endpoint, otp_app: :makoto
 
   # The session will be stored in the cookie and signed,

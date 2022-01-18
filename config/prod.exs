@@ -16,8 +16,18 @@ host_url =
               """
 
 config :makoto, MakotoWeb.Endpoint,
-url: [host: host_url, port: 443, scheme: "https"],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [host: host_url, port: 443, scheme: "https"],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+
+config :sentry,
+  dsn: "https://ade7f1ab6d3740bd8f6e2f0ad9724c57@o950712.ingest.sentry.io/6155026",
+  environment_name: :prod,
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!(),
+  tags: %{
+    env: "production"
+  },
+  included_environments: [:prod]
 
 # Do not print debug messages in production
 config :logger, level: :info

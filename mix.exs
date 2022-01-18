@@ -60,7 +60,8 @@ defmodule Makoto.MixProject do
       {:myxql, ">= 0.0.0"},
       {:cachex, "~> 3.4"},
       {:socket, "~> 0.3"},
-      {:mcping, "~> 0.1.0"}
+      {:mcping, "~> 0.1.0"},
+      {:sentry, "~> 8.0"}
     ]
   end
 
