@@ -93,9 +93,11 @@ defmodule MakotoWeb.Router do
 
   scope "/", MakotoWeb do
     pipe_through [:browser, :require_authenticated_user]
-
+    live "/shop/:server/:page", UserCabinetLive.Index, :shop
+    live "/shop_basket", UserCabinetLive.Index, :shop_basket
     get "/users/settings", UserSettingsController, :redirect_to_liveview
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
   end
 
   scope "/", MakotoWeb do
@@ -115,9 +117,6 @@ defmodule MakotoWeb.Router do
 
     live "/page/donate", UserCabinetLive.Index, :donat_page
     live "/page/rules", UserCabinetLive.Index, :rules_page
-
-    live "/shop/:server/:page", UserCabinetLive.Index, :shop
-    live "/shop_basket", UserCabinetLive.Index, :shop_basket
 
   end
 
