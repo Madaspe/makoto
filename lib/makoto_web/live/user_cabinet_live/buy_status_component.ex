@@ -27,21 +27,29 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
     user =
       socket.assigns.user
 
+    user_role =
+      user.roles
+      |> Enum.find(fn role -> role.server == server end)
+
     days =
       socket.assigns.days
 
-    if price > user.rubins do
-      {:noreply, socket |> clear_flash() |> put_flash(:error, "Недостаточно рубинов")}
-    else
-      {:ok, user} = user |> Accounts.update_user(%{rubins: user.rubins - price})
+    cond do
+      user_role == nil ->
+        cond do
+          price > user.rubins ->
+            {:noreply, socket |> clear_flash() |> put_flash(:error, "Недостаточно рубинов")}
 
-      user
-      |> Ecto.build_assoc(:roles, %{name: status, privilege_disable_time: DateTime.utc_now() |> DateTime.add(days *  86400) |> DateTime.truncate(:second), server: server})
-      |> Makoto.Repo.insert!()
+          true ->
+            user
+            |> Ecto.build_assoc(:roles, %{name: status, privilege_disable_time: DateTime.utc_now() |> DateTime.add(days *  86400) |> DateTime.truncate(:second), server: server})
+            |> Makoto.Repo.insert!()
 
-      {:noreply, socket |> put_flash(:error, "Покупка прошла успешно")
-      |> assign(:user, user)
-      |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
+            {:noreply, socket  |> clear_flash() |> put_flash(:error, "Покупка прошла успешно")
+            |> assign(:user, user)
+            |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
+        end
+      true -> {:noreply, socket |> clear_flash() |> put_flash(:error, "У вас уже есть привелегия на этом сервере")}
     end
   end
 
