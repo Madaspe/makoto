@@ -152,7 +152,7 @@ if config_env() == :prod do
                     """
 
   config :makoto,
-    topcraft_votin_token: topcraft_token,
+    topcraft_voting_token: topcraft_token,
     mctop_voting_token: mctop_token
   # ## Using releases
   #
