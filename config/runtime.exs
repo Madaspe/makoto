@@ -81,6 +81,7 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
+
   config :makoto, Makoto.Mailer,
     adapter: Swoosh.Adapters.SMTP,
     relay: relay_email,
@@ -135,8 +136,24 @@ if config_env() == :prod do
                     environment variable XENFORO_TOKEN is missing.
                     """
   config :makoto,
-    xenforo_token: xenforo_token,
-    mctop_voting_token: "853e013202fb06e5ee4cfb608efd6658"
+    xenforo_token: xenforo_token
+
+
+  mctop_token =
+    System.get_env("MCTOP_TOKEN") ||
+                    raise """
+                    environment variable MCTOP_TOKEN is missing.
+                    """
+
+  topcraft_token =
+    System.get_env("TOPCRAFT_TOKEN") ||
+                    raise """
+                    environment variable TOPCRAFT_TOKEN is missing.
+                    """
+
+  config :makoto,
+    topcraft_votin_token: topcraft_token,
+    mctop_voting_token: mctop_token
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix

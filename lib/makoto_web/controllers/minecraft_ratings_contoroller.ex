@@ -3,9 +3,9 @@ defmodule MakotoWeb.MinecraftRatingsController do
 
   alias Makoto.Accounts
   require Logger
-  def index(conn, params = %{"signature" => valid_signature, "username" => username, "timestamp" => timestamp, "rating" => rating}) when rating == "topcraft" do
+  def index(conn, _params = %{"signature" => valid_signature, "username" => username, "timestamp" => timestamp, "rating" => rating}) when rating == "topcraft" do
     signature =
-      :crypto.hash(:sha, "#{username}#{timestamp}#{Application.get_env(:makoto, :voting_token)}")
+      :crypto.hash(:sha, "#{username}#{timestamp}#{Application.get_env(:makoto, :topcraft_voting_token)}")
       |> Base.encode16()
     if String.downcase(signature) == String.downcase(valid_signature) do
       up_rating_by_username(username)
@@ -15,9 +15,9 @@ defmodule MakotoWeb.MinecraftRatingsController do
     end
   end
 
-  def index(conn, params = %{"signature" => valid_signature, "username" => username, "timestamp" => timestamp, "rating" => rating})  when rating == "minecraftrating" do
+  def index(conn, _params = %{"signature" => valid_signature, "username" => username, "timestamp" => timestamp, "rating" => rating})  when rating == "minecraftrating" do
     signature =
-      :crypto.hash(:sha, "#{username}#{timestamp}#{Application.get_env(:makoto, :voting_token)}")
+      :crypto.hash(:sha, "#{username}#{timestamp}TOKEN")
       |> Base.encode16()
     if String.downcase(signature) == String.downcase(valid_signature) do
       up_rating_by_username(username)
@@ -27,7 +27,7 @@ defmodule MakotoWeb.MinecraftRatingsController do
     end
   end
 
-  def index(conn, params = %{"token" => valid_signature, "nickname" => username, "rating" => rating})  when rating == "mctop" do
+  def index(conn, _params = %{"token" => valid_signature, "nickname" => username, "rating" => rating})  when rating == "mctop" do
     signature =
       :crypto.hash(:md5, "#{username}#{Application.get_env(:makoto, :mctop_voting_token)}")
       |> Base.encode16()
@@ -39,9 +39,9 @@ defmodule MakotoWeb.MinecraftRatingsController do
     end
   end
 
-  def index(conn, params = %{"hash" => valid_signature, "nick" => username, "rating" => rating})  when rating == "mcrate" do
+  def index(conn, _params = %{"hash" => valid_signature, "nick" => username, "rating" => rating})  when rating == "mcrate" do
     signature =
-      :crypto.hash(:md5, "#{username}#{Application.get_env(:makoto, :voting_token)}mcrate")
+      :crypto.hash(:md5, "#{username}TOKENmcrate")
       |> Base.encode16()
       |> String.downcase()
     signature =
