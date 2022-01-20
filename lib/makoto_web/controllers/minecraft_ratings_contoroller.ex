@@ -17,7 +17,7 @@ defmodule MakotoWeb.MinecraftRatingsController do
 
   def index(conn, _params = %{"signature" => valid_signature, "username" => username, "timestamp" => timestamp, "rating" => rating})  when rating == "minecraftrating" do
     signature =
-      :crypto.hash(:sha, "#{username}#{timestamp}TOKEN")
+      :crypto.hash(:sha, "#{username}#{timestamp}")
       |> Base.encode16()
     if String.downcase(signature) == String.downcase(valid_signature) do
       up_rating_by_username(username)
@@ -57,7 +57,7 @@ defmodule MakotoWeb.MinecraftRatingsController do
   end
 
   defp up_rating_by_username(username) do
-    case Accounts.get_user_by_username!(username) do
+    case Accounts.get_user_by_username(username) do
       nil ->
         nil
       user ->
