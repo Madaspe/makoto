@@ -16,7 +16,7 @@ defmodule MakotoWeb.CentAppContorller do
         custom
         |> give_rubins
         text(conn, "ok")
-      _ -> text(conn, "ok")
+      _ -> text(conn, "ok")   
     end
   end
   def postback(conn, %{"SignatureValue" => signature_value, "custom" => custom, "Status" => status, "TrsId" => inv_id}) when is_integer(inv_id) do
