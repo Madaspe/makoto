@@ -5,7 +5,7 @@ defmodule MakotoWeb.CentAppContorller do
   def index(conn, _params) do
     text(conn, "ok")
   end
-  def postback(conn, %{"SignatureValue" => _signature_value, "custom" => custom, "Status" => status, "InvId" => inv_id}) when is_binary(inv_id) do
+  def postback(conn, %{"SignatureValue" => _signature_value, "custom" => custom, "Status" => status, "TrsId" => inv_id}) when is_binary(inv_id) do
     case status do
       "SUCCESS" ->
         Makoto.Logs.add_up_balance_log(%Makoto.Logs.UpBalanceLog{
@@ -19,8 +19,8 @@ defmodule MakotoWeb.CentAppContorller do
       _ -> text(conn, "ok")
     end
   end
-  def postback(conn, %{"SignatureValue" => signature_value, "custom" => custom, "Status" => status, "InvId" => inv_id}) when is_integer(inv_id) do
-    postback(conn, %{"SignatureValue" => signature_value, "custom" => custom, "Status" => status, "InvId" => Integer.to_string(inv_id)})
+  def postback(conn, %{"SignatureValue" => signature_value, "custom" => custom, "Status" => status, "TrsId" => inv_id}) when is_integer(inv_id) do
+    postback(conn, %{"SignatureValue" => signature_value, "custom" => custom, "Status" => status, "TrsId" => Integer.to_string(inv_id)})
   end
 
 
