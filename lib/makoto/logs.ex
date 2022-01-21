@@ -25,4 +25,5 @@ defmodule Makoto.Logs do
   end
 
   def add_up_balance_log(log), do: log |> Repo.insert!()
+  def add_buy_item_log(log), do: log |> Repo.insert!()
 end

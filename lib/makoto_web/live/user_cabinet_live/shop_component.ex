@@ -100,6 +100,10 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
           ench: ""
         })
         Shop.increate_count_buy_by_id(item_to_buy.id)
+        Makoto.Logs.add_buy_item_log(%Makoto.Logs.LogBuyItem{
+          user_id: user.id,
+          item_id: item_to_buy.id
+        })
         {:noreply, socket |> clear_flash() |> put_flash(:info, "Вы успешно приобрели предмет '#{item_to_buy.name}'") |> assign(:user, user)}
       true ->
         {:noreply, socket |> clear_flash() |> put_flash(:info, "У вас недостаточно рубинов")}
