@@ -23,4 +23,6 @@ defmodule Makoto.Logs do
         |> update_transitions_log(%{count: log_translition.count + 1})
     end
   end
+
+  def add_up_balance_log(log), do: log |> Repo.insert!()
 end
