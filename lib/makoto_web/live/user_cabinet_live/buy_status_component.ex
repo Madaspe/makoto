@@ -41,6 +41,8 @@ defmodule MakotoWeb.UserCabinetLive.BuyStatusComponent do
             {:noreply, socket |> clear_flash() |> put_flash(:error, "Недостаточно рубинов")}
 
           true ->
+            {:ok, user} = user |> Accounts.update_user(%{rubins: user.rubins - price})
+
             user
             |> Ecto.build_assoc(:roles, %{name: status, privilege_disable_time: DateTime.utc_now() |> DateTime.add(days *  86400) |> DateTime.truncate(:second), server: server})
             |> Makoto.Repo.insert!()
