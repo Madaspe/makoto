@@ -14,7 +14,7 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
       Minecraft.get_servers()
 
     items =
-      shop_items(page, server, servers)
+      Shop.shop_items(server)
 
     items_per_page =
       get_items_for_page(items, 1)
@@ -115,7 +115,7 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
       String.to_integer(page)
     if socket.assigns.live_action in [:shop] do
       items =
-        shop_items(page, socket.assigns.current_server, socket.assigns.servers)
+        Shop.shop_items(socket.assigns.current_server)
 
       {:noreply, socket |> assign(:page, page) |> assign(:items, get_items_for_page(items, page)) |> clear_flash()}
     else
@@ -124,18 +124,6 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
 
         {:noreply, socket |> assign(:page, page) |> assign(:items, get_items_for_page(items, page)) |> clear_flash()}
     end
-  end
-
-  def shop_items(page, server, servers) do
-    Minecraft.get_server_by_name(String.downcase(server))
-    |> Makoto.Repo.preload([:shop_items])
-    |> Map.get(:shop_items)
-    |> Enum.sort_by(fn item -> String.to_integer(item.block_id) end)
-    |> Enum.sort_by(fn item -> item.count_buy end, :desc)
-    |> Enum.sort_by(fn item -> item.place end)
-    |> Enum.filter(fn item ->
-      File.exists?("priv/static/img/itemsForShop/#{String.replace(item.mime_type, ":" , "_" )}.png")
-    end)
   end
 
   def shopping_basket_items(user) do

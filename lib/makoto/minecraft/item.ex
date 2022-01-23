@@ -16,11 +16,11 @@ defmodule MakotoMinecraft.Minecraft.Item do
     many_to_many :servers, MakotoMinecraft.Minecraft.ServerInfo, join_through: "shop_items_servers"
   end
 
-    @doc false
-    def changeset(item, attrs) do
-      item
-      |> cast(attrs, [:count_buy])
-    end
+  @doc false
+  def changeset(item, attrs) do
+    item
+    |> cast(attrs, [:count_buy, :block_id, :name, :count, :price, :place])
+  end
 end
 
 defmodule MakotoMinecraft.Minecraft.ShopItem do

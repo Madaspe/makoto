@@ -21,6 +21,10 @@ defmodule MakotoWeb.Router do
     plug :check_role_user, ["owner"]
   end
 
+  pipeline :shop_assistent do
+    plug :check_role_user, ["shop_assistent", "owner"]
+  end
+
   get "/mcrate_9f334e48a30d197356cc849be0049aad.txt", MakotoWeb.UploadViewController, :for_mc_top
   get "/uploads/:filename", MakotoWeb.UploadViewController, :index
 
@@ -118,6 +122,13 @@ defmodule MakotoWeb.Router do
     live "/page/donate", UserCabinetLive.Index, :donat_page
     live "/page/rules", UserCabinetLive.Index, :rules_page
 
+  end
+
+  scope "/shop_assistent", MakotoWeb do
+    pipe_through [:browser, :require_authenticated_user, :shop_assistent]
+
+    live "/:server", ShopAssistentLive.Index, :index
+    live "/:server/:id/edit", ShopAssistentLive.Index, :edit
   end
 
   scope "/owner", MakotoWeb do

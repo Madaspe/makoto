@@ -36,4 +36,21 @@ defmodule Makoto.Shop do
     |> Kernel.then(fn item -> update_item(item, %{count_buy: Kernel.+(item.count_buy, 1)}) end)
   end
 
+  def shop_items(server) do
+    MakotoMinecraft.Minecraft.get_server_by_name(String.downcase(server))
+    |> Makoto.Repo.preload([:shop_items])
+    |> Map.get(:shop_items)
+    |> Enum.sort_by(fn item -> String.to_integer(item.block_id) end)
+    |> Enum.sort_by(fn item -> item.count_buy end, :desc)
+    |> Enum.sort_by(fn item -> item.place end)
+    |> Enum.filter(fn item ->
+      File.exists?("priv/static/img/itemsForShop/#{String.replace(item.mime_type, ":" , "_" )}.png")
+    end)
+  end
+
+  def update_item(%Item{} = item, attrs) do
+    item
+    |> Item.changeset(attrs)
+    |> Repo.update()
+  end
 end

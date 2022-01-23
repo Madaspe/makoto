@@ -1,0 +1,35 @@
+
+  <h1>Listing Shop Items</h1>
+    <%= if @live_action in [:new, :edit] do %>
+    <%= live_modal MakotoWeb.ShopAssistentLive.FormComponent,
+      id: @item.id,
+      item: @item,
+      return_to: Routes.shop_assistent_index_path(@socket, :index, @server) %>
+  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>BLOCK ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>COUNT BUY</th>
+        <th>PLACE</th>
+        <th>ACTIONS</th>
+      </tr>
+    </thead>
+    <tbody id="users">
+      <%= for item <- @items do %>
+      <tr>
+            <td><%= item.block_id %></td>
+          <td><%= item.name %></td>
+          <td><%= item.price %></td>
+          <td><%= item.count_buy %></td>
+          <td><%= item.place %></td>
+          <td>
+            <span><%= live_patch "Edit", to: Routes.shop_assistent_index_path(@socket, :edit, @server, item.id) %></span>
+          </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
