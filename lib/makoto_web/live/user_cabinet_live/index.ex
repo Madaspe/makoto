@@ -3,18 +3,21 @@ defmodule MakotoWeb.UserCabinetLive.Index do
   use MakotoWeb, :live_view
 
   alias Makoto.Accounts
-  alias Makoto.Accounts.User
   alias Phoenix.PubSub
   alias MakotoMinecraft.Minecraft
   require Logger
 
   @impl true
-  def mount(params, %{"user_token" => user_token} = session, socket) do
+  def mount(params, %{"user_token" => user_token} = _session, socket) do
     PubSub.subscribe Makoto.PubSub, "servers"
 
     user =
       Accounts.get_user_by_session_token(user_token)
       |> Accounts.preload([:discord_info, :roles])
+    mount(params, user, socket)
+  end
+
+  def mount(params, %Makoto.Accounts.User{} = user, socket) do
     refs =
       Accounts.get_all_referrals(user.id)
 
@@ -29,7 +32,7 @@ defmodule MakotoWeb.UserCabinetLive.Index do
     {love_server, _} =
       servers_with_online
       |> Enum.max_by(fn x ->
-        {server, online} = x
+        {_server, online} = x
         online
       end, fn -> {"Нет", 0} end)
 
@@ -57,14 +60,15 @@ defmodule MakotoWeb.UserCabinetLive.Index do
       |> assign(:servers, servers)
       |> assign(:params, params)}
   end
-
-  def mount(params, session, socket) do
+  
+  def mount(_params, _session, socket) do
     servers =
       Minecraft.get_servers_info_from_cache()
-      
+
     {:ok, socket |> assign(:user, nil) |> assign(:servers, servers)}
   end
 
+  @impl true
   def handle_info(servers, socket) do
     {:noreply, socket |> assign(:servers, servers)}
   end
@@ -74,25 +78,16 @@ defmodule MakotoWeb.UserCabinetLive.Index do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp apply_action(socket, action, %{"username" => username}) when action in [:up_balance] do
+  defp apply_action(socket, action, %{"username" => _username}) when action in [:up_balance] do
      socket
   end
 
-  # TODO нужно сделать систему посещения профиля другим игроков
-  defp apply_action(socket, action, %{"username" => username}) when action in [:index] do
-    socket
- end
-
-  defp apply_action(socket, :delete, %{"username" => username}) do
+  defp apply_action(socket, :delete, %{"username" => _username}) do
     socket.assigns.user
     |> Accounts.delete_discord()
 
     socket
-    |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, username))
-  end
-
-  defp apply_action(socket, action, _params) do
-     socket
+    |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, socket.assigns.user.username))
   end
 
   defp apply_action(socket, :update_email, %{"token" => token}) do
@@ -107,6 +102,15 @@ defmodule MakotoWeb.UserCabinetLive.Index do
         |> put_flash(:error, "Действие ссылки закончилось")
         |> redirect(to: Routes.user_settings_path(socket, :edit))
     end
+  end
+
+  # TODO нужно сделать систему посещения профиля другим игроков
+  defp apply_action(socket, action, %{"username" => _username}) when action in [:index] do
+    socket
+  end
+
+  defp apply_action(socket, _action, _params) do
+    socket
   end
 
   defp status_name(roles) do

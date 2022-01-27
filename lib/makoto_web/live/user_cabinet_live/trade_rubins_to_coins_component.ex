@@ -11,7 +11,6 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
     {:ok, socket |> assign(assigns) |> assign(:rubins_count, 1)}
   end
 
-  @impl true
   def handle_params(_params, _, socket) do
     user =
       socket.assigns.user
@@ -22,7 +21,8 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
      |> assign(:changeset, User.balance_changeset(user))}
   end
 
-  def handle_event("submit", %{"sum" => sum_binary} = _unsigned_params, socket) when sum_binary do
+  @impl true
+  def handle_event("submit", %{"sum" => sum_binary} = _unsigned_params, socket) when is_binary(sum_binary) do
     user =
       socket.assigns.user
 
@@ -33,7 +33,7 @@ defmodule MakotoWeb.UserCabinetLive.TradeRubinsToCoinsComponent do
     if user.rubins >= sum do
       url = "http://#{Application.get_env(:makoto, :rcon_host)}:#{Application.get_env(:makoto, :rcon_port)}/console?command=eco%20give%20#{user.username}%20add%20#{sum * 100}"
       case HTTPoison.get(url) do
-          {:ok, %HTTPoison.Response{body: body}} ->
+          {:ok, %HTTPoison.Response{body: _body}} ->
             {:ok, user} =
               user
               |> Accounts.update_user(%{rubins: user.rubins - sum})

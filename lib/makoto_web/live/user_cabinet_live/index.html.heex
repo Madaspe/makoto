@@ -308,7 +308,7 @@
   {:ok, info} = server_info.info
   %>
 
-  <%= if info != nil and info.info != nil do %>
+  <%= if (info != nil and info.info != nil) or info.info != "Server is still starting! Please wait before reconnecting."  do %>
 
       <div class="col-12">
       <div class="om-block monitoring-s">

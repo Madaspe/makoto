@@ -55,7 +55,7 @@
 
     <p class="d-none danger-alert" id="danger-alert"><%= live_flash(@flash, :error) %></p>
   
-    <%= if @live_action in [:shop] do %>
+    <%= if @live_action in [:shop] and @server_name != nil do %>
     <h1 class="py-1">Магазин предметов</h1>
     <h4 class="py-1"><%= @server_name.server_name %></h4>
     <hr class="mt-0">

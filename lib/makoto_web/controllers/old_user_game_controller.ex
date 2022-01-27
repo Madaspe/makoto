@@ -8,7 +8,7 @@ defmodule MakotoWeb.OldUserGameController do
         text(
             conn
             |> put_resp_header("content-type", "application/json"),
-            response
+            response()
             |> Poison.encode!
           )
 
@@ -18,7 +18,7 @@ defmodule MakotoWeb.OldUserGameController do
             |> put_resp_header("content-type", "application/json"),
             user
             |> remove_unnecessary_fields
-            |> response
+            |> response()
             |> Poison.encode!
           )
     end
@@ -34,15 +34,15 @@ defmodule MakotoWeb.OldUserGameController do
 
   defp response(user) do
     %{
-      "success": true,
-      "user": user
+      "success" => true,
+      "user" => user
     }
   end
 
   defp response() do
     %{
-      "success": false,
-      "user": nil
+      "success" => false,
+      "user" => nil
     }
   end
 end
