@@ -25,7 +25,7 @@ defmodule MakotoWeb.Router do
     plug :check_role_user, ["shop_assistent", "owner"]
   end
 
-  get "/mcrate_9f334e48a30d197356cc849be0049aad.txt", MakotoWeb.UploadViewController, :for_mc_top
+  get "/c/mcrate/mcrate_aa7e72a2c18b353f01a557ec40f3fd1a.txt", MakotoWeb.UploadViewController, :for_mc_top
   get "/uploads/:filename", MakotoWeb.UploadViewController, :index
 
   post "/pay/ok", MakotoWeb.PostController, :index
@@ -181,8 +181,10 @@ defmodule MakotoWeb.Router do
 
   scope "/api", MakotoWeb do
     pipe_through :api
+
     post "/rating/:rating", MinecraftRatingsController, :index
     get "/rating/:rating", MinecraftRatingsController, :index
+
     post "/centapp", CentAppContorller, :index
     scope "/launcher" do
       get "/auth", LauncherAuthController, :index

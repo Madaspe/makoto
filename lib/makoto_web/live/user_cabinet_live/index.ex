@@ -60,7 +60,7 @@ defmodule MakotoWeb.UserCabinetLive.Index do
       |> assign(:servers, servers)
       |> assign(:params, params)}
   end
-  
+
   def mount(_params, _session, socket) do
     servers =
       Minecraft.get_servers_info_from_cache()

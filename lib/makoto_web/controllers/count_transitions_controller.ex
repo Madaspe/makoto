@@ -7,6 +7,6 @@ defmodule MakotoWeb.CountTranslitionsController do
       Makoto.Logs.increate_transitions_count_by_name(name)
     end)
 
-    conn |> redirect(to: "/")
+    conn |> put_session(:from, name) |> redirect(to: "/")
   end
 end

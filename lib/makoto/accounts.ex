@@ -46,10 +46,10 @@ defmodule Makoto.Accounts do
   end
 
   def get_user_by_username_and_password(username, password)
-  when is_binary(username) and is_binary(password) do
-  user = Repo.get_by(User, username: username)
-  if User.valid_password?(user, password), do: user
-end
+      when is_binary(username) and is_binary(password) do
+    user = Repo.get_by(User, username: username)
+    if User.valid_password?(user, password), do: user
+  end
 
   @doc """
   Updates a user.
@@ -83,34 +83,42 @@ end
       {:error, %Ecto.Changeset{}}
 
   """
+  def register_user(attrs, %{"from" => from_come} = params) do
+    IO.inspect(attrs)
 
-  def register_user(attrs, %{"promocode" => name_promocode} = params) do
-    promocode =
-      Makoto.Promocodes.get_promocode name_promocode
+    Map.merge(attrs, %{"from_come" => from_come})
+    |> register_user(Map.delete(params, "from"))
+  end
+
+  def register_user(attrs, %{"promocode" => name_promocode} = _params) do
+    promocode = Makoto.Promocodes.get_promocode(name_promocode)
+
     case promocode do
       nil ->
-        user =
+        _user =
           %User{}
           |> User.registration_changeset(attrs)
           |> Repo.insert()
-        promocode ->
-          user_info =
-            %User{}
-            |> User.registration_changeset(Map.merge(attrs, %{"inviter_id" => promocode.owner_id}))
-            |> Repo.insert()
 
-          case user_info do
-            {:ok, user} ->
-              Makoto.Promocodes.apply_promocode(promocode, user)
-              user_info
-            _ ->
-              user_info
-          end
+      promocode ->
+        user_info =
+          %User{}
+          |> User.registration_changeset(Map.merge(attrs, %{"inviter_id" => promocode.owner_id}))
+          |> Repo.insert()
+
+        case user_info do
+          {:ok, user} ->
+            Makoto.Promocodes.apply_promocode(promocode, user)
+            user_info
+
+          _ ->
+            user_info
+        end
     end
   end
 
-  def register_user(attrs, %{"inviter_id" => inviter_id} = params) do
-    user =
+  def register_user(attrs, %{"inviter_id" => inviter_id} = _params) do
+    _user =
       %User{}
       |> User.registration_changeset(Map.merge(attrs, %{"inviter_id" => inviter_id}))
       |> Repo.insert()
@@ -440,15 +448,24 @@ end
   """
   def get_user_by_username!(username), do: Repo.get_by!(User, username: username)
   def get_user_by_username(username), do: Repo.get_by(User, username: username)
-  def get_user_by_username_and_preload!(username), do: Repo.get_by!(User, username: username) |> Repo.preload([:discord_info])
 
-  def get_all_discord_inviter_by_id(id), do: Makoto.Accounts.DiscordInviter |> where(inviter_id: ^id) |> Repo.all()
-  def get_discord_invited_by_id(id), do: Makoto.Accounts.DiscordInviter |> where(user_id: ^id) |> Repo.one()
+  def get_user_by_username_and_preload!(username),
+    do: Repo.get_by!(User, username: username) |> Repo.preload([:discord_info])
 
-  def get_user_discord_info_by_id(id), do: Makoto.Discord.User |> where(discord_id: ^id) |> Repo.one()
+  def get_all_discord_inviter_by_id(id),
+    do: Makoto.Accounts.DiscordInviter |> where(inviter_id: ^id) |> Repo.all()
+
+  def get_discord_invited_by_id(id),
+    do: Makoto.Accounts.DiscordInviter |> where(user_id: ^id) |> Repo.one()
+
+  def get_user_discord_info_by_id(id),
+    do: Makoto.Discord.User |> where(discord_id: ^id) |> Repo.one()
+
   def get_all_referrals(id), do: User |> where(inviter_id: ^id) |> Repo.all()
 
-  def get_online(username), do: MakotoMinecraft.Minecraft.Info |> where(player: ^username) |> Repo.all()
+  def get_online(username),
+    do: MakotoMinecraft.Minecraft.Info |> where(player: ^username) |> Repo.all()
+
   @doc """
   Creates a user.
 
@@ -511,9 +528,10 @@ end
       473820
 
   """
-  def generate_totp_code(%User{otp_secret: secret}) do
-    :pot.totp(secret)
-  end
+
+  # def generate_totp_code(%User{otp_secret: secret}) do
+  #   :pot.totp(secret)
+  # end
 
   @doc """
   Returns a URL that be rendered with a QR code. It meets the Google Authenticator specification
@@ -525,9 +543,9 @@ end
       473820
 
   """
-  def generate_totp_enrolment_url(%User{email: email, otp_secret: secret}) do
-    "otpauth://totp/TOTP%20Example:#{email}?secret=#{secret}&issuer=TOTP%20Example&algorithm=SHA1&digits=6&period=30"
-  end
+  # def generate_totp_enrolment_url(%User{email: email, otp_secret: secret}) do
+  #   "otpauth://totp/TOTP%20Example:#{email}?secret=#{secret}&issuer=TOTP%20Example&algorithm=SHA1&digits=6&period=30"
+  # end
 
   # TODO Нужно еще сделать валидацию
   def assoc_discord_user(user, attrs) do
@@ -539,10 +557,10 @@ end
   def delete_discord(user) do
     user
     |> Kernel.then(fn user_to_delete ->
-        case Repo.delete user_to_delete.discord_info do
-          {:ok, new_user} -> user
-          {:error, changeset} -> user
-        end
+      case Repo.delete(user_to_delete.discord_info) do
+        {:ok, _new_user} -> user
+        {:error, _changeset} -> user
+      end
     end)
   end
 

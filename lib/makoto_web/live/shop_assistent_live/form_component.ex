@@ -1,8 +1,6 @@
 defmodule MakotoWeb.ShopAssistentLive.FormComponent do
   use MakotoWeb, :live_component
 
-  alias Makoto.Accounts
-
   @impl true
   def update(assigns = %{item: item}, socket) do
     changeset = MakotoMinecraft.Minecraft.Item.changeset(item, %{})
@@ -11,8 +9,9 @@ defmodule MakotoWeb.ShopAssistentLive.FormComponent do
      socket
      |> assign(assigns)
      |> assign(:changeset, changeset)}
-  end
 
+  end
+  
   @impl true
   def handle_event("validate", %{"item" => item_params}, socket) do
     changeset =

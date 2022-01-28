@@ -21,12 +21,16 @@ defmodule Makoto.Accounts.User do
     field :rubins_for_inviter, :float, default: 0.0
     field :referrals_procent, :float
     has_one :discord_info, Makoto.Discord.User
-    many_to_many :promocodes, Makoto.Promocodes.Promocode, join_through: "users_promocodes", on_replace: :delete
+
+    many_to_many :promocodes, Makoto.Promocodes.Promocode,
+      join_through: "users_promocodes",
+      on_replace: :delete
 
     has_many :roles, Makoto.Accounts.Role
     field :prefix, :string
 
     field :count_voting, :integer, default: 0
+    field :from_come, :string
 
     timestamps()
   end
@@ -50,7 +54,7 @@ defmodule Makoto.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:username, :email, :password, :inviter_id])
+    |> cast(attrs, [:username, :email, :password, :inviter_id, :from_come])
     |> validate_email()
     |> validate_username()
     |> validate_password(opts)
@@ -75,7 +79,18 @@ defmodule Makoto.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :rubins, :avatar_url, :skin_url, :cloak_url, :inviter_id, :rubins_for_inviter, :prefix, :count_voting])
+    |> cast(attrs, [
+      :username,
+      :email,
+      :rubins,
+      :avatar_url,
+      :skin_url,
+      :cloak_url,
+      :inviter_id,
+      :rubins_for_inviter,
+      :prefix,
+      :count_voting
+    ])
     |> validate_required([:username, :email, :rubins])
   end
 
@@ -92,7 +107,9 @@ defmodule Makoto.Accounts.User do
     changeset
     |> validate_required([:username])
     |> validate_length(:username, max: 16, min: 4)
-    |> validate_format(:username, ~r/^(([1-9])|([A-z])|(_))+$/, message: "В никнейме присутствуют недопустимые символы")
+    |> validate_format(:username, ~r/^(([1-9])|([A-z])|(_))+$/,
+      message: "В никнейме присутствуют недопустимые символы"
+    )
     |> unsafe_validate_unique(:username, Makoto.Repo)
     |> unique_constraint(:username)
   end
@@ -104,14 +121,12 @@ defmodule Makoto.Accounts.User do
     |> maybe_hash_password(opts)
   end
 
-
   defp maybe_hash_password(changeset, opts) do
     hash_password? = Keyword.get(opts, :hash_password, true)
     password = get_change(changeset, :password)
 
     if hash_password? && password && changeset.valid? do
       changeset
-      # If using Bcrypt, then further validate it is at most 72 bytes long
       |> validate_length(:password, max: 72, count: :bytes)
       |> put_change(:hashed_password, Bcrypt.hash_pwd_salt(password))
     else

@@ -1,6 +1,7 @@
 defmodule MakotoWeb.UserGameController do
   use MakotoWeb, :controller
 
+  alias Makoto.Accounts
   require Logger
   def index(conn, _params = %{"username" => username}) do
     case Makoto.Accounts.get_user_by_username(username) |> Makoto.Repo.preload([:discord_info, :roles]) do
@@ -8,7 +9,8 @@ defmodule MakotoWeb.UserGameController do
         text(
             conn
             |> put_resp_header("content-type", "application/json"),
-            response
+
+            response()
             |> Poison.encode!
           )
 
@@ -16,12 +18,22 @@ defmodule MakotoWeb.UserGameController do
         text(
             conn
             |> put_resp_header("content-type", "application/json"),
+
             user
             |> remove_unnecessary_fields
             |> response
             |> Poison.encode!
           )
     end
+  end
+
+  def change_user(conn, params = %{"username" => username}) do
+    # cond do
+    #   Map.has_key?(params, "rubins") -> change_rubins(username, params["rubins"])
+    #   Map.has_key?(params, "discord_id") -> change_discord_id(username, params["discord_id"])
+    #   Map.has_key?(params, "prefix") -> change_prefix(username, params["prefix"])
+    #   Map.has_key?(params, "roles") -> change_roles(username, params["roles"])
+    # end
   end
 
   defp remove_unnecessary_fields(user) do
@@ -37,15 +49,15 @@ defmodule MakotoWeb.UserGameController do
 
   defp response(user) do
     %{
-      "success": true,
-      "user": user
+      "success" => true,
+      "user" => user
     }
   end
 
   defp response() do
     %{
-      "success": false,
-      "user": nil
+      "success" => false,
+      "user" => nil
     }
   end
 end
