@@ -5,9 +5,21 @@ defmodule MakotoWeb.UserRegistrationController do
   alias Makoto.Accounts.User
   alias MakotoWeb.UserAuth
   require Logger
+
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})
     render(conn, "new.html", changeset: changeset)
+  end
+
+  def create(conn, %{"user" => user_params, "g-recaptcha-response" => recaptcha_response}) do
+    case GoogleRecaptcha.valid?(recaptcha_response) do
+      true ->
+        create(conn, %{"user" => user_params})
+
+      false ->
+        changeset = User.registration_changeset(%User{}, user_params)
+        render(conn, "new.html", changeset: changeset)
+    end
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -15,11 +27,13 @@ defmodule MakotoWeb.UserRegistrationController do
       {:ok, user} ->
         MakotoXenForo.XenForo.create_forum_user(user)
         user = Map.drop(user, [:password])
+
         Task.start(fn ->
           Accounts.deliver_user_confirmation_instructions(
             user,
             &Routes.user_confirmation_url(conn, :edit, &1)
-          ) end)
+          )
+        end)
 
         conn
         |> put_flash(:info, "Регистрация успешна")

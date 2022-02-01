@@ -154,6 +154,18 @@ if config_env() == :prod do
   config :makoto,
     topcraft_voting_token: topcraft_token,
     mctop_voting_token: mctop_token
+
+  secret_key =
+    System.get_env("SECRET_KEY") ||
+                    raise """
+                    environment variable SECRET_KEY_GOOGLE is missing.
+                    """
+                    
+  config :google_recaptcha,
+    api_url: "https://www.google.com/recaptcha/api/siteverify",
+    public_key: "6LfKu04eAAAAADFkDTMZWF04N0r9cFEEthC1pdyp",
+    secret_key: secret_key,
+    enabled: true
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix

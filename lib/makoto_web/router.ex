@@ -130,7 +130,6 @@ defmodule MakotoWeb.Router do
     live "/:server", ShopAssistentLive.Index, :index
     live "/:server/:id/edit", ShopAssistentLive.Index, :edit
   end
-
   scope "/owner", MakotoWeb do
     pipe_through [:browser, :require_authenticated_user, :owner]
 
