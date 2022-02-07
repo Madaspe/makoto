@@ -102,7 +102,7 @@
 
     </div>
 
-    <div class="col-12" phx-update="ignore">
+    <div class="col-12">
       <h6 class="pb-1 pt-2 mt-2">Префикс</h6>
       <hr class="mt-0">
       <div class="tab-content" id="v-pills-tabContent">
@@ -113,7 +113,7 @@
 
             <label class="col-5 col-form-label">Новый префикс</label>
             <div class="col-7">
-              <%= text_input f, :prefix, class: "form-control", id: "input", value: @user.prefix %>
+              <%= text_input f, :prefix, class: "form-control", id: "input", phx_hook: "prefix", value: @user.prefix %>
             </div>
 
             <label class="col-5 col-form-label mt-1">Цвет ника</label>
@@ -123,7 +123,7 @@
 
 
             <label class="col-5 col-form-label mt-1">Превью префикса</label>
-            <div class="col-7" phx-update="ignore">
+            <div class="col-7">
               <p id="output" type="text" nickname={@user.username} readonly=""
                 class="form-control-plaintext render text-left mt-1" id="staticDiscord"></p>
             </div>

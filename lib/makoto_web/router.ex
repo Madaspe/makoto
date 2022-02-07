@@ -2,6 +2,7 @@ defmodule MakotoWeb.Router do
   use MakotoWeb, :router
 
   import MakotoWeb.UserAuth
+  import MakotoWeb.ShopApi
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -11,6 +12,10 @@ defmodule MakotoWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
+  end
+
+  pipeline :token do
+    plug :check_token
   end
 
   pipeline :api do
@@ -25,7 +30,10 @@ defmodule MakotoWeb.Router do
     plug :check_role_user, ["shop_assistent", "owner"]
   end
 
-  get "/c/mcrate/mcrate_aa7e72a2c18b353f01a557ec40f3fd1a.txt", MakotoWeb.UploadViewController, :for_mc_top
+  get "/c/mcrate/mcrate_aa7e72a2c18b353f01a557ec40f3fd1a.txt",
+      MakotoWeb.UploadViewController,
+      :for_mc_top
+
   get "/uploads/:filename", MakotoWeb.UploadViewController, :index
 
   post "/pay/ok", MakotoWeb.PostController, :index
@@ -39,7 +47,6 @@ defmodule MakotoWeb.Router do
     get "/", PageController, :index
 
     get "/c/:name", CountTranslitionsController, :index
-
 
     get "/ref/:id", ReferralContorller, :index
   end
@@ -101,7 +108,6 @@ defmodule MakotoWeb.Router do
     live "/shop_basket", UserCabinetLive.Index, :shop_basket
     get "/users/settings", UserSettingsController, :redirect_to_liveview
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
-
   end
 
   scope "/", MakotoWeb do
@@ -121,7 +127,6 @@ defmodule MakotoWeb.Router do
 
     live "/page/donate", UserCabinetLive.Index, :donat_page
     live "/page/rules", UserCabinetLive.Index, :rules_page
-
   end
 
   scope "/shop_assistent", MakotoWeb do
@@ -130,6 +135,7 @@ defmodule MakotoWeb.Router do
     live "/:server", ShopAssistentLive.Index, :index
     live "/:server/:id/edit", ShopAssistentLive.Index, :edit
   end
+
   scope "/owner", MakotoWeb do
     pipe_through [:browser, :require_authenticated_user, :owner]
 
@@ -165,7 +171,6 @@ defmodule MakotoWeb.Router do
       scope "/update" do
         live "/email", UserCabinetLive.Index, :update_email
       end
-
     end
 
     scope "/unconnect" do
@@ -185,6 +190,7 @@ defmodule MakotoWeb.Router do
     get "/rating/:rating", MinecraftRatingsController, :index
 
     post "/centapp", CentAppContorller, :index
+
     scope "/launcher" do
       get "/auth", LauncherAuthController, :index
     end
@@ -202,6 +208,14 @@ defmodule MakotoWeb.Router do
     scope "/user" do
       get ":username", UserGameController, :index
       post ":username", UserGameController, :change_user
+    end
+
+    scope "/shop" do
+      pipe_through :token
+
+      scope "/server" do
+        get ":name", ShopApiController, :server
+      end
     end
   end
 end

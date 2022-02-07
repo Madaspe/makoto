@@ -18,6 +18,7 @@ if config_env() == :prod do
       environment variable SECRET_KEY_BASE is missing.
       You can generate one by calling: mix phx.gen.secret
       """
+
   database_url =
     System.get_env("DATABASE_URL") ||
       raise """
@@ -81,12 +82,11 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
-
   config :makoto, Makoto.Mailer,
     adapter: Swoosh.Adapters.SMTP,
     relay: relay_email,
     username: username_email,
-    password:  password_email,
+    password: password_email,
     auth: :always
 
   config :makoto,
@@ -95,35 +95,37 @@ if config_env() == :prod do
 
   client_id =
     System.get_env("DISCORD_CLIENT_ID") ||
-              raise """
-              environment variable DISCORD_CLIENT_ID is missing.
-              """
+      raise """
+      environment variable DISCORD_CLIENT_ID is missing.
+      """
+
   client_secret =
     System.get_env("DISCORD_CLIENT_SECRET") ||
-                    raise """
-                    environment variable DISCORD_CLIENT_SECRET is missing.
-                    """
+      raise """
+      environment variable DISCORD_CLIENT_SECRET is missing.
+      """
 
   config :ueberauth, Ueberauth.Strategy.Discord.OAuth,
-  client_id: client_id,
-  client_secret:  client_secret
+    client_id: client_id,
+    client_secret: client_secret
 
   rcon_host =
     System.get_env("RCON_HOST") ||
-              raise """
-              environment variable RCON_HOST is missing.
-              """
+      raise """
+      environment variable RCON_HOST is missing.
+      """
+
   rcon_password =
     System.get_env("RCON_PASSWORD") ||
-                    raise """
-                    environment variable RCON_PASSWORD is missing.
-                    """
+      raise """
+      environment variable RCON_PASSWORD is missing.
+      """
 
   rcon_port =
     System.get_env("RCON_PORT") ||
-                    raise """
-                    environment variable RCON_PORT is missing.
-                    """
+      raise """
+      environment variable RCON_PORT is missing.
+      """
 
   config :makoto,
     rcon_host: rcon_host,
@@ -132,24 +134,24 @@ if config_env() == :prod do
 
   xenforo_token =
     System.get_env("XENFORO_TOKEN") ||
-                    raise """
-                    environment variable XENFORO_TOKEN is missing.
-                    """
+      raise """
+      environment variable XENFORO_TOKEN is missing.
+      """
+
   config :makoto,
     xenforo_token: xenforo_token
 
-
   mctop_token =
     System.get_env("MCTOP_TOKEN") ||
-                    raise """
-                    environment variable MCTOP_TOKEN is missing.
-                    """
+      raise """
+      environment variable MCTOP_TOKEN is missing.
+      """
 
   topcraft_token =
     System.get_env("TOPCRAFT_TOKEN") ||
-                    raise """
-                    environment variable TOPCRAFT_TOKEN is missing.
-                    """
+      raise """
+      environment variable TOPCRAFT_TOKEN is missing.
+      """
 
   config :makoto,
     topcraft_voting_token: topcraft_token,
@@ -157,15 +159,25 @@ if config_env() == :prod do
 
   secret_key =
     System.get_env("SECRET_KEY") ||
-                    raise """
-                    environment variable SECRET_KEY_GOOGLE is missing.
-                    """
-                    
+      raise """
+      environment variable SECRET_KEY_GOOGLE is missing.
+      """
+
   config :google_recaptcha,
     api_url: "https://www.google.com/recaptcha/api/siteverify",
     public_key: "6LfKu04eAAAAADFkDTMZWF04N0r9cFEEthC1pdyp",
-    secret_key: secret_key,
+    secret_key: "6LfKu04eAAAAAHdfAIWJlYS9YiQXw52Ko18wHCBE",
     enabled: true
+
+  api_site_token =
+    System.get_env("API_SITE_TOKEN") ||
+      raise """
+      environment variable API_SITE_TOKEN is missing.
+      """
+
+  config :makoto,
+    api_site_token: api_site_token
+
   # ## Using releases
   #
   # If you are doing OTP releases, you need to instruct Phoenix
