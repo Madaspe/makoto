@@ -6,11 +6,11 @@
     <div class="col-6">
       <h6 class="pb-1 pt-2">Скин</h6>
       <hr class="mt-0">
-      <canvas id="skin_container_2" width="300" height="300" skin_url={@user.skin_url}
+      <canvas phx-hook="viewSettingsFrontSkin" id="skin_container_2" width="300" height="300" skin_url={@user.skin_url}
         cloak_url={@user.cloak_url}></canvas>
       <div class="d-block">
         <hr class="mt-0">
-        <form phx-submit="save-skin" phx-change="validate" phx-target={@myself}>
+        <form phx-change="validate" phx-target={@myself}>
           <%= live_file_input @uploads.skin, class: "skin_upload", style: "display: none;" %>
           <button id="skin_button" type="button" data-toggle="tooltip" data-placement="top" title="Загрузить скин"
             class="btn btn-success btn-sm" onclick='document.getElementsByClassName("skin_upload")[0].click()'>
@@ -40,7 +40,7 @@
     <div class="col-6">
       <h6 class="pb-1 pt-2">Плащ</h6>
       <hr class="mt-0">
-      <canvas id="skin_container_1" width="300" height="300" skin_url={@user.skin_url}
+      <canvas phx-hook="viewSettingsBackSkin" id="skin_container_1" width="300" height="300" skin_url={@user.skin_url}
         cloak_url={@user.cloak_url}></canvas>
       <div class="d-block">
         <hr class="mt-0">
@@ -69,42 +69,6 @@
           </a>
         </form>
       </div>
-      <script type="text/javascript">
-        let skin_container_1 = document.getElementById("skin_container_1")
-        if (skin_container_1) {
-          let skinViewer1 = new skinview3d.SkinViewer({
-            canvas: skin_container_1,
-            width: 300,
-            height: 300,
-            skin: skin_container_1.getAttribute("skin_url"),
-            cape: skin_container_1.getAttribute("cloak_url"),
-          });
-          skinViewer1.playerObject.rotation.y = 3.15;
-          setInterval(() => {
-            skinViewer1.loadSkin(skin_container_1.getAttribute("skin_url"));
-            skinViewer1.loadCape(skin_container_1.getAttribute("cloak_url"))
-          }, 1000)
-
-        }
-        let skin_container_2 = document.getElementById("skin_container_2")
-        if (skin_container_2) {
-          let skinViewer2 = new skinview3d.SkinViewer({
-            canvas: skin_container_2,
-            width: 300,
-            height: 300,
-            skin: skin_container_2.getAttribute("skin_url"),
-            cape: skin_container_2.getAttribute("cloak_url"),
-          });
-          skinViewer2.playerObject.rotation.y = 0;
-
-          setInterval(() => {
-            skinViewer2.loadSkin(skin_container_2.getAttribute("skin_url"));
-            skinViewer2.loadCape(skin_container_2.getAttribute("cloak_url"))
-          }, 1000)
-        }
-
-        let skin_button = document.getElementById("skin_button")
-      </script>
     </div>
     <div class="col-12">
       <h6 class="pb-1 pt-2 mt-2">Аватар</h6>
@@ -117,7 +81,7 @@
           <% else %>
           <img src="/img/no_image.png" id="imageA" width="100">
           <% end %>
-          <form phx-submit="save-avatar" phx-change="validate" phx-target={@myself}>
+          <form phx-change="validate" phx-target={@myself}>
             <input type="file" name="image" class="image d-none" id="inputGroupFile01">
             <%= live_file_input @uploads.avatar, class: "image avatar_upload", style: "display: none;" %>
             <label class="btn btn-success mt-2"

@@ -8,28 +8,28 @@
 
         <ul class="nav nav-cabinet">
             <li class="nav-item">
-        <a class="nav-link active" href={Routes.user_cabinet_index_path(@socket, :shop, "skytech", 1)}>
+        <a class="nav-link active" data-phx-link="patch" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :shop, "skytech", 1)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brush mr-1" viewBox="0 0 16 16">
           <path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.117 8.117 0 0 1-3.078.132 3.658 3.658 0 0 1-.563-.135 1.382 1.382 0 0 1-.465-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.393-.197.625-.453.867-.826.094-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.2-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.175-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04zM4.705 11.912a1.23 1.23 0 0 0-.419-.1c-.247-.013-.574.05-.88.479a11.01 11.01 0 0 0-.5.777l-.104.177c-.107.181-.213.362-.32.528-.206.317-.438.61-.76.861a7.127 7.127 0 0 0 2.657-.12c.559-.139.843-.569.993-1.06a3.121 3.121 0 0 0 .126-.75l-.793-.792zm1.44.026c.12-.04.277-.1.458-.183a5.068 5.068 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.591 1.927-5.566 4.66-7.302 6.792-.442.543-.796 1.243-1.042 1.826a11.507 11.507 0 0 0-.276.721l.575.575zm-4.973 3.04l.007-.005a.031.031 0 0 1-.007.004zm3.582-3.043l.002.001h-.002z"></path>
         </svg>
         Магазин предметов</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href={Routes.user_cabinet_index_path(@socket, :view_settings, @user.username)}>
+        <a class="nav-link active" data-phx-link="patch" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :view_settings, @user.username)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brush mr-1" viewBox="0 0 16 16">
           <path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.117 8.117 0 0 1-3.078.132 3.658 3.658 0 0 1-.563-.135 1.382 1.382 0 0 1-.465-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.393-.197.625-.453.867-.826.094-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.2-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.175-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04zM4.705 11.912a1.23 1.23 0 0 0-.419-.1c-.247-.013-.574.05-.88.479a11.01 11.01 0 0 0-.5.777l-.104.177c-.107.181-.213.362-.32.528-.206.317-.438.61-.76.861a7.127 7.127 0 0 0 2.657-.12c.559-.139.843-.569.993-1.06a3.121 3.121 0 0 0 .126-.75l-.793-.792zm1.44.026c.12-.04.277-.1.458-.183a5.068 5.068 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.591 1.927-5.566 4.66-7.302 6.792-.442.543-.796 1.243-1.042 1.826a11.507 11.507 0 0 0-.276.721l.575.575zm-4.973 3.04l.007-.005a.031.031 0 0 1-.007.004zm3.582-3.043l.002.001h-.002z"></path>
         </svg>
         Внешний вид</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href={Routes.user_cabinet_index_path(@socket, :buy_status, @user.username)}>
+        <a class="nav-link" data-phx-link="patch" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :buy_status, @user.username)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders mr-1" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"></path>
         </svg>
         Управление статусами</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link mr-0" href={Routes.user_cabinet_index_path(@socket, :settings, @user.username, "email")}>
+        <a class="nav-link mr-0"  data-phx-link="patch" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :settings, @user.username, "email")}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear mr-1" viewBox="0 0 16 16">
           <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
           <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
@@ -50,7 +50,7 @@
         <div class="col-12 col-md-4 pr-0">
   <div class="skin_container row">
     <div class="skin">
-      <canvas id="skin_container" width="230" height="400" tabindex="0" style="width: 230px; height: 400px;" skin_url={@user.skin_url} cloak_url={@user.cloak_url}></canvas>
+      <canvas phx-hook="mainSkinCanvasHook" id="skin_container" width="230" height="400" tabindex="0" style="width: 230px; height: 400px;" skin_url={@user.skin_url} cloak_url={@user.cloak_url}></canvas>
     </div>
 
   </div>
@@ -136,7 +136,7 @@
     <hr class="mb-2">
     
     
-    <a class="btn btn-sm btn-block-om" href={Routes.user_cabinet_index_path(@socket, :list_referrals, @user.username, 1)}>Реферальная система</a>
+    <a class="btn btn-sm btn-block-om"  data-phx-link="patch" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :list_referrals, @user.username, 1)}>Реферальная система</a>
     
     
   </div>
@@ -162,6 +162,8 @@
     username: @user.username,
     live_action: @live_action,
     params: @params,
+    server_name: "skytech",
+    page: 1,
     return_to: Routes.user_cabinet_index_path(@socket, :index, @user.username) %>          
 <% end %>
 
@@ -243,38 +245,6 @@
     type_of_settings: @type_of_settings %>     
 <% end %>
 </div>
-<script type="text/javascript">
-  let skin_container = null
-  let skinViewer = null
-  setInterval(() => {
-    if (skinViewer !== null) {
-      skinViewer.loadSkin(skin_container.getAttribute("skin_url"))
-      skinViewer.loadCape(skin_container.getAttribute("cloak_url"))
-    }
-
-    if (skin_container === null) {
-      skin_container = document.getElementById("skin_container")
-      if (skin_container) {
-          skinViewer = new skinview3d.SkinViewer({
-          canvas: skin_container,
-          width: 230,
-          height: 400,
-          skin: skin_container.getAttribute("skin_url"),
-          cape: skin_container.getAttribute("cloak_url")
-        });
-        let control = skinview3d.createOrbitControls(skinViewer);
-        control.enableRotate = true;
-
-
-        skinViewer.playerObject.rotation.y = 7;
-        skinViewer.animations.add(skinview3d.WalkingAnimation);
-        skinViewer.animations.speed = 1;
-      }
-    }
-  }, 500);
-
-  
-</script>
 
 </div>
 </div>
@@ -291,7 +261,7 @@
         <div class="container">
           <div class="om-block__header">
             <h4>Баланс</h4>
-            <a class="add_bal" href={Routes.user_cabinet_index_path(@socket, :up_balance, @user.username)}>+ ПОПОЛНИТЬ</a>
+            <a class="add_bal" data-phx-link="patch" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :up_balance, @user.username)}>+ ПОПОЛНИТЬ</a>
           </div>
           <div class="om-block__body">
             <h1 class="int py-3" data-toggle="tooltip" data-placement="top" title=""><%= round(@user.rubins) %><i class="icon-ruby"></i></h1>
@@ -308,7 +278,7 @@
   {:ok, info} = server_info.info
   %>
 
-  <%= if (info != nil and info.info != nil) or info.info != "Server is still starting! Please wait before reconnecting."  do %>
+  <%= if (info != nil and info.info != nil) and info.info != "Server is still starting! Please wait before reconnecting."  do %>
 
       <div class="col-12">
       <div class="om-block monitoring-s">
@@ -446,8 +416,8 @@
             </div>
 
             <p class="small mt-2">Обменяй свои рубины на серверные монеты!</p>
-            <a href={Routes.user_cabinet_index_path(@socket, :rubins_to_coins, @user.username)}>
-               <button type="button" href={Routes.user_cabinet_index_path(@socket, :rubins_to_coins, @user.username)} class="btn btn-block btn-block-om" control-id="ControlID-2">Обменять</button>
+            <a  data-phx-link="patch" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :rubins_to_coins, @user.username)}>
+               <button type="button" phx-click="change-live" phx-value-new_live={:rubins_to_coins} class="btn btn-block btn-block-om" control-id="ControlID-2">Обменять</button>
             </a>
           </div>
 

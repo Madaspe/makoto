@@ -7,8 +7,31 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
   alias MakotoMinecraft.Minecraft
   alias Makoto.Accounts
   alias Makoto.Shop
+
   @impl true
-  def update(assigns = %{params: %{"page" => page, "server" => server}}, socket) do
+  def update(assigns = %{live_action: :shop_basket}, socket) do
+      items =
+        shopping_basket_items(assigns.user)
+
+        items_per_page =
+          get_items_for_page(items, 1)
+
+      {:ok,
+      socket
+      |> assign(assigns)
+      |> assign(:items, items_per_page)
+      |> assign(:search, "")
+      |> assign(:page, 1)
+      |> assign(:max_page, get_max_page(items))
+      |> push_event("test_event", %{"test" => "test"})}
+    end
+
+  def update(assigns = %{params: %{"server" => server}}, socket) do
+    Map.merge(Map.delete(assigns, :params), %{server_name: server})
+    |> update(socket)
+  end
+
+  def update(assigns = %{server_name: server}, socket) do
 
     servers =
       Minecraft.get_servers()
@@ -31,22 +54,6 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
     |> assign(:max_page, get_max_page(items))}
   end
 
-  def update(assigns, socket) do
-    items =
-      shopping_basket_items(assigns.user)
-
-      items_per_page =
-        get_items_for_page(items, 1)
-
-    {:ok,
-    socket
-    |> assign(assigns)
-    |> assign(:items, items_per_page)
-    |> assign(:search, "")
-    |> assign(:page, 1)
-    |> assign(:max_page, get_max_page(items))}
-  end
-
   @impl true
   def handle_params(params, _, socket) do
     IO.inspect(params)
@@ -54,6 +61,12 @@ defmodule MakotoWeb.UserCabinetLive.ShopComponent do
      socket}
   end
 
+  @impl true
+  def handle_event("change-server", params = %{"server" => server}, socket) do
+    {:ok, socket} = update(%{server_name: server}, socket)
+
+    {:noreply, socket}
+  end
   def handle_event("search", params = %{"search" => search}, socket) do
     items =
       Makoto.Shop.search_items_by_all_fields(search)

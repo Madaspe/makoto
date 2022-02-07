@@ -6,7 +6,7 @@ defmodule MakotoMinecraft.Minecraft.Item do
     field :block_id, :string
     field :name, :string
     field :count, :integer
-    field :description, :string
+    field :description, :string, default: ""
     field :category, :string
     field :price, :integer
     field :mime_type, :string

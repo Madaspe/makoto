@@ -2,7 +2,6 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
   use MakotoWeb, :live_component
 
   alias Makoto.Accounts
-  alias Makoto.Accounts.User
 
   require Logger
   require ExImageInfo
@@ -14,7 +13,14 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
     |> assign(assigns)
     |> assign(:uploaded_files, [])
     |> assign(:colors, ["Черный", "Темно-синий", "Темно-зеленый", "Биризовый", "Темно-красный", "Темно-фиолетовый", "Золотой", "Серый", "Темно-серый", "Синий", "Зеленый", "Сине-зеленый", "Красный", "Фиолетовый", "Желтый", "Белый"])
-    |> allow_upload(:avatar, accept: ~w".png .jpg .jpeg", auto_upload: true, progress: &handle_progress/3)
+    |> allow_upload(:avatar,
+       accept: :any,
+       max_entries: 1,
+       max_file_size: 100_000_000,
+       chunk_size: 256,
+       auto_upload: true,
+       progress: &handle_progress/3
+     )
     |> allow_upload(:cloak, accept: ~w".png", auto_upload: true, progress: &handle_progress/3)
     |> allow_upload(:skin, accept: ~w".png", auto_upload: true, progress: &handle_progress/3)}
 
@@ -74,11 +80,10 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
             {:ok, user} =
               new_user =
                 socket.assigns.user
-                |> Accounts.update_user %{prefix: clean_prefix}
+                |> Accounts.update_user(%{prefix: clean_prefix})
 
               {:noreply, socket |> put_flash(:error, "Префикс сменен")
-              |> assign(:user, new_user)
-              |> push_redirect(to: Routes.user_cabinet_index_path(socket, :index, user.username))}
+              |> assign(:user, new_user)}
           _ ->
             Logger.error("Error change prefix #{url}")
             {:noreply, socket |> put_flash(:error, "Обратитесь к администрации проекта")}
@@ -86,27 +91,18 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
     {:noreply, socket}
   end
 
-  @impl Phoenix.LiveView
   def handle_progress(:avatar, entry, socket) do
     if entry.done? do
       user =
         socket.assigns.user
 
-      {flash_type, info} =
-        consume_uploaded_entries(socket, :avatar, fn %{path: path}, _entry ->
+      uuid =
+        consume_uploaded_entries(socket, :avatar, fn %{path: path}, entry ->
           dest = Path.join("priv/static/uploads", "#{user.username}_avatar.png")
           File.cp!(path, dest)
-          case ExImageInfo.info File.read!(dest) do
-            nil ->
-              {:error, "Файл должен быть в формате png"}
-            {_, x, y, _} ->
-              Makoto.Accounts.update_user(user, %{avatar_url: "/uploads/#{user.username}_avatar.png"})
-              MakotoXenForo.XenForo.update_avatar_by_username(user.username, "/uploads/#{user.username}_avatar.png")
-              {:info, "Успешно"}
-          end
+          entry.uuid
       end) |> Enum.at(0)
-
-      {:noreply, socket |> put_flash(flash_type, info) |> assign(:user, Makoto.Accounts.get_user_by_username!(user.username))}
+      {:noreply, update(socket, :uploaded_files, &[uuid | &1])}
     else
       {:noreply, socket}
     end
@@ -170,3 +166,50 @@ defmodule MakotoWeb.UserCabinetLive.ViewComponent do
     end
   end
 end
+
+
+# defmodule DropsWeb.UploadsLive.Auto do
+#   @moduledoc """
+#   Demonstrates automatic uploads with the Phoenix Channels uploader.
+#   """
+#   use DropsWeb, :live_view
+
+#   @impl true
+#   def mount(_params, _session, socket) do
+#     {:ok,
+#      socket
+#      |> assign(:uploaded_files, [])
+#      |> allow_upload(:exhibit,
+#        accept: :any,
+#        max_entries: 10,
+#        max_file_size: 100_000_000,
+#        chunk_size: 256,
+#        auto_upload: true,
+#        progress: &handle_progress/3
+#      )}
+#   end
+
+#   # with auto_upload: true we can consume files here
+#   defp handle_progress(:exhibit, entry, socket) do
+#     if entry.done? do
+#       uuid =
+#         consume_uploaded_entry(socket, entry, fn _meta ->
+#           entry.uuid
+#         end)
+
+#       {:noreply, update(socket, :uploaded_files, &[uuid | &1])}
+#     else
+#       {:noreply, socket}
+#     end
+#   end
+
+#   @impl true
+#   def handle_event("validate", _params, socket) do
+#     {:noreply, socket}
+#   end
+
+#   @impl true
+#   def handle_event("cancel-upload", %{"ref" => ref}, socket) do
+#     {:noreply, cancel_upload(socket, :exhibit, ref)}
+#   end
+# end

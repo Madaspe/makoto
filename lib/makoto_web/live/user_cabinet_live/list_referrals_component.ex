@@ -18,3 +18,5 @@ defmodule MakotoWeb.UserCabinetLive.ListReferralsComponent do
      socket |> assign(:page, params.page)}
   end
 end
+
+

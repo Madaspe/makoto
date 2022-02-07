@@ -11,8 +11,7 @@
           style="font-size: 15px;">Смена почты</a>
 
         <% else %>
-        <a class="nav-link" id="sec-tab" href={Routes.user_cabinet_index_path(@socket, :settings,
-          @user.username, "email" )} style="font-size: 15px;" role="tab" aria-controls="sec" aria-selected="false">Смена
+        <a class="nav-link" id="sec-tab" data-phx-link="redirect" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :settings, @user.username, "email")} style="font-size: 15px;" role="tab" aria-controls="sec" aria-selected="false">Смена
           почты</a>
         <% end %>
 
@@ -21,8 +20,7 @@
           style="font-size: 15px;">Смена пароля</a>
 
         <% else %>
-        <a class="nav-link" id="sec-tab" href={Routes.user_cabinet_index_path(@socket, :settings,
-          @user.username, "password" )} style="font-size: 15px;" role="tab" aria-controls="sec"
+        <a class="nav-link" id="sec-tab" data-phx-link="redirect" data-phx-link-state="push" href={Routes.user_cabinet_index_path(@socket, :settings, @user.username, "password")}  style="font-size: 15px;" role="tab" aria-controls="sec"
           aria-selected="false">Смена пароля</a>
         <% end %>
 
