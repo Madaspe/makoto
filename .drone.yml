@@ -77,3 +77,7 @@ services:
       MARIADB_PASSWORD: test_password
       MARIADB_ROOT_PASSWORD: test_password_root
       MARIADB_DATABASE: mc_general
+
+trigger:
+  event:
+    - release
