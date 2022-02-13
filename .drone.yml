@@ -7,9 +7,6 @@ platform:
   arch: arm64
 
 steps:
-  - name: postgres
-    image: postgres:9-alpine
-
   - name: makoto
     image: elixir:1.9
     commands:
