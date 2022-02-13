@@ -16,6 +16,54 @@ steps:
       - mix phx.digest
       - mix ecto.migrate
       - mix phx.server
+    environment:
+      MIX_ENV:
+        from_secret: MIX_ENV
+      SECRET_KEY_BASE:
+        from_secret: SECRET_KEY_BASE
+
+      MINECRAFT_DATABASE_URL:
+        from_secret: MINECRAFT_DATABASE_URL
+      DATABASE_URL:
+        from_secret: DATABASE_URL
+      HOST_URL:
+        from_secret: HOST_URL
+
+      RELAY_EMAIL:
+        from_secret: RELAY_EMAIL
+      USERNAME_EMAIL:
+        from_secret: USERNAME_EMAIL
+      PASSWORD_EMAIL:
+        from_secret: PASSWORD_EMAIL
+
+      CENT_APP_TOKEN:
+        from_secret: CENT_APP_TOKEN
+      CENT_APP_SHOP_ID:
+        from_secret: CENT_APP_SHOP_ID
+      # %%
+      DISCORD_CLIENT_SECRET:
+        from_secret: DISCORD_CLIENT_SECRET
+      DISCORD_CLIENT_ID:
+        from_secret: DISCORD_CLIENT_ID
+      # %%
+      RCON_HOST:
+        from_secret: RCON_HOST
+      RCON_PASSWORD:
+        from_secret: RCON_PASSWORD
+      RCON_PORT:
+        from_secret: RCON_PORT
+      # %%
+      XENFORO_TOKEN:
+        from_secret: XENFORO_TOKEN
+      # %%
+      MCTOP_TOKEN:
+        from_secret: MCTOP_TOKEN
+      TOPCRAFT_TOKEN:
+        from_secret: TOPCRAFT_TOKEN
+      SECRET_KEY:
+        from_secret: SECRET_KEY
+      API_SITE_TOKEN:
+        from_secret: API_SITE_TOKEN
 
 services:
   - name: database
