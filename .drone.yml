@@ -67,7 +67,7 @@ steps:
 
 services:
   - name: database
-    image: postgres:9-alpine
+    image: docker.io/postgres:14
     environment:
       POSTGRES_USER: optisite_user
       POSTGRES_PASSWORD: optisite_user_password
