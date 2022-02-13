@@ -11,13 +11,8 @@ steps:
     image: docker.io/elixir:slim
     commands:
       - apt-get update
-      - apt-get install -y gcc erlang-dev make
-      - mix local.rebar --force
-      - mix local.hex --force
-      - mix deps.get
-      - mix phx.digest
-      - mix ecto.migrate
-      - mix compile
+      - apt-get make
+      - make build
     environment:
       MIX_ENV:
         from_secret: MIX_ENV
