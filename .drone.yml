@@ -79,5 +79,7 @@ services:
       MARIADB_DATABASE: mc_general
 
 trigger:
+  branch:
+  - master
   event:
     - release
