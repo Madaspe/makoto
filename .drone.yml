@@ -74,3 +74,11 @@ services:
       POSTGRES_USER: optisite_user
       POSTGRES_PASSWORD: optisite_user_password
       POSTGRES_DB: optisite
+
+  - name: database_maria
+    image: docker.io/mariadb:10
+    environment:
+      MARIADB_USER: mc_general
+      MARIADB_PASSWORD: test_password
+      MARIADB_ROOT_PASSWORD: test_password_root
+      MARIADB_DATABASE: mc_general
