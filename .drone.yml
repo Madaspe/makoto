@@ -10,6 +10,8 @@ steps:
   - name: makoto
     image: docker.io/elixir:slim
     commands:
+      - apt-get update
+      - apt-get install -y gcc erlang-dev make
       - mix local.rebar --force
       - mix local.hex --force
       - mix deps.get
