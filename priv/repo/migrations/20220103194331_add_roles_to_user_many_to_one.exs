@@ -4,7 +4,7 @@ defmodule Makoto.Repo.Migrations.AddRolesToUserManyToOne do
   def change do
     create table(:roles) do
       add :name, :string
-      add :privilege_disable_time, :native_datetime
+      add :privilege_disable_time, :naive_datetime
       add :server, :string
       add :user_id, references(:users)
     end
