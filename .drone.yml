@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: makoto
-    image: elixir:1.9
+    image: docker.io/elixir:slim
     commands:
       - mix local.rebar --force
       - mix local.hex --force
