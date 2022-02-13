@@ -11,7 +11,7 @@ steps:
     image: docker.io/elixir:slim
     commands:
       - apt-get update
-      - apt-get make
+      - apt-get install make
       - make build
     environment:
       MIX_ENV:
@@ -79,7 +79,7 @@ services:
       MARIADB_DATABASE: mc_general
 
 trigger:
-  branch: 
+  branch:
     - master
   event:
     - push
