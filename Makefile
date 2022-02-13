@@ -11,7 +11,7 @@ build:
 	mix ecto.migrate
 	mix compile
 
-build: 
+buildmacos: 
 	mix deps.get
 	mix phx.digest
 	mix ecto.migrate
