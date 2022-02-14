@@ -7,12 +7,10 @@ platform:
   arch: arm64
 
 steps:
-  - name: makoto
+  - name: build
     image: docker.io/elixir:slim
     commands:
-      - apt-get update
-      - apt-get install make
-      - make build
+      - sh scripts/build.sh
     environment:
       MIX_ENV:
         from_secret: MIX_ENV
