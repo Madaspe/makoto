@@ -16,12 +16,12 @@ steps:
         from_secret: DISCORD_WEB_TOKEN
       username: "Build"
       message: >
-        `Build status: {{build.number}} run`
-        `Repository: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}|{{ repo.name }}>`
-        `Duration: {{since build.started}}`
-        `Commit: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>`
-        `Branch: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>`
-        `Author: {{ build.author }}`
+        `Build status: {{build.number}} run` \n
+        `Repository: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}>` \n
+        `Duration: {{since build.started}}` \n
+        `Commit: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}>` \n
+        `Branch: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}>` \n
+        `Author: {{ build.author }}` \n
         `Commit message: {{ build.message }}`
 
   - name: build
@@ -87,16 +87,16 @@ steps:
       username: "Build"
       message: >
         {{#success build.status}}
-         `Build status: {{build.number}} succeeded`
+         `Build status: {{build.number}} succeeded` \n
         {{else}}
-          `Build status: {{build.number}} failed.`
+          `Build status: {{build.number}} failed.` \n
         {{/success}}
-        `Repository: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}|{{ repo.name }}>`
-        `Duration: {{since build.started}}`
-        `Commit: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>`
-        `Branch: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>`
-        `Author: {{ build.author }}`
-        `Commit message: {{ build.message }}`
+        `Repository: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}|{{ repo.name }}>` \n
+        `Duration: {{since build.started}}` \n
+        `Commit: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>` \n
+        `Branch: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>` \n
+        `Author: {{ build.author }}` \n
+        `Commit message: {{ build.message }}` \n
 
 services:
   - name: database
