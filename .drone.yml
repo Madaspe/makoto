@@ -7,6 +7,17 @@ platform:
   arch: arm64
 
 steps:
+  - name: discord-pre-build-notification
+    image: appleboy/drone-discord
+    settings:
+      webhook_id: 
+        from_secret: DISCORD_WEB_ID
+      webhook_token: 
+        from_secret: DISCORD_WEB_TOKEN
+      tts: true 
+      username: "Deploy"
+      message: "BUILD START"
+
   - name: build
     image: docker.io/elixir:slim
     commands:
@@ -59,6 +70,22 @@ steps:
         from_secret: SECRET_KEY
       API_SITE_TOKEN:
         from_secret: API_SITE_TOKEN
+
+  - name: discord-pre-build-notification
+    image: appleboy/drone-discord
+    settings:
+      webhook_id: 
+        from_secret: DISCORD_WEB_ID
+      webhook_token: 
+        from_secret: DISCORD_WEB_TOKEN
+      tts: true 
+      username: "Deploy"
+      message: >
+        {{#success build.status}}
+          build {{build.number}} succeeded. Good job.
+        {{else}}
+          build {{build.number}} failed. Fix me please.
+        {{/success}}
 
 services:
   - name: database
