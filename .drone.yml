@@ -15,8 +15,17 @@ steps:
       webhook_token:
         from_secret: DISCORD_WEB_TOKEN
       tts: true
-      username: "Deploy"
-      message: "BUILD START"
+      username: "Build"
+      message: >
+        ```
+        Start build
+        Repository: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}|{{ repo.name }}>
+        Duration: {{since build.started}}
+        Commit: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+        Branch: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
+        Author: {{ build.author }}
+        Commit message: {{ build.message }}
+        ```
 
   - name: build
     image: docker.io/elixir:slim
@@ -79,13 +88,21 @@ steps:
       webhook_token:
         from_secret: DISCORD_WEB_TOKEN
       tts: true
-      username: "Deploy"
+      username: "Build"
       message: >
+        ```
         {{#success build.status}}
           build {{build.number}} succeeded. Good job.
         {{else}}
           build {{build.number}} failed. Fix me please.
         {{/success}}
+        Repository: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}|{{ repo.name }}>
+        Duration: {{since build.started}}
+        Commit: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+        Branch: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
+        Author: {{ build.author }}
+        Commit message: {{ build.message }}
+        ```
 
 services:
   - name: database
