@@ -10,11 +10,11 @@ steps:
   - name: discord-pre-build-notification
     image: appleboy/drone-discord
     settings:
-      webhook_id: 
+      webhook_id:
         from_secret: DISCORD_WEB_ID
-      webhook_token: 
+      webhook_token:
         from_secret: DISCORD_WEB_TOKEN
-      tts: true 
+      tts: true
       username: "Deploy"
       message: "BUILD START"
 
@@ -71,14 +71,14 @@ steps:
       API_SITE_TOKEN:
         from_secret: API_SITE_TOKEN
 
-  - name: discord-pre-build-notification
+  - name: discord-post-build-notification
     image: appleboy/drone-discord
     settings:
-      webhook_id: 
+      webhook_id:
         from_secret: DISCORD_WEB_ID
-      webhook_token: 
+      webhook_token:
         from_secret: DISCORD_WEB_TOKEN
-      tts: true 
+      tts: true
       username: "Deploy"
       message: >
         {{#success build.status}}
