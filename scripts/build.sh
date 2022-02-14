@@ -5,24 +5,24 @@ execute() {
 }
 
 build() {
-    echo ">>> BUILD: START"
+    echo ">>> BUILD STATUS: START"
 
-    echo ">>> UPDATE"
+    echo ">>> BUILD STATUS: UPDATE"
     execute "apt-get update"
     echo ">>> INSTALL DEPS"
     execute "apt-get install -y gcc erlang-dev make"
 
-    echo ">>> INSTALL ELIXIR DEPS"
+    echo ">>> BUILD STATUS: INSTALL ELIXIR DEPS"
     execute "mix local.rebar --force"
     execute "mix local.hex --force"
     execute "mix deps.get"
 
-    echo ">>> START BUILD ELIXIR APP"
+    echo ">>> BUILD STATUS: START ELIXIR APP"
     execute "mix phx.digest"
     execute "mix ecto.migrate"
     execute "mix compile"
 
-    echo ">>> BUILD: FINISH"
+    echo ">>> BUILD STATUS: FINISH"
 }
 
 build
