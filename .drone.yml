@@ -14,10 +14,9 @@ steps:
         from_secret: DISCORD_WEB_ID
       webhook_token:
         from_secret: DISCORD_WEB_TOKEN
-      tts: true
       username: "Build"
       message: >
-        ```
+        `
         Start build
         Repository: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}|{{ repo.name }}>
         Duration: {{since build.started}}
@@ -25,7 +24,7 @@ steps:
         Branch: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
         Author: {{ build.author }}
         Commit message: {{ build.message }}
-        ```
+        `
 
   - name: build
     image: docker.io/elixir:slim
@@ -87,10 +86,9 @@ steps:
         from_secret: DISCORD_WEB_ID
       webhook_token:
         from_secret: DISCORD_WEB_TOKEN
-      tts: true
       username: "Build"
       message: >
-        ```
+        `
         {{#success build.status}}
           build {{build.number}} succeeded. Good job.
         {{else}}
@@ -102,7 +100,7 @@ steps:
         Branch: <https://git.optimine.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
         Author: {{ build.author }}
         Commit message: {{ build.message }}
-        ```
+        `
 
 services:
   - name: database
