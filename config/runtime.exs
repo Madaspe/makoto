@@ -166,7 +166,7 @@ if config_env() == :prod do
   config :google_recaptcha,
     api_url: "https://www.google.com/recaptcha/api/siteverify",
     public_key: "6LfKu04eAAAAADFkDTMZWF04N0r9cFEEthC1pdyp",
-    secret_key: "6LfKu04eAAAAAHdfAIWJlYS9YiQXw52Ko18wHCBE",
+    secret_key: secret_key,
     enabled: true
 
   api_site_token =

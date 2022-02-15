@@ -67,4 +67,49 @@ defmodule Makoto.Shop do
       File.exists?("priv/static/img/itemsForShop/#{String.replace(item.mime_type, ":", "_")}.png")
     end)
   end
+
+  def xlsx_data_to_items(data) do
+    data
+    |> Enum.filter(fn x -> Kernel.>(length(x[:rows]), 1) end)
+    |> Enum.map(&xlsx_parse_rows(&1))
+    |> Enum.map(fn x ->
+      Enum.reduce(x, [], &[&1 | &2])
+    end)
+  end
+
+  defp xlsx_parse_rows(%{rows: rows, mod: mod}) do
+    [head | tail] = rows
+
+    head
+    |> Enum.with_index()
+    |> Map.new()
+    |> xlsx_rows_to_items(tail, mod)
+  end
+
+  defp xlsx_rows_to_items(items, rows, mod) do
+    rows
+    |> Enum.map(&row_to_item(&1, items, mod))
+  end
+
+  defp row_to_item(row, indexies, mod) do
+    %MakotoMinecraft.Minecraft.Item{
+      mime_type: get_data_from_row_by_key(row, "mime_type", indexies),
+      name: get_data_from_row_by_key(row, "name", indexies),
+      count: get_data_from_row_by_key(row, "count", indexies),
+      description: get_data_from_row_by_key(row, "description", indexies),
+      category: get_data_from_row_by_key(row, "category", indexies),
+      price: get_data_from_row_by_key(row, "price", indexies),
+      nbt: get_data_from_row_by_key(row, "NBT", indexies),
+      mod: mod
+    }
+  end
+
+  defp get_data_from_row_by_key(row, key, indexies) do
+    case indexies[key] do
+      nil -> ""
+      index -> row |> Enum.at(index, "")
+    end
+  end
+
+  # MakotoMinecraft.Minecraft.Item
 end

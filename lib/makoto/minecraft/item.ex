@@ -13,6 +13,7 @@ defmodule MakotoMinecraft.Minecraft.Item do
     field :nbt, :string, [source: :NBT]
     field :place, :integer
     field :count_buy, :integer, default: 0
+    field :mod, :string
     many_to_many :servers, MakotoMinecraft.Minecraft.ServerInfo, join_through: "shop_items_servers"
   end
 
