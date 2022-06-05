@@ -2,7 +2,7 @@
 
 To start your Phoenix server:
   * Поднять постгресс
-  * Подключить .env(скинул в лс вк) и заполнить его полностью
+  * Переменные окружения можно посмотреть в дроне
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
